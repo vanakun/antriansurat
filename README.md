@@ -31,23 +31,53 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+Table of Contents
 
--   **[Vehikl](https://vehikl.com/)**
--   **[Tighten Co.](https://tighten.co)**
--   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--   **[64 Robots](https://64robots.com)**
--   **[Cubet Techno Labs](https://cubettech.com)**
--   **[Cyber-Duck](https://cyber-duck.co.uk)**
--   **[Many](https://www.many.co.uk)**
--   **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
--   **[DevSquad](https://devsquad.com)**
--   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
--   **[OP.GG](https://op.gg)**
--   **[CMS Max](https://www.cmsmax.com/)**
--   **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
--   **[Lendio](https://lendio.com)**
--   **[Romega Software](https://romegasoftware.com)**
+-   [Usage](#usage)
+-   [Setup your .env config file](#setup-your-env-config-file)
+-   [Install Laravel dependencies](#install-laravel-dependencies)
+-   [Migrate the tables](#migrate-the-tables)
+-   [Generate some test data](#generate-some-test-data)
+-   [Compile the front-end](#compile-the-front-end)
+-   [Launch the Laravel backend](#launch-the-laravel-backend)
+-   [Credits](#credits)
+-   [Terms and License](#terms-and-license)
+-   [About Us](#about-us)
+-   [Stay in the loop](#stay-in-the-loop)
+
+## Usage
+
+This project was built with Laravel Jetstream and Livewire + Blade as Stack.
+
+## Setup your .env config file
+
+Make sure to add the database configuration in your .env file such as database name, username, password, and port.
+
+## Install Laravel dependencies
+
+In the root of your Laravel application, run the `composer install` command to install all of the framework's dependencies.
+
+## Migrate the tables
+
+In order to migrate the tables and set up the bare minimum structure for this app to display some data, open your terminal, locate and enter this project directory, and run the following command:
+
+`php artisan migrate`
+
+## Generate some test data
+
+Once you have all your database tables set up, you can then generate some test data which will come from our pre-made database table seeders. In order to do so, in your terminal run the following command:
+
+`php artisan db:seed`
+
+N.B. If you run this command twice, all the test data will be duplicated and added to the existing table data. If you want to avoid having duplicate test data, please make sure to truncate the following `datafeeds` table in your database.
+
+## Launch the Laravel backend
+
+In order to make this Laravel installation work properly on your local machine, you can run the following command in your terminal window:
+
+`php artisan serve`
+
+You should receive a message similar to this: "Starting Laravel development server: http://127.0.0.1:8000". Simply copy the URL into your browser, and you'll be ready to test out your Laravel app.
 
 ## Contributing
 
