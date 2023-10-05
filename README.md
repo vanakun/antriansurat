@@ -40,10 +40,10 @@ Table of Contents
 -   [Generate some test data](#generate-some-test-data)
 -   [Compile the front-end](#compile-the-front-end)
 -   [Launch the Laravel backend](#launch-the-laravel-backend)
--   [Credits](#credits)
--   [Terms and License](#terms-and-license)
--   [About Us](#about-us)
--   [Stay in the loop](#stay-in-the-loop)
+-   [Contributing](#contributing)
+-   [Code of Conduct](#codecof-conduct)
+-   [Security Vulnerabilities](#security-vulnerabilities)
+-   [License](#license)
 
 ## Usage
 
@@ -77,7 +77,7 @@ In order to make this Laravel installation work properly on your local machine, 
 
 `php artisan serve`
 
-You should receive a message similar to this: "Starting Laravel development server: http://127.0.0.1:8000". Simply copy the URL into your browser, and you'll be ready to test out your Laravel app.
+You should receive a message similar to this: `Starting Laravel development server: http://127.0.0.1:8000`. Simply copy the URL into your browser, and you'll be ready to test out your Laravel app.
 
 ## Contributing
 
