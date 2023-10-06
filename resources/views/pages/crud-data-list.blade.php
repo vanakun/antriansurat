@@ -5,10 +5,10 @@
 @endsection
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Data List Layout</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Data List Project</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2">Add New Product</button>
+            <button class="btn btn-primary shadow-md mr-2">Add New Project</button>
             <div class="dropdown">
                 <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                     <span class="w-5 h-5 flex items-center justify-center">
@@ -49,7 +49,7 @@
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">IMAGES</th>
-                        <th class="whitespace-nowrap">PRODUCT NAME</th>
+                        <th class="whitespace-nowrap">PROJECT</th>
                         <th class="text-center whitespace-nowrap">STOCK</th>
                         <th class="text-center whitespace-nowrap">STATUS</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
