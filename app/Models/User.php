@@ -46,6 +46,12 @@ class User extends Authenticatable
      */
     protected $appends = ['photo'];
 
+
+    public function hasRole($role)
+    {
+        return $this->role === $role; // Misalkan peran pengguna disimpan dalam kolom "role" pada tabel pengguna
+    }
+    
     /**
      * The getter that return accessible URL for user photo.
      *
