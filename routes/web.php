@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Tenagaahli\TenagaahliController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\ColorSchemeController;
 
@@ -20,14 +23,26 @@ use App\Http\Controllers\ColorSchemeController;
 Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('dark-mode-switcher');
 Route::get('color-scheme-switcher/{color_scheme}', [ColorSchemeController::class, 'switch'])->name('color-scheme-switcher');
 
-Route::middleware('loggedin')->group(function() {
-    Route::get('login', [AuthController::class, 'loginView'])->name('login.index');
-    Route::post('login', [AuthController::class, 'login'])->name('login.check');
+Route::middleware(['guest'])->group(function () {
+    Route::get('login', [LoginController::class, 'loginView'])->name('login.index');
+    Route::post('login', [LoginController::class, 'login'])->name('login.check');
     Route::get('register', [AuthController::class, 'registerView'])->name('register.index');
     Route::post('register', [AuthController::class, 'register'])->name('register.store');
 });
 
 Route::middleware('auth')->group(function() {
+    // Contoh: Rute admin
+    Route::middleware(['role'])->group(function () {
+        Route::get('/admin', [AdminController::class, 'index'])->name('adminDashboard');
+        // ... tambahkan rute admin lainnya di sini
+    });
+
+    // Contoh: Rute pengguna biasa (tenaga ahli)
+    Route::middleware(['role'])->group(function () {
+        Route::get('/dashboard', [Tenagaahli::class, 'index'])->name('tenagaahliDashboard');
+        // ... tambahkan rute tenaga ahli lainnya di sini
+    });
+
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [PageController::class, 'dashboardOverview1'])->name('dashboard-overview-1');
     Route::get('dashboard-overview-2-page', [PageController::class, 'dashboardOverview2'])->name('dashboard-overview-2');
@@ -41,7 +56,7 @@ Route::middleware('auth')->group(function() {
     Route::get('crud-data-list-page', [PageController::class, 'crudDataList'])->name('crud-data-list');
     Route::get('crud-form-page', [PageController::class, 'crudForm'])->name('crud-form');
     Route::get('users-layout-1-page', [PageController::class, 'usersLayout1'])->name('users-layout-1');
-    Route::get('users-layout-2-page', [PageController::class, 'usersLayout2'])->name('users-layout-2');
+    Route::get('/users-layout-2-page', [PageController::class, 'usersLayout2'])->name('users-layout-2');
     Route::get('users-layout-3-page', [PageController::class, 'usersLayout3'])->name('users-layout-3');
     Route::get('profile-overview-1-page', [PageController::class, 'profileOverview1'])->name('profile-overview-1');
     Route::get('profile-overview-2-page', [PageController::class, 'profileOverview2'])->name('profile-overview-2');
