@@ -101,8 +101,8 @@
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
-                    <div class="font-medium">{{ $fakers[0]['users'][0]['name'] }}</div>
-                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">{{ $fakers[0]['jobs'][0] }}</div>
+                    <div class="font-medium"><span>Halo, {{ auth()->user()->name }}</span></div>
+                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">{{ auth()->user()->role }}</div>
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
@@ -123,6 +123,11 @@
                 <li>
                     <a href="" class="dropdown-item hover:bg-white/5">
                         <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('adminDashboard') }}" class="dropdown-item hover:bg-white/5">
+                        <i data-feather="settings" class="w-4 h-4 mr-2"></i> Setting
                     </a>
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
