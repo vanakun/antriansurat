@@ -28,10 +28,12 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (!\Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ])) {
+        if (
+            !\Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])
+        ) {
             throw new \Exception('Wrong email or password.');
         }
     }
@@ -66,7 +68,7 @@ class AuthController extends Controller
 
         // Proses pendaftaran user dan lainnya
         // ...
-            
+
         return redirect('/dashboard'); // Redirect ke halaman dashboard setelah pendaftaran berhasil
     }
 

@@ -14,19 +14,11 @@ class RoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
-        // dd($request->user()->role);
-        if (auth()->check()) {
-            $user = auth()->user();
-    
-            if ($user->role === 'Admin') {
-                return redirect('/admin');
-            } elseif ($user->role === 'Tenagaahli') {
-                return redirect('/dashboard');
-            }
+        if ($request->user()->role != $role) {
+            return redirect()->route('dashboard-overview-1');
         }
-    
         return $next($request);
     }
 }

@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Auth;
 
 class PageController extends Controller
 {
+    function handleRole(){
+        switch(Auth::user()->role) {
+            case "Admin":
+                return redirect()->route('adminDashboard');
+            case 'Tenagaahli':
+                return redirect()->route('tenagaahliDashboard');
+        }
+    }
     /**
      * Show specified view.
      *

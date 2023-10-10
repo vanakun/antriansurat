@@ -23,11 +23,11 @@ class LoginController extends Controller
             $user = \Auth::user();
 
             if ($user->hasRole('Admin')) {
-                return redirect()->route('dashboard-overview-1'); 
+                return redirect()->route('adminDashboard'); 
             } elseif ($user->hasRole('Tenagaahli')) {
                 return redirect()->route('tenagaahliDashboard'); 
             }
         }
-        return redirect()->route('login.index')->with('error', 'Email atau password salah.');
+        return redirect()->route('login.main')->with('error', 'Email atau password salah.');
     }
 }

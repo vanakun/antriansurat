@@ -29,22 +29,23 @@ Route::middleware(['guest'])->group(function () {
     Route::get('register', [AuthController::class, 'registerView'])->name('register.index');
     Route::post('register', [AuthController::class, 'register'])->name('register.store');
 });
-
 Route::middleware('auth')->group(function() {
+    
+    Route::get('/', [PageController::class, 'handleRole'])->name('dashboard-overview-1');
     // Contoh: Rute admin
-    Route::middleware(['role'])->group(function () {
+    Route::middleware('role:Admin')->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('adminDashboard');
         // ... tambahkan rute admin lainnya di sini
     });
-
     // Contoh: Rute pengguna biasa (tenaga ahli)
-    Route::middleware(['role'])->group(function () {
-        Route::get('/dashboard', [Tenagaahli::class, 'index'])->name('tenagaahliDashboard');
+    Route::middleware('role:Tenagaahli')->group(function () {
+        Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         // ... tambahkan rute tenaga ahli lainnya di sini
     });
+});
+
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [PageController::class, 'dashboardOverview1'])->name('dashboard-overview-1');
     Route::get('dashboard-overview-2-page', [PageController::class, 'dashboardOverview2'])->name('dashboard-overview-2');
     Route::get('dashboard-overview-3-page', [PageController::class, 'dashboardOverview3'])->name('dashboard-overview-3');
     Route::get('inbox-page', [PageController::class, 'inbox'])->name('inbox');
@@ -106,4 +107,3 @@ Route::middleware('auth')->group(function() {
     Route::get('chart-page', [PageController::class, 'chart'])->name('chart');
     Route::get('slider-page', [PageController::class, 'slider'])->name('slider');
     Route::get('image-zoom-page', [PageController::class, 'imageZoom'])->name('image-zoom');
-});

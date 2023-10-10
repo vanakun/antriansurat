@@ -14,6 +14,7 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
+        // dd($request->user()->role);
         if (!is_null(request()->user())) {
             return $next($request);
         } else {
