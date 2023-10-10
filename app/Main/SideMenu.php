@@ -16,55 +16,21 @@ class SideMenu
             'dashboard' => [
                 'icon' => 'home',
                 'title' => 'Dashboard',
-                'sub_menu' => [
-                    'dashboard-overview-1' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
+                        'route_name' => 'adminDashboard',
                         'params' => [
                             'layout' => 'side-menu',
                         ],
-                        'title' => 'Overview 1'
+                        'title' => 'Dashboard'
                     ],
-                    'dashboard-overview-2' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-2',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 2'
-                    ],
-                    'dashboard-overview-3' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-3',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 3'
-                    ]
-                ]
-            ],
-            'menu-layout' => [
+            'Project' => [
                 'icon' => 'box',
                 'title' => 'Project',
-                'sub_menu' => [
-                    'side-menu' => [
-                        'icon' => '',
-                        'route_name' => 'crud-data-list',
+                        'route_name' => 'adminProject',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'List-Project'
+                        'title' => 'Project'
                     ],
-                    'simple-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'simple-menu'
-                        ],
-                        'title' => 'Create-Project'
-                    ],
-                ]
-            ],
             'users' => [
                 'icon' => 'users',
                 'title' => 'Users',

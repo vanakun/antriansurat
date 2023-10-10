@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function() {
     // Contoh: Rute admin
     Route::middleware('role:Admin')->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('adminDashboard');
+        Route::get('/admin/project', [AdminController::class, 'indexProject'])->name('adminProject');
         // ... tambahkan rute admin lainnya di sini
     });
     // Contoh: Rute pengguna biasa (tenaga ahli)

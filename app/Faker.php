@@ -111,25 +111,25 @@ class Faker
     public static function fakeStocks()
     {
         return collect([
-            rand(50, 220),
-            rand(50, 120),
-            rand(50, 50)
+            rand(1, 7),
+            rand(1, 7),
+            rand(1, 7)
         ])->shuffle();
     }
 
     public static function fakeProducts()
     {
         $products = collect([
-            [ 'name' => 'Dell XPS 13', 'category' => 'PC & Laptop' ],
-            [ 'name' => 'Apple MacBook Pro 13', 'category' => 'PC & Laptop' ],
-            [ 'name' => 'Oppo Find X2 Pro', 'category' => 'Smartphone & Tablet' ],
-            [ 'name' => 'Samsung Galaxy S20 Ultra', 'category' => 'Smartphone & Tablet' ],
-            [ 'name' => 'Sony Master Series A9G', 'category' => 'Electronic' ],
-            [ 'name' => 'Samsung Q90 QLED TV', 'category' => 'Electronic' ],
-            [ 'name' => 'Nike Air Max 270', 'category' => 'Sport & Outdoor' ],
-            [ 'name' => 'Nike Tanjun', 'category' => 'Sport & Outdoor' ],
-            [ 'name' => 'Nikon Z6', 'category' => 'Photography' ],
-            [ 'name' => 'Sony A7 III', 'category' => 'Photography' ]
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Renovasi' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Renovasi' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Relokasi' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Relokasi' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Pemeliharaan' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Pemeliharaan' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Pembangunan' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Pembangunan' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Renovasi' ],
+            [ 'name' => 'Jl Raya Menganti', 'category' => 'Renovasi' ]
         ]);
 
         return $products->shuffle();

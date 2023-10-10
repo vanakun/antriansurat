@@ -11,4 +11,9 @@ class AdminController extends Controller
     {
         return view('pages/admin/dashboard');
     }
+
+    public function indexProject()
+    {
+        return view('pages/admin/list-project');
+    }
 }
