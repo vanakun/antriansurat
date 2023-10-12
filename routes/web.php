@@ -34,8 +34,17 @@ Route::middleware('auth')->group(function() {
     Route::get('/', [PageController::class, 'handleRole'])->name('dashboard-overview-1');
     // Contoh: Rute admin
     Route::middleware('role:Admin')->group(function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('adminDashboard');
-        Route::get('/admin/project', [AdminController::class, 'indexProject'])->name('adminProject');
+        Route::get('/', [AdminController::class, 'index'])->name('adminDashboard');
+
+        Route::prefix('project')->group(function () {
+            Route::get('/', [AdminController::class, 'indexProject'])->name('adminProject');
+            Route::get('/createProject', [AdminController::class, 'createProject'])->name('projectCreate');
+            Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
+            Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
+            Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
+            Route::get('/get-current-time', [AdminController::class, 'getCurrentTime'])->name('getCurrentTime');
+            Route::get('/deleteProject/{id}', [AdminController::class, 'deleteProject'])->name('projectDelete');
+        });
         // ... tambahkan rute admin lainnya di sini
     });
     // Contoh: Rute pengguna biasa (tenaga ahli)

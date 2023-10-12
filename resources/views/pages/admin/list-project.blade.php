@@ -8,8 +8,8 @@
     <h2 class="intro-y text-lg font-medium mt-10">Data List Project</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2">Add New Project</button>
-            <div class="hidden md:block mx-auto text-slate-500"></div>
+            <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('projectCreate') }}">Add New Project</a></button>
+            <div id="real-time-clock" class="intro-y hidden md:block mx-auto text-slate-500"></div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-slate-500">
                     <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
@@ -22,16 +22,71 @@
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
-                        <th class="whitespace-nowrap">IMAGES</th>
-                        <th class="whitespace-nowrap">PROJECT</th>
-                        <th class="text-center whitespace-nowrap">LOKASI</th>
-                        <th class="text-center whitespace-nowrap">TAHAP</th>
-                        <th class="text-center whitespace-nowrap">STATUS</th>
-                        <th class="text-center whitespace-nowrap">AKSI</th>
+                        <th class="whitespace-nowrap">No</th>
+                        <th class="whitespace-nowrap">Image</th>
+                        <th class="whitespace-nowrap">Project</th>
+                        <th class="text-center whitespace-nowrap">Lokasi</th>
+                        <th class="text-center whitespace-nowrap">Tahap</th>
+                        <th class="text-center whitespace-nowrap">Status</th>
+                        <th class="text-center whitespace-nowrap">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (array_slice($fakers, 0, 9) as $faker)
+                    @foreach ( $post as $index => $pos)
+                    <tr class="intro-x image-fit zoom-in">
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            <a href="#">
+                                <div class="flex">
+                                    <div class="w-20 h-10 image-fit zoom-in">
+                                        <img alt="{{ $pos->nama }}" class="tooltip rounded-lg" src="{{ asset( 'dist/poster_project/' . $pos->image ) }}" title="Created at {{ $pos->created_at }}">
+                                    </div>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <div class="font-medium whitespace-nowrap">{{ $pos->nama }}</div>
+                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{ $pos->lokasi }}</div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <div class="flex items-center justify-center">
+                                    <div class="font-medium whitespace-nowrap">{{ $pos->lokasi }}</div>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <div class="flex items-center justify-center">
+                                    <div class="font-medium whitespace-nowrap">1</div>
+                                </div>
+                            </a>
+                        </td>
+                        <td class="w-40">
+                            <a href="#">
+                                <div class="flex items-center justify-center {{ $pos->status === 'active' ? 'text-success' : 'text-danger' }}">
+                                    <i data-feather="{{ $pos->status === 'active' ? 'check-square' : 'x-square' }}" class="w-4 h-4 mr-2"></i> {{ $pos->status }}
+                                </div>
+                            </a>
+                        </td>
+                        <td class="table-report__action w-56">
+                            <div class="flex justify-center items-center">
+                                <!-- <a class="flex items-center mr-3" href="javascript:;">
+                                    <i data-feather="eye" class="w-4 h-4 mr-1"></i> Show
+                                </a> -->
+                                <a class="flex items-center mr-3" href="/project/edit/{{ $pos->id }}">
+                                    <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
+                                </a>
+                                <a class="flex items-center text-danger" href="{{ route('projectDelete', ['id' => $pos->id]) }}" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal">
+                                    <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                    <!-- @foreach (array_slice($fakers, 0, 9) as $faker)
                         <tr class="intro-x">
                             <td class="w-40">
                                 <div class="flex">
@@ -71,13 +126,13 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach -->
                 </tbody>
             </table>
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
+        <!-- <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
             <nav class="w-full sm:w-auto sm:mr-auto">
                 <ul class="pagination">
                     <li class="page-item">
@@ -123,7 +178,7 @@
                 <option>35</option>
                 <option>50</option>
             </select>
-        </div>
+        </div> -->
         <!-- END: Pagination -->
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->
@@ -145,4 +200,22 @@
         </div>
     </div>
     <!-- END: Delete Confirmation Modal -->
+@endsection
+
+@section('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function updateRealTimeClock() {
+        $.ajax({
+            url: "{{ route('getCurrentTime') }}",
+            method: 'GET',
+            success: function (data) {
+                $('#real-time-clock').text(data);
+            }
+        });
+    }
+
+    // Update waktu setiap 1 detik
+    setInterval(updateRealTimeClock, 1000);
+</script>
 @endsection
