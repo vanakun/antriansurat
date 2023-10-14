@@ -36,7 +36,7 @@
                     <tr class="intro-x image-fit zoom-in">
                         <td>{{ $index + 1 }}</td>
                         <td>
-                            <a href="#">
+                            <a href="{{ route('projectShow', $pos->id) }}">
                                 <div class="flex">
                                     <div class="w-20 h-10 image-fit zoom-in">
                                         <img alt="{{ $pos->nama }}" class="tooltip rounded-lg" src="{{ asset( 'dist/poster_project/' . $pos->image ) }}" title="Created at {{ $pos->created_at }}">
@@ -45,29 +45,29 @@
                             </a>
                         </td>
                         <td>
-                            <a href="#">
+                            <a href="{{ route('projectShow', $pos->id) }}">
                                 <div class="font-medium whitespace-nowrap">{{ $pos->nama }}</div>
                                 <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{ $pos->lokasi }}</div>
                             </a>
                         </td>
                         <td>
-                            <a href="#">
+                            <a href="{{ route('projectShow', $pos->id) }}">
                                 <div class="flex items-center justify-center">
                                     <div class="font-medium whitespace-nowrap">{{ $pos->lokasi }}</div>
                                 </div>
                             </a>
                         </td>
                         <td>
-                            <a href="#">
+                            <a href="{{ route('projectShow', $pos->id) }}">
                                 <div class="flex items-center justify-center">
                                     <div class="font-medium whitespace-nowrap">1</div>
                                 </div>
                             </a>
                         </td>
                         <td class="w-40">
-                            <a href="#">
+                            <a href="{{ route('projectShow', $pos->id) }}">
                                 <div class="flex items-center justify-center {{ $pos->status === 'active' ? 'text-success' : 'text-danger' }}">
-                                    <i data-feather="{{ $pos->status === 'active' ? 'check-square' : 'x-square' }}" class="w-4 h-4 mr-2"></i> {{ $pos->status }}
+                                    <i data-feather="{{ $pos->status === 'active' ? 'check-square' : 'x-square' }}" class="w-4 h-4 mr-2"></i> {{ ucfirst($pos->status) }}
                                 </div>
                             </a>
                         </td>

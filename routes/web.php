@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Tenagaahli\TenagaahliController;
 use App\Http\Controllers\LoginController;
@@ -31,7 +32,7 @@ Route::middleware(['guest'])->group(function () {
 });
 Route::middleware('auth')->group(function() {
     
-    Route::get('/', [PageController::class, 'handleRole'])->name('dashboard-overview-1');
+    Route::get('/', [PageController::class, 'handleRole'])->name('dashboard');
     // Contoh: Rute admin
     Route::middleware('role:Admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('adminDashboard');
@@ -40,16 +41,20 @@ Route::middleware('auth')->group(function() {
             Route::get('/', [AdminController::class, 'indexProject'])->name('adminProject');
             Route::get('/createProject', [AdminController::class, 'createProject'])->name('projectCreate');
             Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
+            Route::get('/show/{id}', [AdminController::class, 'show'])->name('projectShow');
             Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
             Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
             Route::get('/get-current-time', [AdminController::class, 'getCurrentTime'])->name('getCurrentTime');
             Route::get('/deleteProject/{id}', [AdminController::class, 'deleteProject'])->name('projectDelete');
+            Route::get('/{project}/createTahap', [StepController::class, 'create'])->name('tahapCreate');
+            Route::post('/{project}/storeTahap', [StepController::class, 'store'])->name('tahapStore');
         });
         // ... tambahkan rute admin lainnya di sini
     });
     // Contoh: Rute pengguna biasa (tenaga ahli)
     Route::middleware('role:Tenagaahli')->group(function () {
         Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
+        Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         // ... tambahkan rute tenaga ahli lainnya di sini
     });
 });

@@ -53,6 +53,13 @@ class AdminController extends Controller
         return redirect('/project')->with('success', 'Proyek telah berhasil dibuat.');
     }
 
+    public function show($id)
+    {
+        $project = Project::findOrFail($id);
+        // dd($post);
+        return view ('pages/admin/show', compact('project'));
+    }
+
     public function editProject($id)
     {
         // Temukan proyek yang akan diubah berdasarkan ID
