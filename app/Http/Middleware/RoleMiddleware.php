@@ -17,7 +17,7 @@ class RoleMiddleware
     public function handle($request, Closure $next, $role)
     {
         if ($request->user()->role != $role) {
-            return redirect()->route('dashboard-overview-1');
+            return redirect('/tenagaahli');
         }
         return $next($request);
     }

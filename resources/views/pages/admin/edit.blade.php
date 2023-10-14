@@ -23,6 +23,16 @@
         <input id="lokasi" type="text" name="lokasi" class="intro-y form-control py-3 px-4 box pr-10" placeholder="" value="{{ $project->lokasi }}" required>
     </div>
     <div class="intro-y col-span-12 lg:col-span-12">
+        <label class="form-label">Status</label>
+        <div class="dropdown">
+            <select class="form-select" name="status" id="statusSelect" value="{{ $project->status }}">
+                <option value="active" {{ $project->status === 'active' ? 'selected' : '' }}>Active</option>
+                <option value="inactive" {{ $project->status === 'inactive' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="intro-y col-span-12 lg:col-span-12">
         <div class="post intro-y overflow-hidden box mt-5">
             <div class="post__content tab-content">
                 <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
