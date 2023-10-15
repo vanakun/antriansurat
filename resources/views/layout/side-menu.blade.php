@@ -9,7 +9,7 @@
     <div class="flex overflow-hidden">
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
-            <a href="" class="intro-x flex items-center pl-5 pt-4 mt-3">
+            <a href="{{ route('adminDashboard') }}" class="intro-x flex items-center pl-5 pt-4 mt-3">
                 <img alt="Tinker Tailwind HTML Admin Template" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
                 <span class="hidden xl:block text-white text-lg ml-3">
                     Inkindo

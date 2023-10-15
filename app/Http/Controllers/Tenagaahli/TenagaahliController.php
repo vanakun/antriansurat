@@ -10,7 +10,7 @@ class TenagaahliController extends Controller
 {
     public function index()
     {
-        $post = Project::paginate(6);
+        $post = Project::paginate(4);
         return view ('pages/tenagaahli/index', compact('post'));
     }
 

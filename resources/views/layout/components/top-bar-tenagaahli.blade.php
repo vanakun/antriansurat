@@ -104,7 +104,13 @@
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
                     <div class="font-medium"><span>Halo, {{ auth()->user()->name }}</span></div>
-                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">{{ auth()->user()->role }}</div>
+                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
+                        @if(auth()->user()->role === 'Tenagaahli')
+                            Tenaga Ahli
+                        @else
+                            {{ auth()->user()->role }}
+                        @endif
+                    </div>
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>

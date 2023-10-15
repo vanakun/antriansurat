@@ -6,7 +6,7 @@
 
 @section('subcontent')
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-    <h2 class="text-lg font-medium mr-auto">New Project</h2>
+    <h2 class="text-lg font-medium mr-auto">Edit Project</h2>
     
 </div>
 <form method="POST" action="{{ route('projectUpdate', $project->id) }}" enctype="multipart/form-data">
