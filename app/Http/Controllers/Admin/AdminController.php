@@ -25,6 +25,18 @@ class AdminController extends Controller
         return view('pages/admin/list-project', compact('post', 'currentDate'));
     }
 
+    public function searchProject(Request $request)
+    {
+        $search = $request->input('search');
+
+        $post = Project::where('nama', 'like', "%$search%")
+            ->orWhere('lokasi', 'like', "%$search%")
+            ->orWhere('status', 'like', "%$search%")
+            ->paginate(6);
+
+        return view('pages.admin.list-project', compact('post', 'search'));
+    }
+
     public function createProject()
     {
         return view('pages/admin/create');

@@ -9,12 +9,17 @@
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('projectCreate') }}">Add New Project</a></button>
-            <div id="real-time-clock" class="intro-y hidden md:block mx-auto text-slate-500"></div>
+            <!-- <div id="real-time-clock" class="intro-y hidden md:block mx-auto text-slate-500"></div> -->
+            <div class="intro-y mx-auto md:block mt-4">
+                <p>Showing {{ $post->firstItem() }} to {{ $post->lastItem() }} of {{ $post->total() }} results</p>
+            </div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <div class="w-56 relative text-slate-500">
-                    <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
-                </div>
+                <form action="{{ route('projectSearch') }}" method="GET">
+                    <div class="w-56 relative text-slate-500">
+                        <input type="text" name="search" class="form-control w-56 box pr-10" placeholder="Search...">
+                        <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- BEGIN: Data List -->
@@ -76,7 +81,7 @@
                                 <!-- <a class="flex items-center mr-3" href="javascript:;">
                                     <i data-feather="eye" class="w-4 h-4 mr-1"></i> Show
                                 </a> -->
-                                <a class="flex items-center mr-3" href="/project/edit/{{ $pos->id }}">
+                                <a class="flex items-center mr-3" href="{{ route('projectEdit', ['id' => $pos->id, 'currentPage' => $post->currentPage()]) }}">
                                     <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                                 </a>
                                 <a class="flex items-center text-danger" href="{{ route('projectDelete', ['id' => $pos->id]) }}" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal">
@@ -129,6 +134,9 @@
                     @endforeach -->
                 </tbody>
             </table>
+            <div class="intro-y flex flex-col mt-4">
+                {!! $post->links() !!}
+            </div>
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->

@@ -25,7 +25,7 @@ class SideMenu
             'Project' => [
                 'icon' => 'box',
                 'title' => 'Project',
-                        'route_name' => 'adminProject',
+                        'route_name' => 'projectIndex',
                         'params' => [
                             'layout' => 'side-menu'
                         ],

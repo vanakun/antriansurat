@@ -12,9 +12,9 @@
             @include('../layout/components/top-bar-tenagaahli')
             @yield('subcontent')
             <div class="intro-y text-center mt-5">
-                <img alt="proyek_img" class="rounded-md mx-auto zoom-in" src="{{ asset('dist/poster_project/' . $project->image) }}" style="max-width: 700px; height: auto;">
-              </div>
-              <div class="intro-y box mt-5">
+                <img alt="proyek_img" class="h-auto max-w-lg rounded-md mx-auto zoom-in" width="700" src="{{ asset('dist/poster_project/' . $project->image) }}">
+            </div>
+            <div class="intro-y box mt-5">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Detail</h2>
                 </div>

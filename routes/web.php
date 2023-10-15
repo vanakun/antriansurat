@@ -38,10 +38,11 @@ Route::middleware('auth')->group(function() {
         Route::get('/', [AdminController::class, 'index'])->name('adminDashboard');
 
         Route::prefix('project')->group(function () {
-            Route::get('/', [AdminController::class, 'indexProject'])->name('adminProject');
+            Route::get('/', [AdminController::class, 'indexProject'])->name('projectIndex');
             Route::get('/createProject', [AdminController::class, 'createProject'])->name('projectCreate');
             Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
             Route::get('/show/{id}', [AdminController::class, 'show'])->name('projectShow');
+            Route::get('/search', [AdminController::class, 'searchProject'])->name('projectSearch');
             Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
             Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
             Route::get('/get-current-time', [AdminController::class, 'getCurrentTime'])->name('getCurrentTime');

@@ -13,21 +13,25 @@
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
 
         <div class="intro-y col-span-12 lg:col-span-12">
+            <label for="nama">Tahap</label>
+            <input type="text" name="nama" class="form-control" id="nama" required>
+        </div>
+        <div class="intro-y col-span-12 lg:col-span-12">
             <label for="nama">Nama</label>
             <input type="text" name="nama" class="form-control" id="nama" required>
         </div>
         <div class="intro-y col-span-12 lg:col-span-12">
-            <label for="fotorapat">Foto Rapat</label>
+            <label for="fotorapat">Deskripsi</label>
             <input type="text" name="fotorapat" class="form-control" id="fotorapat" required>
         </div>
-        <div class="intro-y col-span-12 lg:col-span-12">
+        <!-- <div class="intro-y col-span-12 lg:col-span-12">
             <div class="post intro-y overflow-hidden box mt-5">
                 <div class="post__content tab-content">
                     <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
-                        <label class="form-label">Upload Image</label>
+                        <label class="form-label">Upload Foto Rapat</label>
                         <div id="image-drop" class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4">
                             <div class="flex flex-wrap px-4" id="image-container">
-                                <!-- Konten gambar faker -->
+                                
                             </div>
                             <div class="px-4 pb-4 flex items-center cursor-pointer relative">
                                 <i data-feather="image" class="w-4 h-4 mr-2"></i> <span
@@ -38,11 +42,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="intro-y col-span-12 lg:col-span-12">
+        </div> -->
+        <!-- <div class="intro-y col-span-12 lg:col-span-12">
             <label for="berkaspdukung">Berkas Pendukung</label>
             <input type="file" name="berkaspdukung" class="form-control" id="berkaspdukung" required>
-        </div>
+        </div> -->
         <div class="intro-y col-span-12 lg:col-span-12">
             <label class="form-label">Tenaga Ahli</label>
             <div class="dropdown">

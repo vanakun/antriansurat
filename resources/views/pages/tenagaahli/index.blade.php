@@ -7,11 +7,6 @@
 @section('content')
     @include('../layout/components/mobile-menu')
     <div class="flex overflow-hidden">
-        <!-- BEGIN: Side Menu -->
-            
-       
-        <!-- END: Side Menu -->
-
         <!-- BEGIN: Content -->
         <div class="content">
             @include('../layout/components/top-bar-tenagaahli')
@@ -22,7 +17,7 @@
             <div class="intro-y grid grid-cols-12 gap-6 mt-5">
                 <!-- BEGIN: Blog Layout -->
                 @foreach ($post as $index => $pos)
-                    <div class="intro-y col-span-12 md:col-span-6 box">
+                    <div class="intro-y col-span-12 md:col-span-6 box zoom-in">
                         <div class="h-[320px] before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-black/90 before:to-black/10 image-fit">
                             <img alt="Tinker Tailwind HTML Admin Template" class="rounded-t-md" src="{{ asset('dist/poster_project/' . $pos->image) }}">
                             <div class="absolute w-full flex items-center px-5 pt-6 z-10">
@@ -51,7 +46,7 @@
                             </div>
                             <div class="absolute bottom-0 text-white px-5 pb-6 z-10">
                                 <span class="bg-white/20 px-2 py-1 rounded">Category {{$pos->lokasi}}</span>
-                                <a href="" class="block font-medium text-xl mt-3">{{ $pos->nama }} </a>
+                                <a href="{{ route('showProject', $pos->id) }}" class="block font-medium text-xl mt-3">{{ $pos->nama }} </a>
                             </div>
                         </div>
                         <div class="p-5 text-slate-600 dark:text-slate-500">deskrip</div>
@@ -70,6 +65,9 @@
                     </div>
                 @endforeach
                 <!-- END: Blog Layout -->
+            </div>
+            <div class="mt-6 text-center">
+                {{ $post->links() }}
             </div>
         </div>
         <!-- END: Content -->
