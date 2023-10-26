@@ -20,23 +20,35 @@
                     <div class="box shadow">
                         <ul>
                             <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="{{ route('setting', $user->id ) }}" class="">
-                                Personal Information
+                                <a href="{{ route('setting', $user->id ) }}" class="hover:text-blue-700">
+                                    <div class="flex flex-row items-center">
+                                        <div><i data-feather="settings" class="w-5 h-5 mr-2"></i></div>
+                                        Personal Information
+                                    </div>
                                 </a>
                             </li>
                             <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/profile" class="">
-                                Account Setting
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/settings" class="">
-                                Change Password
+                                <a href="/profile" class="hover:text-blue-700">
+                                    <div class="flex flex-row items-center">
+                                        <div><i data-feather="activity" class="w-5 h-5 mr-2"></i></div>
+                                        Account Setting
+                                    </div>
                                 </a>
                             </li>
                             <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
                                 <a href="/settings" class="hover:text-blue-700">
-                                Logout
+                                    <div class="flex flex-row items-center">
+                                        <div><i data-feather="lock" class="w-5 h-5 mr-2"></i></div>
+                                        Change Password
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
+                                <a href="/settings" class="hover:text-red-700">
+                                    <div class="flex flex-row items-center">
+                                        <div><i data-feather="log-out" class="w-5 h-5 mr-2"></i></div>
+                                        Logout
+                                    </div>
                                 </a>
                             </li>
                         </ul>
@@ -73,8 +85,8 @@
                                     <input type="text" name="" value="{{ ucfirst($user->gender) }}" class="form-control" id="nama" disabled>
                                 </div>
                                 <div class="intro-x mt-4">
-                                    <label for="">D buat</label>
-                                    <input type="text" name="" value="{{ $user->created_at }}" class="form-control" id="nama" disabled>
+                                    <label for="">Di buat</label>
+                                    <input type="text" name="" value="{{ $user->created_at->format('Y-m-d') }}" class="form-control" id="nama" disabled>
                                 </div>
                             </div>
                         </div>
