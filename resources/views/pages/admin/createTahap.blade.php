@@ -13,8 +13,8 @@
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
 
         <div class="intro-y col-span-12 lg:col-span-12">
-            <label for="nama">Tahap</label>
-            <input type="text" name="nama" class="form-control" id="nama" required>
+            <label for="tahap">Tahap</label>
+            <input type="text" name="tahap" class="form-control" id="nama" required>
         </div>
         <div class="intro-y col-span-12 lg:col-span-12">
             <label for="nama">Nama</label>
