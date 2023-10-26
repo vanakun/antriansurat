@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Tenagaahli\TenagaahliController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\ColorSchemeController;
 
@@ -56,6 +57,7 @@ Route::middleware('auth')->group(function() {
     Route::middleware('role:Tenagaahli')->group(function () {
         Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
+        Route::get('/setting/{id}', [ProfileController::class, 'index'])->name('setting');
         // ... tambahkan rute tenaga ahli lainnya di sini
     });
 });

@@ -38,6 +38,18 @@ module.exports = {
                     800: withOpacityValue("--color-slate-800"),
                     900: withOpacityValue("--color-slate-900"),
                 },
+                red: {
+                    50: withOpacityValue("--color-red-50"),
+                    100: withOpacityValue("--color-red-100"),
+                    200: withOpacityValue("--color-red-200"),
+                    300: withOpacityValue("--color-red-300"),
+                    400: withOpacityValue("--color-red-400"),
+                    500: withOpacityValue("--color-red-500"),
+                    600: withOpacityValue("--color-red-600"),
+                    700: withOpacityValue("--color-red-700"),
+                    800: withOpacityValue("--color-red-800"),
+                    900: withOpacityValue("--color-red-900"),
+                },
                 darkmode: {
                     50: withOpacityValue("--color-darkmode-50"),
                     100: withOpacityValue("--color-darkmode-100"),
