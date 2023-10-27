@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Request\LoginRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -43,34 +46,21 @@ class AuthController extends Controller
         return view('pages.register');
     }
 
-    public function register(Request $request)
+    public function registerStore(Request $request)
     {
-        // Inisialisasi variabel-variabel berdasarkan karakteristik password
-        $password = $request->input('password');
-        $passwordContainsUppercase = preg_match('/[A-Z]/', $password);
-        $passwordContainsDigit = preg_match('/\d/', $password);
-        $passwordLength = strlen($password);
-        $passwordContainsSpecialChar = preg_match('/[^a-zA-Z\d]/', $password);
+        // Buat pengguna baru
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->password = Hash::make($request->input('password'));
 
-        // Validasi input dari form pendaftaran
-        $validator = Validator::make($request->all(), [
-            'password' => 'required|string|min:8',
-            // Tambahkan validasi lainnya sesuai kebutuhan Anda
-        ]);
+        $user->save();
 
-
-        if ($validator->fails()) {
-            // Validasi gagal, kembalikan pesan error ke formulir pendaftaran
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        // Proses pendaftaran user dan lainnya
-        // ...
-
-        return redirect('/dashboard'); // Redirect ke halaman dashboard setelah pendaftaran berhasil
+        // Berhasil mendaftar, alihkan ke halaman masuk (login)
+        return redirect()->route('login.index')->with('success', 'Akun Anda telah berhasil dibuat. Silakan masuk.');
     }
+
 
     /**
      * Logout user.

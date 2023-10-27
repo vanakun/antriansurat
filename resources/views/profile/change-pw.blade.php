@@ -35,8 +35,8 @@
                                       <div class="text-red-500">{{ $errors->first('old_password') }}</div>
                                   @endif
                                   <div class="intro-x mt-4">
-                                      <label for="new_password">New Password</label>
-                                      <input type="password" name="new_password" id="new_password" class="form-control mt-1">
+                                      <label for="password">New Password</label>
+                                      <input type="password" name="password" id="password" class="form-control mt-1">
                                   </div>
                                   <div class="intro-x mt-4">
                                       <label for="password_confirmation">Confirmation Password</label>

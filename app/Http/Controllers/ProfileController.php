@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -65,7 +66,7 @@ class ProfileController extends Controller
                     $fail('The '. 'old password' .' is incorrect.');
                 }
             }],
-            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         if ($validator->fails()) {
@@ -75,7 +76,7 @@ class ProfileController extends Controller
         }
 
         $user = Auth::user();
-        $user->password = bcrypt($request->input('new_password'));
+        $user->password = bcrypt($request->input('password'));
         $user->save();
         return redirect("profile/change-pw");
     }
