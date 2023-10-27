@@ -15,18 +15,15 @@ class CreateStepsTable extends Migration
     {
         Schema::create('steps', function (Blueprint $table) {
             $table->id();
+            $table->string('tahap');
             $table->string('nama');
-            $table->string('fotorapat');
-            $table->string('berkaspdukung');
+            $table->string('keterangan');
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
     
             // Definisikan kunci asing ke tabel projects
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-    
-            // Definisikan kunci asing ke tabel users (tenaga ahli)
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

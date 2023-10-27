@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Step;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -68,8 +69,10 @@ class AdminController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        // dd($post);
-        return view ('pages/admin/show', compact('project'));
+        //dd($post);
+        $steps = Step::where('project_id', $project->id)->get();
+        //dd($steps);
+        return view ('pages/admin/show', compact('project','steps'));
     }
 
     public function editProject($id)

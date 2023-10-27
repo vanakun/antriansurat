@@ -8,21 +8,21 @@
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">Create Step for {{$project->nama}}</h2>
 </div>
-<form method="POST" action="{{ route('tahapCreate', $project->id) }}">
+<form method="POST" action="{{ route('tahapStore', $project->id) }}">
     @csrf
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
 
         <div class="intro-y col-span-12 lg:col-span-12">
             <label for="tahap">Tahap</label>
-            <input type="text" name="tahap" class="form-control" id="nama" required>
+            <input type="text" name="tahap" class="form-control" id="tahap" required>
         </div>
         <div class="intro-y col-span-12 lg:col-span-12">
             <label for="nama">Nama</label>
             <input type="text" name="nama" class="form-control" id="nama" required>
         </div>
         <div class="intro-y col-span-12 lg:col-span-12">
-            <label for="fotorapat">Deskripsi</label>
-            <input type="text" name="fotorapat" class="form-control" id="fotorapat" required>
+            <label for="keterangan">Deskripsi</label>
+            <input type="text" name="keterangan" class="form-control" id="keterangan" required>
         </div>
         <!-- <div class="intro-y col-span-12 lg:col-span-12">
             <div class="post intro-y overflow-hidden box mt-5">

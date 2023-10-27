@@ -69,4 +69,8 @@ class User extends Authenticatable
             return url('media-example/no-image.png');
         }
     }
+    public function tenagaahli()
+    {
+        return $this->hasMany(Tenagaahli::class, 'user_id');
+    }
 }

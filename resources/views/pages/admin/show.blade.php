@@ -9,6 +9,11 @@
     <!-- BEGIN: Content -->
     <div class="content">
         <div class="intro-y text-center mt-5">
+        <div class="intro-y box mt-5">
+            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="text-lg font-medium ">{{$project->nama}}</h2>
+            </div>
+            
             <img alt="proyek_img" class="rounded-md mx-auto zoom-in" src="{{ asset('dist/poster_project/' . $project->image) }}" style="max-width: 700px; height: auto;">
             <div class="intro-y box mt-5">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
@@ -42,13 +47,26 @@
             </div>
             <div id="" class="p-5 flex flex-col items-center">
                 <div class="preview">
-                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('tahapCreate', $project->id) }}">Tambah Tahap</a></button>
+                <div class="p-5">
+                @if (!empty($steps))
+                    @foreach ($steps as $step)
+                        <div class="intro-y box mt-5" style="width: 120%;">
+                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                            <h2 class="font-medium text-base mr-auto">Tahap {{ $step->tahap }} - {{ $step->nama }}</h2>
+                         </div>
+                        <div id="" class="p-5 flex flex-col items-center">
+                    <div class="preview">
+                        <p>Keterangan: {{ $step->keterangan }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="intro-y box mt-5">
-            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                <h2 class="text-lg font-medium ">{{$project->nama}}</h2>
+                     @endforeach
+                @else
+                    <p>Tidak ada langkah-langkah tersedia.</p>
+            @endif
+                </div>
+                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('tahapCreate', $project->id) }}">Tambah Tahap</a></button>
+                </div>
             </div>
         </div>
     </div>

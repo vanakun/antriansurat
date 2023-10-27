@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Step;
 use Carbon\Carbon;
 
 class StepController extends Controller
@@ -14,39 +15,29 @@ class StepController extends Controller
     public function create($projectId)
     {
         $project = Project::find($projectId);
-
-        $tenagaahliUsers = User::where('role', 'tenagaahli')->get();
-
+        
+        $tenagaahliUsers = User::where('role', 'Tenagaahli')->get();
+        //dd($tenagaahliUsers);
         return view('pages.admin.createTahap', ['project' => $project, 'tenagaahliUsers' => $tenagaahliUsers]);
     }
 
 
-    public function store(Request $request, $id)
+    public function store(Request $request, $projectId)
     {
-        $project = Project::find($id);
-
-        if (!$project) {
-            // Handle jika proyek tidak ditemukan
-        }
 
         // Validasi input
-        $request->validate([
+        $data = $request->validate([
+            'tahap' => 'required|string',
             'nama' => 'required|string',
-            'fotorapat' => 'required|string',
-            'berkaspdukung' => 'required|string',
+            'keterangan' => 'required|string',
             'user_id' => 'required|exists:users,id', // Pastikan user (tenaga ahli) dengan ID yang sesuai ada dalam tabel users
         ]);
 
-        // Buat instance Step
-        $step = new Step;
-        $step->nama = $request->input('nama');
-        $step->fotorapat = $request->input('fotorapat');
-        $step->berkaspdukung = $request->input('berkaspdukung');
-        $step->user_id = $request->input('user_id');
+        $data['project_id'] = $projectId;
 
-        // Simpan tahap dengan menghubungkannya dengan proyek yang sesuai
-        $project->steps()->save($step);
-
-        return redirect()->route('projectShow', $id);
+        //dd($data);
+        Step::create($data);
+        
+        return redirect()->route('projectIndex');
     }
 }

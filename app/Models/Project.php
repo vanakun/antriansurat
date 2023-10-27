@@ -14,4 +14,8 @@ class Project extends Model
         'lokasi', 
         'status'
     ];
+    public function steps()
+    {
+        return $this->hasMany(Steps::class);
+    }
 }
