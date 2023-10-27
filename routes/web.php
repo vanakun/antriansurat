@@ -58,6 +58,10 @@ Route::middleware('auth')->group(function() {
         Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         Route::get('/setting/{id}', [ProfileController::class, 'index'])->name('setting');
+        Route::put('/setting/update-acc/{id}', [ProfileController::class, 'updateAccount'])->name('update-account');
+        Route::get('/setting/account/{id}', [ProfileController::class, 'accountSet'])->name('accountSet');
+        Route::get('/setting/changepw/{id}', [ProfileController::class, 'changePw'])->name('changePw');
+        Route::post('/setting/updatepw', [ProfileController::class, 'updatePassword'])->name('update-password');
         // ... tambahkan rute tenaga ahli lainnya di sini
     });
 });
