@@ -101,14 +101,21 @@
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
-                    <div class="font-medium"><span>Halo, {{ auth()->user()->name }}</span></div>
-                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
-                        @if(auth()->user()->role === 'Admin')
-                            Team leader
-                        @else
-                            {{ auth()->user()->role }}
-                        @endif
-                    </div>
+                    @if(auth()->check())
+                        <div class="font-medium"><span>Halo, {{ auth()->user()->name }}</span></div>
+                        <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
+                            @if(auth()->user()->role === 'Admin')
+                                Team leader
+                            @else
+                                {{ auth()->user()->role }}
+                            @endif
+                        </div>
+                    @else
+                        <div class="font-medium"><span>Anda belum masuk</span></div>
+                        <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
+                            <a href="{{ route('login') }}" class="text-primary dark:text-slate-200">Login</a>
+                        </div>
+                    @endif
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
