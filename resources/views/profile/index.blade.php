@@ -16,118 +16,102 @@
             </div>
 
             <div class="intro-y grid grid-cols-12 gap-6 mt-5">
-                <div class="intro-y col-span-2">
-                    <div class="box shadow">
-                        <ul>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="{{ route('setting', $user->id ) }}" class="hover:text-blue-700">
-                                    <div class="flex flex-row items-center">
-                                        <div><i data-feather="settings" class="w-5 h-5 mr-2"></i></div>
-                                        Personal Information
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/profile" class="hover:text-blue-700">
-                                    <div class="flex flex-row items-center">
-                                        <div><i data-feather="activity" class="w-5 h-5 mr-2"></i></div>
-                                        Account Setting
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/settings" class="hover:text-blue-700">
-                                    <div class="flex flex-row items-center">
-                                        <div><i data-feather="lock" class="w-5 h-5 mr-2"></i></div>
-                                        Change Password
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/settings" class="hover:text-red-700">
-                                    <div class="flex flex-row items-center">
-                                        <div><i data-feather="log-out" class="w-5 h-5 mr-2"></i></div>
-                                        Logout
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="intro-y box shadow col-span-10">
-                    <div class="intro-x p-5 ">
-                        <div class="text-lg font-medium mr-auto ">
-                            Display Information
-                            <div class="mt-3 border-b border-gray-300"></div>
+                @include('../profile/sidemenu-setting')
+                <div class="intro-x box shadow col-span-10">
+                    <div class="intro-x p-5">
+                        <div class="text-lg font-medium flex items-center">
+                            <span>Display Information</span>
+                            <a href="#" id="edit-button" class="ml-auto mr-3 text-blue-500 hover:text-blue-700">
+                                <i data-feather="edit" class="w-5 h-5 ml-2"></i>
+                            </a>
                         </div>
-                        <div class="flex gap-6">
-                            <div class="w-1/2">
-                                <div class="intro-x mt-4">
-                                    <label for="">Nama</label>
-                                    <input type="text" name="" value="{{ $user->name }}" class="form-control" id="nama" disabled>
+                        <div class="mt-3 border-b border-gray-300"></div>
+                        <form action="{{ route('update-account', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="flex gap-6">
+                                <div class="w-1/2">
+                                    <div class="intro-x mt-4">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" value="{{ $user->name }}" class="hidden-input form-control mt-1" id="name" disabled>
+                                    </div>
+                                    <div class="intro-x mt-4">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" value="{{ $user->email }}" class="form-control mt-1" id="email" disabled>
+                                    </div>
+                                    <div class="intro-x mt-4">
+                                        <label for="phone">Phone</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text mt-1">+62</span>
+                                            <input type="text" name="phone" value="{{ $user->phone ? str_replace('+62', '', $user->phone) : '' }}" class="hidden-input form-control mt-1" id="phone" disabled>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="intro-x mt-4">
-                                    <label for="">Email</label>
-                                    <input type="text" name=""  value="{{ $user->email }}" class="form-control" id="nama" disabled>
-                                </div>
-                                <div class="intro-x mt-4">
-                                    <label for="">Phone</label>
-                                    <input type="text" name="" value="{{ $user->phone ? $user->phone : '-' }}" class="form-control" id="nama" disabled>
+                                <div class="w-1/2">
+                                    <div class="intro-x mt-4">
+                                        <label for="role">Jabatan</label>
+                                        <input type="text" name="role" value="{{ $user->role }}" class="form-control mt-1" id="role" disabled>
+                                    </div>
+                                    <div class="intro-x mt-4">
+                                        <label for="gender">Gender</label>
+                                        <select name="gender" class="hidden-input form-select mt-1" id="gender" value="{{ $user->gender }}" disabled>
+                                            <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male</option>
+                                            <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="intro-x mt-4">
+                                        <label for="created_at">Di buat</label>
+                                        <input type="text" name="created_at" value="{{ $user->created_at->format('Y-m-d') }}" class="form-control mt-1" id="created_at" disabled>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="w-1/2">
-                                <div class="intro-x mt-4">
-                                    <label for="">Jabatan</label>
-                                    <input type="text" name="" value="{{ $user->role }}" class="form-control" id="nama" disabled>
-                                </div>
-                                <div class="intro-x mt-4">
-                                    <label for="">Gender</label>
-                                    <input type="text" name="" value="{{ ucfirst($user->gender) }}" class="form-control" id="nama" disabled>
-                                </div>
-                                <div class="intro-x mt-4">
-                                    <label for="">Di buat</label>
-                                    <input type="text" name="" value="{{ $user->created_at->format('Y-m-d') }}" class="form-control" id="nama" disabled>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="intro-y flex gap-6 mt-5">
-                <div class="intro-y box shadow flex-auto w-72">
-                    <div>
-                        <ul>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/home" class="">
-                                Personal Information
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/profile" class="">
-                                Account Setting
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/settings" class="">
-                                Change Password
-                                </a>
-                            </li>
-                            <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                                <a href="/settings" class="">
-                                Logout
-                                </a>
-                            </li>
-                        </ul>
+                            <button type="submit" id="save-button" class="btn btn-primary hidden shadow-md mt-4">
+                                Save
+                            </button>
+                        </form>
                     </div>
                 </div>
 
-                <div class="intro-y box shadow flex-1">
-                    <div class="intro-y m-4">
-                    asdasd
-                    </div>
-                </div>
-            </div> -->
+            </div>
         </div>
         <!-- END: Content -->
     </div>
 @endsection
+
+@section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ambil elemen tombol "Edit" dan "Simpan"
+        const editButton = document.getElementById('edit-button');
+        const saveButton = document.getElementById('save-button');
+        
+        // Ambil elemen-elemen input yang ingin diubah
+        const inputElements = document.querySelectorAll('.hidden-input');
+
+        // Buat variabel untuk melacak status edit
+        let isEditing = false;
+
+        // Tambahkan event listener pada tombol "Edit"
+        editButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Toggle status edit
+            isEditing = !isEditing;
+
+            // Iterasi melalui input dan ubah properti disabled
+            inputElements.forEach(function (input) {
+                input.disabled = !isEditing;
+            });
+
+            // Toggle tampilan tombol "Simpan"
+            if (isEditing) {
+                saveButton.classList.remove('hidden');
+            } else {
+                saveButton.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+@endsection
+
