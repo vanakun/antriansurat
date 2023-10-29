@@ -10,21 +10,48 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    function index($id){
-        $user = User::findOrFail($id);
-
+    function index(User $user){
+        if (auth()->user()->id !== $user->id) {
+            return redirect()->route('setting', auth()->user()->id)->with('error', 'Unauthorized access.');
+        }
         return view('profile/index', compact('user'));
     }
 
-    function accountSet($id){
-        $user = User::findOrFail($id);
-
+    function accountSet(User $user){
+        if (auth()->user()->id !== $user->id) {
+            return redirect()->route('accountSet', auth()->user()->id)->with('error', 'Unauthorized access.');
+        }
         return view('profile/account-set', compact('user'));
     }
 
-    function changePw($id){
-        $user = User::findOrFail($id);
+    public function requestChange(Request $request)
+    {
+        // Validasi input email baru
+        $request->validate([
+            'email' => 'required|email|unique:users,email',
+        ]);
 
+        // Generate verification code (Anda dapat menggunakan cara lain sesuai kebutuhan)
+        $verificationCode = str_random(16);
+
+        // Simpan perubahan email dan kode verifikasi dalam tabel user_email_changes
+        $user = auth()->user(); // Sesuaikan dengan autentikasi Anda
+        $userEmailChange = new User;
+        $userEmailChange->user_id = $user->id;
+        $userEmailChange->email = $request->email;
+        $userEmailChange->verification_code = $verificationCode;
+        $userEmailChange->save();
+
+        // Kirim email verifikasi
+        Mail::to($userEmailChange->new_email)->send(new EmailVerification($verificationCode));
+
+        return redirect()->route('email-verification.form');
+    }
+
+    function changePw(User $user){
+        if (auth()->user()->id !== $user->id) {
+            return redirect()->route('changePw', auth()->user()->id)->with('error', 'Unauthorized access.');
+        }
         return view('profile/change-pw', compact('user'));
     }
 
@@ -58,26 +85,32 @@ class ProfileController extends Controller
     }
 
 
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request, $id)
     {
+        $user = User::find(auth()->user()->id);
+
+        // Validasi input
         $validator = Validator::make($request->all(), [
-            'old_password' => ['required', function ($attribute, $value, $fail) {
-                if (!Hash::check($value, auth()->user()->password)) {
-                    $fail('The '. 'old password' .' is incorrect.');
-                }
-            }],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'old_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
+            return redirect()->route('changePw', $user->id)
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $user = Auth::user();
-        $user->password = bcrypt($request->input('password'));
+        // Memeriksa apakah old password benar
+        if (!Hash::check($request->input('old_password'), $user->password)) {
+            return redirect()->route('changePw', $user->id)
+                ->with('error', 'The old password is incorrect.');
+        }
+
+        // Mengganti kata sandi jika old password valid
+        $user->password = Hash::make($request->input('password'));
         $user->save();
-        return redirect("profile/change-pw");
+
+        return redirect()->route('changePw', $user->id)->with('success', 'Password updated successfully.');
     }
 }
