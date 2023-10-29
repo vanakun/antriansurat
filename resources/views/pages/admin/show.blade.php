@@ -57,6 +57,7 @@
                         <div id="" class="p-5 flex flex-col items-center">
                     <div class="preview">
                         <p>Keterangan: {{ $step->keterangan }}</p>
+                        <p>Ketua: {{ $step->user->name }}</p>
                     </div>
                 </div>
             </div>

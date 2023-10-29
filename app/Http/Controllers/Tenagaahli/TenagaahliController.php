@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenagaahli;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Step;
 
 class TenagaahliController extends Controller
 {
@@ -18,6 +19,8 @@ class TenagaahliController extends Controller
     {
         $project = Project::findOrFail($id);
         // dd($post);
-        return view ('pages/tenagaahli/show', compact('project'));
+        $steps = Step::where('project_id', $project->id)->get();
+        //dd($steps);
+        return view ('pages/tenagaahli/show', compact('project', 'steps'));
     }
 }

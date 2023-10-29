@@ -11,11 +11,12 @@ class Step extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsToMany(Project::class);
     }
     
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    
 }
