@@ -24,6 +24,7 @@ class StepController extends Controller
 
     public function store(Request $request, $projectId)
     {
+        $project = Project::find($projectId);
 
         // Validasi input
         $data = $request->validate([
@@ -38,6 +39,6 @@ class StepController extends Controller
         //dd($data);
         Step::create($data);
         
-        return redirect()->route('projectIndex');
+        return redirect()->route('projectShow', $project->id);
     }
 }
