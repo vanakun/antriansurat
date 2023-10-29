@@ -49,7 +49,6 @@
                 <table class="table table-report -mt-2">
                     <thead>
                         <tr>
-                            <th class="whitespace-nowrap">No</th>
                             <th class="whitespace-nowrap">Tahap</th>
                             <th class="whitespace-nowrap">Nama</th>
                             <th class="whitespace-nowrap">Keterangan</th>
@@ -60,10 +59,9 @@
                     @if (!empty($steps))
                         @foreach ($steps as $index => $step)
                         <tr class="intro-x image-fit zoom-in">
-                            <td>{{ $index + 1 }}</td>
                             <td>
                                 <a href="">
-                                    <div class="font-medium whitespace-nowrap">{{ $step->tahap }}</div>
+                                    <div class="font-medium whitespace-nowrap ml-3">{{ $step->tahap }}</div>
                                 </a>
                             </td>
                             <td>
