@@ -30,7 +30,7 @@
                                     <input type="text" name="" value="{{ $user->email }}" class="form-control mt-1" id="nama" disabled>
                                 </div>
                                 <div class="mt-5">
-                                  <a href="" class="hover:text-blue-700">Change Email</a>
+                                  <a href="" class="hover:text-blue-700">Request Email Change</a>
                                 </div>
                             </div>
                         </div>
