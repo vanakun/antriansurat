@@ -18,5 +18,8 @@ class Step extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+    public function experts()
+    {
+        return $this->belongsToMany(User::class, 'step_expert', 'step_id', 'expert_id');
+    }
 }

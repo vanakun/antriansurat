@@ -41,4 +41,44 @@ class StepController extends Controller
         
         return redirect()->route('projectShow', $project->id);
     }
+
+    public function show(Step $step)
+    {   
+        $experts = $step->experts;
+        //dd($step);
+        return view('pages.admin.showStep', compact('step', 'experts'));
+    }
+
+    
+
+    public function addToStep($stepId)
+    {
+        $step = Step::find($stepId);
+        //dd($step);
+        $tenagaahliUsers = User::where('role', 'Tenagaahli')->get();
+        //dd($tenagaahliUsers);
+        return view('pages/admin/add-tahap-tostep', ['step' => $step,'tenagaahliUsers' => $tenagaahliUsers]);
+    }
+
+    public function storeExpert(Request $request, $stepId)
+{
+    $step = Step::find($stepId);
+
+    // Validasi input
+    $data = $request->validate([
+        'expert_id' => 'required|exists:users,id',
+    ]);
+
+    $data['step_id'] = $stepId;
+
+    // Periksa apakah tenaga ahli sudah terkait dengan langkah
+    if ($step->experts()->where('users.id', $data['expert_id'])->exists()) {
+        return redirect()->route('showStep', $step->id)->with('error', 'Tenaga ahli tersebut sudah terkait dengan langkah ini.');
+    }
+
+    $step->experts()->attach($data['expert_id']);
+
+    return redirect()->route('showStep', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
+}
+
 }

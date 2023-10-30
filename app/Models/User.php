@@ -71,6 +71,6 @@ class User extends Authenticatable
     }
     public function tenagaahli()
     {
-        return $this->hasMany(Tenagaahli::class, 'user_id');
+        return $this->hasMany(Tenagaahli::class, 'user_id','expert_id');
     }
 }

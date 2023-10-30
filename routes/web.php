@@ -50,6 +50,10 @@ Route::middleware('auth')->group(function() {
             Route::get('/deleteProject/{id}', [AdminController::class, 'deleteProject'])->name('projectDelete');
             Route::get('/{project}/createTahap', [StepController::class, 'create'])->name('tahapCreate');
             Route::post('/{project}/storeTahap', [StepController::class, 'store'])->name('tahapStore');
+
+            Route::get('/step/{step}', [StepController::class, 'show'])->name('showStep');
+            Route::get('/add-expert-tostep/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
+            Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
         });
         // ... tambahkan rute admin lainnya di sini
     });
