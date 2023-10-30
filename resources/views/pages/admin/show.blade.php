@@ -86,7 +86,6 @@
                                 </a>
                             </td>
                         </tr>
-                        <td>
                         @endforeach
                     @else
                         <p>Tidak ada langkah-langkah tersedia.</p>

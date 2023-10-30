@@ -6,14 +6,62 @@
 
 @section('subcontent')
     <div class="container">
+        <div class="intro-y box mt-5">
+            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="font-medium text-base mr-auto">Ketua Penanggung Jawab</h2>
+                <h2 class="font-medium text-base ml-auto">{{ $step->user->name }}</h2>
+            </div>
+        </div>
+        <div class="intro-y box mt-2">
+            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="font-medium text-base mr-auto">Tahap: {{ $step->tahap }} {{ $step->nama }}</h2>
+            </div>
+            <div class="p-5">
+                <div>
+                    Keterangan: {{ $step->keterangan }}
+                </div>
+            </div>
+            <div class="p-5">
+                <div>
+                    Keterangan: {{ $step->keterangan }}
+                </div>
+            </div>
+        </div>
+        <div class="intro-y box mt-2">
+            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="font-medium text-base mr-auto">Anggota Terlibat</h2>
+                <button class="btn btn-primary shadow-md ml-auto"><a href="{{ route('AddToStep', $step->id) }}">Tambah Tenaga ahli</a></button>
+            </div>
+            <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                <table class="table table-report -mt-2">
+                    <thead>
+                        <tr>
+                            <th class="whitespace-nowrap">No</th>
+                            <th class="whitespace-nowrap">Nama</th>
+                            <th class="whitespace-nowrap">Telefon</th>
+                            <th class="whitespace-nowrap">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($experts as $index => $expert)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $expert->name }}</td>
+                            <td>{{ $expert->phone !== null ? '0' . $expert->phone : '-' }}</td>
+                            <td><a href="mailto:{{ $expert->email }}">{{ $expert->email }}</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <p>Ketua: {{ $step->user->name }}</p>
         <p>Tenaga Ahli yang terlibat: </p>
         <ul>
-             @foreach ($experts as $expert)
-                <li>{{ $expert->name }}</li>
-             @endforeach
+             
         </ul>
-                <button class="btn btn-primary shadow-md m-4"><a href="{{ route('AddToStep', $step->id) }}">Tambah Tenaga ahli</a></button>
+                
         <br></br>
         <hr>
         <p>Tahap: {{ $step->tahap }} {{ $step->nama }}</p>
