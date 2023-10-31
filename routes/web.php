@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function() {
     Route::middleware('role:Tenagaahli')->group(function () {
         Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
+        Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');
         Route::get('/setting/{user}', [ProfileController::class, 'index'])->name('setting');
         Route::get('/setting/account/{user}', [ProfileController::class, 'accountSet'])->name('accountSet');
         Route::put('/setting/update-acc/{id}', [ProfileController::class, 'updateAccount'])->name('update-account');

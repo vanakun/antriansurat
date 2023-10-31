@@ -23,4 +23,12 @@ class TenagaahliController extends Controller
         //dd($steps);
         return view ('pages/tenagaahli/show', compact('project', 'steps'));
     }
+
+    public function showStep($id)
+    {
+        $step = Step::findOrFail($id);
+        $experts = $step->experts;
+
+        return view ('pages/tenagaahli/show-step', compact('step', 'experts'));
+    }
 }
