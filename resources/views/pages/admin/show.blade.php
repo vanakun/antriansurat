@@ -44,6 +44,7 @@
         <div class="intro-y box mt-5">
             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                 <h2 class="font-medium text-base mr-auto">Tahap</h2>
+                <button class="btn btn-primary shadow-md ml-auto"><a href="{{ route('tahapCreate', $project->id) }}">Tambah Tahap</a></button>
             </div>
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                 <table class="table table-report -mt-2">
@@ -93,33 +94,6 @@
                     </tbody>
                 </table>
             </div>
-                <button class="btn btn-primary shadow-md m-4"><a href="{{ route('tahapCreate', $project->id) }}">Tambah Tahap</a></button>
-            </div>
-            </div>
-            <!-- <div id="" class="p-5 flex flex-col items-center">
-                <div class="preview">
-                    <div class="p-5">
-                    @if (!empty($steps))
-                        @foreach ($steps as $step)
-                            <div class="intro-y box mt-5" style="width: 120%;">
-                                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Tahap {{ $step->tahap }} - {{ $step->nama }}</h2>
-                            </div>
-                            <div id="" class="p-5 flex flex-col items-center">
-                        <div class="preview">
-                            <p>Keterangan: {{ $step->keterangan }}</p>
-                            <p>Ketua: {{ $step->user->name }}</p>
-                        </div>
-                    </div>
-                </div>
-                     @endforeach
-                @else
-                    <p>Tidak ada langkah-langkah tersedia.</p>
-                @endif
-                </div>
-                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('tahapCreate', $project->id) }}">Tambah Tahap</a></button>
-                </div>
-            </div> -->
         </div>
     </div>
     <!-- END: Content -->
