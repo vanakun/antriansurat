@@ -54,6 +54,7 @@
                             <th class="whitespace-nowrap">Nama</th>
                             <th class="whitespace-nowrap">Keterangan</th>
                             <th class="whitespace-nowrap">Ketua</th>
+                            <th class="whitespace-nowrap">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,6 +84,33 @@
                                 <a href="{{ route('showStep', $step->id) }}">
                                     <div class="flex items-center">
                                         <div class="font-medium whitespace-nowrap">{{ $step->user->name }}</div>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('stepProject', $step->id) }}">
+                                    <div class="flex items-center">
+                                        @if($step->status == 1)
+                                            <div class="text-primary mr-2">
+                                                <i data-feather="check" class="w-5 h-5"></i>
+                                            </div>
+                                            <div class="font-medium whitespace-nowrap text-primary">Approved</div>
+                                        @elseif($step->status == 2)
+                                            <div class="text-yellow-500 mr-2">
+                                                <i data-loading-icon="tail-spin" class="w-5 h-5"></i>
+                                            </div>
+                                            <div class="font-medium whitespace-nowrap text-yellow-500">Waiting</div>
+                                        @elseif($step->status == 3)
+                                            <div class="text-red-500 mr-2">
+                                                <i data-feather="x" class="w-5 h-5"></i>
+                                            </div>
+                                            <div class="font-medium whitespace-nowrap text-red-500">Rejected</div>
+                                        @else
+                                            <div class="text-gray-500 mr-2">
+                                                <i data-feather="x" class="w-5 h-5"></i>
+                                            </div>
+                                            <div class="font-medium whitespace-nowrap text-gray-500">Unknown</div>
+                                        @endif
                                     </div>
                                 </a>
                             </td>
