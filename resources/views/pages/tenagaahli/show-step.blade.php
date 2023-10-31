@@ -26,6 +26,29 @@
                         <button class="btn btn-primary shadow-md ml-auto"><a href="">Tambah Dokumen</a></button>
                     @endif
                 </div>
+                <div class="flex p-5">
+                    @if($step->status == 1)
+                        <div class="text-primary mr-2">
+                            <i data-feather="check" class="w-5 h-5"></i>
+                        </div>
+                        <div class="font-medium whitespace-nowrap text-primary">Approved</div>
+                    @elseif($step->status == 2)
+                        <div class="text-yellow-500 mr-2">
+                            <i data-loading-icon="tail-spin" class="w-5 h-5"></i>
+                        </div>
+                        <div class="font-medium whitespace-nowrap text-yellow-500">Waiting</div>
+                    @elseif($step->status == 3)
+                        <div class="text-red-500 mr-2">
+                            <i data-feather="x" class="w-5 h-5"></i>
+                        </div>
+                        <div class="font-medium whitespace-nowrap text-red-500">Rejected</div>
+                    @else
+                        <div class="text-gray-500 mr-2">
+                            <i data-feather="x" class="w-5 h-5"></i>
+                        </div>
+                        <div class="font-medium whitespace-nowrap text-gray-500">Unknown</div>
+                    @endif
+                </div>
                 <div class="p-5">
                     <div>
                         Keterangan: {{ $step->keterangan }}

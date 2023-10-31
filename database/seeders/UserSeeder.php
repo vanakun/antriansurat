@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'name' => 'Example',
             'email' => 'example@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$l9.Y.RsGZEDR2IbMWPeHgukmdcP7ZjqnJQRPhU4g/CYiVRhygn946', // password
+            'password' => '$2y$10$l9.Y.RsGZEDR2IbMWPeHgukmdcP7ZjqnJQRPhU4g/CYiVRhygn946', // qwerty123
             'gender' => 'male',
             'phone' => '82264148811',
             'active' => 1,
@@ -73,7 +73,8 @@ class UserSeeder extends Seeder
                 'nama' => 'Uji Tanah',
                 'keterangan' => 'Pengujian lorem ipsum dipsum',
                 'project_id' => '1', // password
-                'user_id' => '11',
+                'user_id' => '2',
+                'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now()
             ]
@@ -85,7 +86,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Perhitungan material',
                 'keterangan' => 'Dilakukan perhitungan pada bahan yang akan digunakan',
                 'project_id' => '1', // password
-                'user_id' => '2',
+                'user_id' => '11',
                 'created_at' => now(),
                 'updated_at' => now()
             ]

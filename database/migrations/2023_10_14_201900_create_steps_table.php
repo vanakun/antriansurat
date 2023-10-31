@@ -18,6 +18,7 @@ class CreateStepsTable extends Migration
             $table->string('tahap');
             $table->string('nama');
             $table->string('keterangan');
+            $table->unsignedTinyInteger('status')->default(2);
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
