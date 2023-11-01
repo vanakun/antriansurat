@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tenagaahli;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,7 +21,8 @@ class CetakController extends Controller
         $timestamp = Carbon::now()->format('mdYHis');
         $filename = $project->nama . '_' . $step->nama . '_' . $timestamp . '.pdf';
 
-        $pdf = PDF::loadView('pages.tenagaahli.cetak', compact('step', 'experts', 'project'));
+        $pdf = PDF::loadView('pages.cetak', compact('step', 'experts', 'project'));
+        // $pdf->setPaper('A4');
         return $pdf->stream($filename);
     }
 }

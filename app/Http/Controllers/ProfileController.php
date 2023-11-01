@@ -14,14 +14,14 @@ class ProfileController extends Controller
         if (auth()->user()->id !== $user->id) {
             return redirect()->route('setting', auth()->user()->id)->with('error', 'Unauthorized access.');
         }
-        return view('profile/index', compact('user'));
+        return view('pages/profile/index', compact('user'));
     }
 
     function accountSet(User $user){
         if (auth()->user()->id !== $user->id) {
             return redirect()->route('accountSet', auth()->user()->id)->with('error', 'Unauthorized access.');
         }
-        return view('profile/account-set', compact('user'));
+        return view('pages/profile/account-set', compact('user'));
     }
 
     public function requestChange(Request $request)
@@ -52,7 +52,7 @@ class ProfileController extends Controller
         if (auth()->user()->id !== $user->id) {
             return redirect()->route('changePw', auth()->user()->id)->with('error', 'Unauthorized access.');
         }
-        return view('profile/change-pw', compact('user'));
+        return view('pages/profile/change-pw', compact('user'));
     }
 
     function updateAccount(Request $request, $id)

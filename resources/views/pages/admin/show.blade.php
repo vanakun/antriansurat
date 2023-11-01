@@ -55,6 +55,7 @@
                             <th class="whitespace-nowrap">Keterangan</th>
                             <th class="whitespace-nowrap">Ketua</th>
                             <th class="whitespace-nowrap">Status</th>
+                            <th class="whitespace-nowrap">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,6 +112,13 @@
                                             </div>
                                             <div class="font-medium whitespace-nowrap text-gray-500">Unknown</div>
                                         @endif
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{route('pdfa', $step->id)}}" class="flex items-center" target="_blank">
+                                    <div class="p-2 flex items-center justify-center rounded-full">
+                                        <i data-feather="printer" class="w-5 h-5 tooltip" title="Cetak PDF"></i>
                                     </div>
                                 </a>
                             </td>

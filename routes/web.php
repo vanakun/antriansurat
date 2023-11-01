@@ -6,7 +6,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Tenagaahli\TenagaahliController;
-use App\Http\Controllers\Tenagaahli\CetakController;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DarkModeController;
@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function() {
             Route::get('/createProject', [AdminController::class, 'createProject'])->name('projectCreate');
             Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
             Route::get('/show/{id}', [AdminController::class, 'show'])->name('projectShow');
+            Route::get('/show/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdfa');
             Route::get('/search', [AdminController::class, 'searchProject'])->name('projectSearch');
             Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
             Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
@@ -51,7 +52,6 @@ Route::middleware('auth')->group(function() {
             Route::get('/deleteProject/{id}', [AdminController::class, 'deleteProject'])->name('projectDelete');
             Route::get('/{project}/createTahap', [StepController::class, 'create'])->name('tahapCreate');
             Route::post('/{project}/storeTahap', [StepController::class, 'store'])->name('tahapStore');
-
             Route::get('/step/{step}', [StepController::class, 'show'])->name('showStep');
             Route::get('/add-expert-tostep/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
             Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');
+        Route::get('/show/step/add/{step}', [StepController::class, 'addToStep'])->name('isKetua');
         Route::get('/show/step/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdf');
         Route::get('/setting/{user}', [ProfileController::class, 'index'])->name('setting');
         Route::get('/setting/account/{user}', [ProfileController::class, 'accountSet'])->name('accountSet');

@@ -113,8 +113,10 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{route('pdf', $step->id)}}">
-                                        <i data-feather="printer" class="w-5 h-5"></i>
+                                    <a href="{{route('pdf', $step->id)}}" class="flex items-center" target="_blank">
+                                        <div class="p-2 flex items-center justify-center rounded-full">
+                                            <i data-feather="printer" class="w-5 h-5 tooltip" title="Cetak PDF"></i>
+                                        </div>
                                     </a>
                                 </td>
                             </tr>
