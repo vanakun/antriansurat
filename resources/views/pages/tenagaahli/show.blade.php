@@ -52,6 +52,7 @@
                                 <th class="whitespace-nowrap">Keterangan</th>
                                 <th class="whitespace-nowrap">Ketua</th>
                                 <th class="whitespace-nowrap">Status</th>
+                                <th class="whitespace-nowrap">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,6 +110,11 @@
                                                 <div class="font-medium whitespace-nowrap text-gray-500">Unknown</div>
                                             @endif
                                         </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{route('pdf', $step->id)}}">
+                                        <i data-feather="printer" class="w-5 h-5"></i>
                                     </a>
                                 </td>
                             </tr>
