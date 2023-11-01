@@ -15,7 +15,6 @@
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Ketua Penanggung Jawab</h2>
                     <h2 class="font-medium text-base ml-auto">{{ $step->user->name }}</h2>
-                    <button class="btn btn-primary shadow-md ml-auto"><a href="{{route('pdf', $step->id)}}">Cetak</a></button>
                 </div>
             </div>
 
@@ -24,7 +23,7 @@
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Tahap: {{ $step->tahap }} {{ $step->nama }}</h2>
                     @if ($step->user_id == auth()->user()->id)
-                        <button class="btn btn-primary shadow-md ml-auto"><a href="">Tambah Dokumen</a></button>
+                        <button class="btn btn-primary shadow-md ml-auto"><a href="{{ route('isKetua', $step->id) }}">Tambah Dokumen</a></button>
                     @endif
                 </div>
                 <div class="flex p-5">

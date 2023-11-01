@@ -16,7 +16,7 @@
             </div>
 
             <div class="intro-y grid grid-cols-12 gap-6 mt-5">
-                @include('../profile/sidemenu-setting')
+                @include('../pages/profile/sidemenu-setting')
                 <div class="intro-y col-span-10">
                     <div class="intro-x box shadow p-5">
                         <div class="text-lg font-medium mr-auto ">

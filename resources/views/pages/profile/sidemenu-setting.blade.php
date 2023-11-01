@@ -1,3 +1,8 @@
+<style>
+    .hover-text-red:hover {
+        color: red;
+    }
+</style>
 <div class="intro-y col-span-2">
     <div class="box shadow">
         <ul>
@@ -26,7 +31,7 @@
                 </a>
             </li>
             <li class="intro-x py-4 px-6 border-b border-gray-300 items-center">
-                <a href="{{ route('logout') }}" class="hover:text-red-700">
+                <a href="{{ route('logout') }}" class="hover-text-red">
                     <div class="flex flex-row items-center">
                         <div><i data-feather="log-out" class="w-5 h-5 mr-2"></i></div>
                         Logout
