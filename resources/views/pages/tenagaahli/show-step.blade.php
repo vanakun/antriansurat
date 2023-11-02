@@ -92,22 +92,28 @@
                     </table>
                 </div>
             </div>
+            <div class="intro-y box mt-2">
+                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="font-medium text-base mr-auto">Media</h2>
+                </div>
+                <form method="POST" action="{{ route('step-media.create', ['step' => $step]) }}" enctype="multipart/form-data">
+                    @csrf
+                            <div class="form-group">
+                                  <label for="file">Upload File:</label>
+                                  <input type="file" name="file" id="file" class="form-control">
+                            </div>
+                            <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center" aria-expanded="false"
+                                    data-tw-toggle="dropdown">
+                                    Add
+                            </button>
+                    </form>
+                        <!-- Tambahkan kolom-kolom lain sesuai kebutuhan -->
+                    </div>
+                        <!-- END: Content -->
+                    </div>
+                </div>
+            </div>
    
-    <form method="POST" action="{{ route('step-media.create', ['step' => $step]) }}" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <label for="file">Upload File:</label>
-        <input type="file" name="file" id="file" class="form-control">
-    </div>
-    <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center" aria-expanded="false"
-              data-tw-toggle="dropdown">
-              Add
-          </button>
-    </form>
-    <!-- Tambahkan kolom-kolom lain sesuai kebutuhan -->
-        </div>
-        <!-- END: Content -->
-    </div>
 @endsection
 
 @section('script')

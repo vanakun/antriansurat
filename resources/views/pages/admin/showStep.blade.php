@@ -79,21 +79,6 @@
                 </table>
             </div>
         </div>
-
-        <p>Ketua: {{ $step->user->name }}</p>
-        <p>Tenaga Ahli yang terlibat: </p>
-        <ul>
-             
-        </ul>
-                
-        <br></br>
-        <hr>
-        <p>Tahap: {{ $step->tahap }} {{ $step->nama }}</p>
-        <p>Keterangan: {{ $step->keterangan }}</p>
-        <br></br>
-        <hr>
-        <p>Media: </p>
-        <!-- Add more step details as needed -->
     </div>
     @endsection
 
