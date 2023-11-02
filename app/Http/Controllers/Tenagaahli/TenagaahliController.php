@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Step;
+use App\Models\StepMedia;
 
 class TenagaahliController extends Controller
 {
@@ -30,5 +31,29 @@ class TenagaahliController extends Controller
         $experts = $step->experts;
 
         return view ('pages/tenagaahli/show-step', compact('step', 'experts'));
+    }
+    
+    public function create(Request $request, $step_id)
+    {
+        $step = Step::find($step_id);
+        //dd($step_id);
+        // Validasi data yang dikirim melalui request jika diperlukan
+        $request->validate([
+            'file' => 'required|file|mimes:pdf,docx,jpg', // Validasi jenis berkas yang diizinkan
+        ]);
+    
+        // Mengunggah berkas ke direktori penyimpanan
+        $file = $request->file('file');
+        $filePath = $file->store('step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
+    
+        // Membuat entri baru dalam tabel step_media
+        StepMedia::create([
+            'step_id' => $step_id,
+            'file_path' => $filePath,
+            // Tambahkan kolom-kolom lain sesuai kebutuhan
+        ]);
+    
+        // Redirect atau kirim respons sukses
+        return view('pages/admin/dashboard', compact('step', 'step_id'));
     }
 }

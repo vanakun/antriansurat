@@ -92,6 +92,19 @@
                     </table>
                 </div>
             </div>
+   
+    <form method="POST" action="{{ route('step-media.create', ['step' => $step]) }}" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+        <label for="file">Upload File:</label>
+        <input type="file" name="file" id="file" class="form-control">
+    </div>
+    <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center" aria-expanded="false"
+              data-tw-toggle="dropdown">
+              Add
+          </button>
+    </form>
+    <!-- Tambahkan kolom-kolom lain sesuai kebutuhan -->
         </div>
         <!-- END: Content -->
     </div>

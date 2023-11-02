@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function() {
         Route::put('/setting/update-acc/{id}', [ProfileController::class, 'updateAccount'])->name('update-account');
         Route::get('/setting/changepw/{user}', [ProfileController::class, 'changePw'])->name('changePw');
         Route::post('/setting/updatepw/{id}', [ProfileController::class, 'updatePassword'])->name('update-password');
+        Route::post('/step-media/{step}', [TenagaahliController::class, 'create'])->name('step-media.create');
         // ... tambahkan rute tenaga ahli lainnya di sini
     });
 });
