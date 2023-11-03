@@ -17,7 +17,7 @@ class TenagaahliController extends Controller
     }
 
     public function show($id)
-    {
+    {   
         $project = Project::findOrFail($id);
         // dd($post);
         $steps = Step::where('project_id', $project->id)->get();
@@ -29,8 +29,10 @@ class TenagaahliController extends Controller
     {
         $step = Step::findOrFail($id);
         $experts = $step->experts;
+        $stepMedia = StepMedia::all();
+        //dd($stepMedia);
 
-        return view ('pages/tenagaahli/show-step', compact('step', 'experts'));
+        return view ('pages/tenagaahli/show-step', compact('step', 'experts','stepMedia'));
     }
     
     public function create(Request $request, $step_id)
@@ -44,7 +46,8 @@ class TenagaahliController extends Controller
     
         // Mengunggah berkas ke direktori penyimpanan
         $file = $request->file('file');
-        $filePath = $file->store('step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
+        $filePath = $file->store('storage/step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
+        $file->move(public_path('storage/step_media'), $filePath);
     
         // Membuat entri baru dalam tabel step_media
         StepMedia::create([
@@ -56,4 +59,5 @@ class TenagaahliController extends Controller
         // Redirect atau kirim respons sukses
         return view('pages/admin/dashboard', compact('step', 'step_id'));
     }
+
 }

@@ -107,12 +107,18 @@
                                     Add
                             </button>
                     </form>
-                        <!-- Tambahkan kolom-kolom lain sesuai kebutuhan -->
+                    @foreach($stepMedia as $media)
+            <li>
+            <a href="{{ asset($media->file_path) }}" target="_blank">{{ $media->file_path }}</a>
+                <!-- Tambahkan elemen HTML lainnya sesuai kebutuhan -->
+            </li>
+            @endforeach
                     </div>
                         <!-- END: Content -->
                     </div>
                 </div>
             </div>
+            
    
 @endsection
 
