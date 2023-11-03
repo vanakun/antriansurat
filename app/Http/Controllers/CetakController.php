@@ -21,7 +21,22 @@ class CetakController extends Controller
         $timestamp = Carbon::now()->format('mdYHis');
         $filename = $project->nama . '_' . $step->nama . '_' . $timestamp . '.pdf';
 
-        $pdf = PDF::loadView('pages.cetak', compact('step', 'experts', 'project'));
+        $pdf = PDF::loadView('pages.cetak-step', compact('step', 'experts', 'project'));
+        // $pdf->setPaper('A4');
+        return $pdf->stream($filename);
+    }
+
+    public function cetakPDF($project_id)
+    {
+        // Mengambil semua tahap (steps) yang memiliki project_id yang sesuai
+        $step = Step::where('project_id', $project_id)->get();
+
+        $project = Project::find($project_id);
+        
+        $timestamp = Carbon::now()->format('mdYHis');
+        $filename = $project->nama . '_all_steps_' . $timestamp . '.pdf';
+
+        $pdf = PDF::loadView('pages.cetak', compact('step', 'project'));
         // $pdf->setPaper('A4');
         return $pdf->stream($filename);
     }

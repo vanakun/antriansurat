@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');
         Route::get('/show/step/add/{step}', [StepController::class, 'addToStep'])->name('isKetua');
         Route::get('/show/step/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdf');
+        Route::get('/show/step/cetak-pdf/{project_id}', [CetakController::class, 'cetakPDF'])->name('cetakPDF');
         Route::get('/setting/{user}', [ProfileController::class, 'index'])->name('setting');
         Route::get('/setting/account/{user}', [ProfileController::class, 'accountSet'])->name('accountSet');
         Route::put('/setting/update-acc/{id}', [ProfileController::class, 'updateAccount'])->name('update-account');

@@ -36,6 +36,9 @@
                             <label for="" class="form-label sm:w-20">Status</label>
                             <input id="" type="text" class="form-control {{ $project ?? ''->status === 'active' ? 'text-success' : 'text-danger' }}" value="{{ $project ?? ''->status }}" readonly>
                         </div>
+                        <div class="form-inline mt-5 ml-8 pl-1">
+                            <a href="{{ route('cetakPDF', ['project_id' => $project->id]) }}" class="btn btn-primary">Generate PDF for All Steps</a>
+                        </div>
                     </div>
                 </div>
             </div>
