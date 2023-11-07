@@ -2814,6 +2814,9 @@ select{
 .z-50{
     z-index: 50;
 }
+.col-span-10{
+    grid-column: span 10 / span 10;
+}
 .col-span-12{
     grid-column: span 12 / span 12;
 }
@@ -2829,9 +2832,6 @@ select{
 .col-span-6{
     grid-column: span 6 / span 6;
 }
-.col-span-10{
-    grid-column: span 10 / span 10;
-}
 .row-start-2{
     grid-row-start: 2;
 }
@@ -2843,9 +2843,6 @@ select{
 }
 .clear-both{
     clear: both;
-}
-.m-4{
-    margin: 1rem;
 }
 .-mx-3{
     margin-left: -0.75rem;
@@ -3324,11 +3321,11 @@ select{
 .flex-1{
     flex: 1 1 0%;
 }
-.flex-auto{
-    flex: 1 1 auto;
-}
 .flex-none{
     flex: none;
+}
+.border-collapse{
+    border-collapse: collapse;
 }
 .-rotate-90{
     --tw-rotate: -90deg;
@@ -3377,6 +3374,9 @@ select{
 }
 .grid-cols-8{
     grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.flex-row{
+    flex-direction: row;
 }
 .flex-col{
     flex-direction: column;
@@ -4003,6 +4003,10 @@ select{
     --tw-text-opacity: 1;
     color: rgb(var(--color-danger) / var(--tw-text-opacity));
 }
+.text-gray-500{
+    --tw-text-opacity: 1;
+    color: rgb(107 114 128 / var(--tw-text-opacity));
+}
 .text-gray-600{
     --tw-text-opacity: 1;
     color: rgb(75 85 99 / var(--tw-text-opacity));
@@ -4018,9 +4022,9 @@ select{
 .text-primary\/80{
     color: rgb(var(--color-primary) / 0.8);
 }
-.text-red-700{
+.text-red-500{
     --tw-text-opacity: 1;
-    color: rgb(var(--color-red-700) / var(--tw-text-opacity));
+    color: rgb(var(--color-red-500) / var(--tw-text-opacity));
 }
 .text-slate-400{
     --tw-text-opacity: 1;
@@ -4055,6 +4059,10 @@ select{
 }
 .text-white\/70{
     color: rgb(255 255 255 / 0.7);
+}
+.text-yellow-500{
+    --tw-text-opacity: 1;
+    color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 .text-opacity-70{
     --tw-text-opacity: 0.7;
@@ -14890,18 +14898,6 @@ html body{
 .hover\:text-blue-700:hover{
     --tw-text-opacity: 1;
     color: rgb(29 78 216 / var(--tw-text-opacity));
-}
-.hover\:text-red-700:hover{
-    --tw-text-opacity: 1;
-    color: rgb(var(--color-red-700) / var(--tw-text-opacity));
-}
-.hover\:text-white:hover{
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.hover\:text-amber-700:hover{
-    --tw-text-opacity: 1;
-    color: rgb(180 83 9 / var(--tw-text-opacity));
 }
 .focus\:border-transparent:focus{
     border-color: transparent;

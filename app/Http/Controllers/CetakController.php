@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Step;
+use App\Models\User;
 use App\Models\Project;
 use PDF;
 
@@ -15,13 +16,15 @@ class CetakController extends Controller
     {
         $step = Step::findOrFail($id);
         $experts = $step->experts;
+
+        $user = User::find($step->user_id);
     
         $project = Project::find($step->project_id);
         
         $timestamp = Carbon::now()->format('mdYHis');
         $filename = $project->nama . '_' . $step->nama . '_' . $timestamp . '.pdf';
 
-        $pdf = PDF::loadView('pages.cetak-step', compact('step', 'experts', 'project'));
+        $pdf = PDF::loadView('pages.cetak-step', compact('step', 'experts', 'project', 'user'));
         // $pdf->setPaper('A4');
         return $pdf->stream($filename);
     }

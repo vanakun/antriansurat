@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function indexProject()
     {
-        $post = Project::paginate(6);
+        $post = Project::paginate(10);
 
         $date = Carbon::now();
 
@@ -33,7 +33,7 @@ class AdminController extends Controller
         $post = Project::where('nama', 'like', "%$search%")
             ->orWhere('lokasi', 'like', "%$search%")
             ->orWhere('status', 'like', "%$search%")
-            ->paginate(6);
+            ->paginate(10);
 
         return view('pages.admin.list-project', compact('post', 'search'));
     }

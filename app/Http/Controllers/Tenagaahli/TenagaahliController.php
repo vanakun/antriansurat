@@ -60,4 +60,17 @@ class TenagaahliController extends Controller
         return view('pages/admin/dashboard', compact('step', 'step_id'));
     }
 
+    public function shareLink($id)
+    {
+        // Temukan data posting berdasarkan ID atau sesuaikan dengan data yang ingin Anda bagikan
+        $project = Project::find($id);
+
+        // URL yang ingin Anda bagikan (gantilah dengan URL yang sesuai)
+        $shareURL = route('showProject', $project->id); // Contoh: mengarahkan ke halaman detail posting
+
+        // Redirect pengguna ke URL yang ingin Anda bagikan
+        return response()->json(['share_url' => $shareURL]);
+    }
+
+
 }

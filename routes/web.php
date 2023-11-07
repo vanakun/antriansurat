@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function() {
             Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
             Route::get('/show/{id}', [AdminController::class, 'show'])->name('projectShow');
             Route::get('/show/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdfa');
+            Route::get('/show/step/cetak-pdf/{project_id}', [CetakController::class, 'cetakPDF'])->name('cetakPDFA');
             Route::get('/search', [AdminController::class, 'searchProject'])->name('projectSearch');
             Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
             Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
@@ -55,12 +56,14 @@ Route::middleware('auth')->group(function() {
             Route::get('/step/{step}', [StepController::class, 'show'])->name('showStep');
             Route::get('/add-expert-tostep/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
             Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
+            Route::get('/step/{id}/{action}', [StepController::class, 'approveStep'])->name('approveStep');
         });
         // ... tambahkan rute admin lainnya di sini
     });
     // Contoh: Rute pengguna biasa (tenaga ahli)
     Route::middleware('role:Tenagaahli')->group(function () {
         Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
+        Route::get('/show/{id}/share-link', [TenagaahliController::class, 'shareLink'])->name('shareLink');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');
         Route::get('/show/step/add/{step}', [StepController::class, 'addToStep'])->name('isKetua');
