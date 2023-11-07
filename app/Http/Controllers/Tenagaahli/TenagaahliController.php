@@ -36,29 +36,33 @@ class TenagaahliController extends Controller
     }
     
     public function create(Request $request, $step_id)
-    {
-        $step = Step::find($step_id);
-        //dd($step_id);
-        // Validasi data yang dikirim melalui request jika diperlukan
-        $request->validate([
-            'file' => 'required|file|mimes:pdf,docx,jpg', // Validasi jenis berkas yang diizinkan
-        ]);
-    
-        // Mengunggah berkas ke direktori penyimpanan
-        $file = $request->file('file');
-        $filePath = $file->store('storage/step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
-        $file->move(public_path('storage/step_media'), $filePath);
-    
-        // Membuat entri baru dalam tabel step_media
-        StepMedia::create([
-            'step_id' => $step_id,
-            'file_path' => $filePath,
-            // Tambahkan kolom-kolom lain sesuai kebutuhan
-        ]);
-    
-        // Redirect atau kirim respons sukses
-        return view('pages/admin/dashboard', compact('step', 'step_id'));
-    }
+{
+    $step = Step::find($step_id);
+
+    // Validasi data yang dikirim melalui request jika diperlukan
+    $request->validate([
+        'file' => 'required|file|mimes:pdf,docx,jpg', // Validasi jenis berkas yang diizinkan
+    ]);
+
+    // Mengunggah berkas ke direktori penyimpanan
+    $file = $request->file('file');
+    $filePath = $file->store('storage/step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
+    $file->move(public_path('storage/step_media'), $filePath);
+
+    // Dapatkan nama file yang diunggah
+    $fileName = $file->getClientOriginalName();
+
+    // Membuat entri baru dalam tabel step_media dengan name_media yang diambil dari nama file
+    StepMedia::create([
+        'step_id' => $step_id,
+        'file_path' => $filePath,
+        'name_media' => $fileName, // Tambahkan kolom name_media sesuai kebutuhan
+    ]);
+
+    // Redirect atau kirim respons sukses
+    return view('pages/admin/dashboard', compact('step', 'step_id'));
+}
+
 
     public function shareLink($id)
     {

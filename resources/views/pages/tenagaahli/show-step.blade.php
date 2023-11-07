@@ -96,28 +96,54 @@
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                 <h2 class="font-medium text-base mr-auto">Media</h2>
                 </div>
-                <form method="POST" action="{{ route('step-media.create', ['step' => $step]) }}" enctype="multipart/form-data">
+                <div id="single-file-upload" class="p-5">
+                    <div class="preview">
+                    <th class="whitespace-nowrap">Upload Media</th>
+                    <form method="POST" action="{{ route('step-media.create', ['step' => $step]) }}" class="dropzone" id="my-dropzone" enctype="multipart/form-data">
                     @csrf
-                            <div class="form-group">
-                                  <label for="file">Upload File:</label>
-                                  <input type="file" name="file" id="file" class="form-control">
+                        <div class="fallback">
+                            <input name="file" type="file" id="file" />
+                        </div>
+                            <div class="dz-message" data-dz-message>
+                                <div class="text-lg font-medium">Drop files here or click to upload.</div>
                             </div>
-                            <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center" aria-expanded="false"
-                                    data-tw-toggle="dropdown">
-                                    Add
-                            </button>
                     </form>
-                    @foreach($stepMedia as $media)
-            <li>
-            <a href="{{ asset($media->file_path) }}" target="_blank">{{ $media->file_path }}</a>
-                <!-- Tambahkan elemen HTML lainnya sesuai kebutuhan -->
-            </li>
-            @endforeach
+                </div>
+            </div>
+            <!-- END: Single File Upload -->
+            <div class="grid grid-cols-12 gap-6 mt-8">
+        <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
+            <!-- BEGIN: File Manager Menu -->
+            <div class="intro-y box p-5 mt-6">
+                <div class="mt-1">
+                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
+                        <i class="w-4 h-4 mr-2" data-feather="file"></i> Documents
+                    </a>
+                </div>
+            </div>
+            <!-- END: File Manager Menu -->
+        </div>
+        <div class="col-span-12 lg:col-span-9 2xl:col-span-10">
+            <!-- BEGIN: Directory & Files -->
+            <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
+                @foreach($stepMedia as $media)
+                    <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                        <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--directory mx-auto" target="_blank"> </a>
+                        </div>
+                        <a href="" class="block font-medium mt-4 text-center truncate">{{ $media->name_media }}</a>
+                    </div>
+                @endforeach
+            </div>
+            <!-- END: Directory & Files -->
+            <br>
+    </div>
                     </div>
                         <!-- END: Content -->
                     </div>
                 </div>
             </div>
+            
             
    
 @endsection
@@ -200,5 +226,31 @@
             imageContainer.removeChild(imageContainer.firstChild);
         }
     }
+
+    Dropzone.autoDiscover = false;
+
+var myDropzone = new Dropzone("#my-dropzone", {
+    autoProcessQueue: true, // Aktifkan pengiriman otomatis
+    init: function() {
+        var dropzone = this;
+
+        this.on("success", function(file, response) {
+            // Berhasil mengunggah berkas, atur ulang formulir
+            dropzone.removeAllFiles();
+            resetFormFields();
+        });
+
+        function resetFormFields() {
+            // Reset form fields by clearing their values
+            var form = document.getElementById("my-dropzone");
+            form.reset();
+        }
+    }
+});
+
+
+
+
+
 </script>
 @endsection

@@ -10,6 +10,7 @@ class StepMedia extends Model
         protected $fillable = [
             'step_id',
             'file_path',
+            'name_media',
             // Tambahkan kolom-kolom lain yang dapat diisi di sini
         ];
     

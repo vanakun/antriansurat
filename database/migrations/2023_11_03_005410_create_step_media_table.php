@@ -15,7 +15,8 @@ class CreateStepMediaTable extends Migration
         Schema::create('step_media', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('step_id');
-            $table->string('file_path'); // Contoh kolom untuk path file media
+            $table->string('file_path');
+            $table->string('name_media'); // Contoh kolom untuk path file media
             $table->timestamps();
             
 
