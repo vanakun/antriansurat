@@ -126,17 +126,17 @@
                                         </div>
                                     </a>
                                     @if ($step->status != 1)
-            <a href="{{ route('approveStep', ['id' => $step->id, 'action' => 'approve']) }}" class="flex items-center">
-                <div class="p-2 flex items-center justify-center rounded-full">
-                    <i data-feather="check" class="w-5 h-5 tooltip text-primary" title="Approve"></i>
-                </div>
-            </a>
-            <a href="{{ route('approveStep', ['id' => $step->id, 'action' => 'reject']) }}" class="flex items-center">
-                <div class="p-2 flex items-center justify-center rounded-full">
-                    <i data-feather="x" class="w-5 h-5 tooltip text-danger" title="Reject"></i>
-                </div>
-            </a>
-        @endif
+                                        <a href="{{ route('approveStep', ['id' => $step->id, 'action' => 'approve']) }}" class="flex items-center">
+                                            <div class="p-2 flex items-center justify-center rounded-full">
+                                                <i data-feather="check" class="w-5 h-5 tooltip text-primary" title="Approve"></i>
+                                            </div>
+                                        </a>
+                                        <a href="{{ route('approveStep', ['id' => $step->id, 'action' => 'reject']) }}" class="flex items-center">
+                                            <div class="p-2 flex items-center justify-center rounded-full">
+                                                <i data-feather="x" class="w-5 h-5 tooltip text-danger" title="Reject"></i>
+                                            </div>
+                                        </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
