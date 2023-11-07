@@ -37,9 +37,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $no = ($post->currentPage() - 1) * $post->perPage() + 1;
+                    @endphp
                     @foreach ( $post as $index => $pos)
                     <tr class="intro-x image-fit zoom-in">
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $no++ }}</td>
                         <td>
                             <a href="{{ route('projectShow', $pos->id) }}">
                                 <div class="flex">
@@ -78,9 +81,6 @@
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <!-- <a class="flex items-center mr-3" href="javascript:;">
-                                    <i data-feather="eye" class="w-4 h-4 mr-1"></i> Show
-                                </a> -->
                                 <a class="flex items-center mr-3" href="{{ route('projectEdit', ['id' => $pos->id, 'currentPage' => $post->currentPage()]) }}">
                                     <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                                 </a>
