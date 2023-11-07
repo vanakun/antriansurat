@@ -61,24 +61,41 @@ class StepController extends Controller
     }
 
     public function storeExpert(Request $request, $stepId)
-{
-    $step = Step::find($stepId);
+    {
+        $step = Step::find($stepId);
 
-    // Validasi input
-    $data = $request->validate([
-        'expert_id' => 'required|exists:users,id',
-    ]);
+        // Validasi input
+        $data = $request->validate([
+            'expert_id' => 'required|exists:users,id',
+        ]);
 
-    $data['step_id'] = $stepId;
+        $data['step_id'] = $stepId;
 
-    // Periksa apakah tenaga ahli sudah terkait dengan langkah
-    if ($step->experts()->where('users.id', $data['expert_id'])->exists()) {
-        return redirect()->route('showStep', $step->id)->with('error', 'Tenaga ahli tersebut sudah terkait dengan langkah ini.');
+        // Periksa apakah tenaga ahli sudah terkait dengan langkah
+        if ($step->experts()->where('users.id', $data['expert_id'])->exists()) {
+            return redirect()->route('showStep', $step->id)->with('error', 'Tenaga ahli tersebut sudah terkait dengan langkah ini.');
+        }
+
+        $step->experts()->attach($data['expert_id']);
+
+        return redirect()->route('showStep', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
     }
 
-    $step->experts()->attach($data['expert_id']);
+    public function approveStep($id, $action)
+    {
+        $step = Step::find($id);
 
-    return redirect()->route('showStep', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
-}
+        if (!$step) {
+            return abort(404); // Tindakan jika langkah tidak ditemukan
+        }
+
+        if ($action === 'approve') {
+            $step->update(['status' => 1]); // Mengubah status menjadi approved
+        } elseif ($action === 'reject') {
+            $step->update(['status' => 3]); // Mengubah status menjadi rejected
+        }
+
+        return redirect()->back()->with('success', 'Status langkah berhasil diubah');
+    }
 
 }

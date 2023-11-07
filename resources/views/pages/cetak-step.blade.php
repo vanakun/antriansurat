@@ -7,7 +7,7 @@
             @yield('subcontent')
             <div style="text-align: center; margin-bottom: 20px;">
                 <h2 style="font-size: 24px; font-weight: bold;">Ketua Penanggung Jawab</h2>
-                <h2 style="font-size: 18px;">{{ $step->nama }}</h2>
+                <h2 style="font-size: 18px;">{{ $user->name }}</h2>
             </div>
 
             {{-- Media --}}

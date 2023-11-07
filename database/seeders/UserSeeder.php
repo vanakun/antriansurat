@@ -31,20 +31,21 @@ class UserSeeder extends Seeder
             
         \App\Models\User::insert([
             [ 
-            'name' => 'Example',
+            'name' => 'Sumanto',
             'email' => 'example@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$l9.Y.RsGZEDR2IbMWPeHgukmdcP7ZjqnJQRPhU4g/CYiVRhygn946', // qwerty123
             'gender' => 'male',
-            'phone' => '82264148811',
+            'phone' => '082264148811',
             'active' => 1,
             'created_at' => now(),
+            'updated_at' => now(),
             'remember_token' => Str::random(10)
             ]
         ]);
                 
         // Fake users
-        User::factory()->times(9)->create();
+        User::factory()->times(50)->create();
         \App\Models\Project::insert([
             [ 
                 'nama' => 'Jalan Menganti',
@@ -61,6 +62,28 @@ class UserSeeder extends Seeder
                 'nama' => 'Jalan Bratang',
                 'image' => '202310280044jalan-beton2-min-800x445.png',
                 'lokasi' => 'Surabaya',
+                'status' => 'active', // password
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
+
+        \App\Models\Project::insert([
+            [ 
+                'nama' => 'Jalan Bringkang',
+                'image' => '202310272305Pembuatan-Jalan-Beton.png',
+                'lokasi' => 'Gresik',
+                'status' => 'active', // password
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
+
+        \App\Models\Project::insert([
+            [ 
+                'nama' => 'Jalan Hayam Wuruk',
+                'image' => '202310280044jalan-beton2-min-800x445.png',
+                'lokasi' => 'Jakarta',
                 'status' => 'active', // password
                 'created_at' => now(),
                 'updated_at' => now()

@@ -34,16 +34,31 @@
             <label for="berkaspdukung">Berkas Pendukung</label>
             <input type="file" name="berkaspdukung" class="form-control" id="berkaspdukung" required>
         </div> -->
-        <div class="intro-y col-span-12 lg:col-span-12">
+        <!-- <div class="intro-y col-span-12 lg:col-span-12">
             <label class="form-label">Tenaga Ahli</label>
             <div class="dropdown">
-                <select class="form-select" name="expert_id" id="expert_id" required>
+                <select class="form-select" name="expert_id" id="expert_id" >
                 <option value="" required>Pilih Tenaga Ahli</option>
                     @foreach($tenagaahliUsers as $ahli)
                         <option value="{{ $ahli->id }}">{{ $ahli->name }}</option>
                     @endforeach
                 </select>
             </div>
+        </div> -->
+
+
+        <div class="intro-y col-span-12 lg:col-span-12">
+            <label for="expert_id" class="form-label">Tenaga Ahli</label>
+            <select data-placeholder="Pilih Tenaga Ahli yang Terlibat" class="tom-select w-full" id="expert_id" name="expert_id[]" multiple required>
+                <!-- Nisor iki Tak tambah soal e lk gk ngunu pas reload awal" kyk ngedip foreach user -->
+                @foreach($tenagaahliUsers as $ahli)
+                @endforeach  
+                @foreach($tenagaahliUsers as $user)
+                    @if(!$step->experts->contains($user->id))
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endif
+                @endforeach
+            </select>
         </div>
         
         <div class="intro-y flex flex-col sm:flex-row items-center">

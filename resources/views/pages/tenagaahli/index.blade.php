@@ -55,10 +55,10 @@
                                 <div><i data-feather="eye" class="w-4 h-4"></i></div>
                                 <div class="ml-1">View Details</div>
                             </a>
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full text-primary bg-primary/10 dark:bg-darkmode-300 dark:text-slate-300 ml-auto tooltip" title="Share">
+                            <a href="#" onclick="openSharePopup( {{ $pos->id }} )" class="intro-x w-8 h-8 flex items-center justify-center rounded-full text-primary bg-primary/10 dark:bg-darkmode-300 dark:text-slate-300 ml-auto tooltip share" title="Share">
                                 <i data-feather="share-2" class="w-3 h-3"></i>
                             </a>
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Download PDF">
+                            <a href="{{ route('cetakPDF',  $pos->id) }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -72,4 +72,55 @@
         </div>
         <!-- END: Content -->
     </div>
+@endsection
+
+@section('script')
+<script>
+    function openSharePopup(projectId) {
+        // Kirim permintaan AJAX ke backend untuk mendapatkan tautan proyek
+        axios.get('/projects/' + projectId + '/share-link')
+            .then(function (response) {
+                // Tampilkan pop-up berisi tautan proyek dan tombol berbagi
+                let shareLink = response.data.shareLink;
+                let sharePopup = `
+                    <div class="share-popup">
+                        <a href="whatsapp://send?text=${shareLink}" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Share via WhatsApp
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${shareLink}" target="_blank">
+                            <i class="fab fa-facebook"></i> Share via Facebook
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url=${shareLink}" target="_blank">
+                            <i class="fab fa-twitter"></i> Share via Twitter
+                        </a>
+                        <button onclick="copyShareLink('${shareLink}')">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                    </div>
+                `;
+                // Tampilkan pop-up
+                // Misalnya, menggunakan library SweetAlert atau Bootstrap modal
+                swal({
+                    content: sharePopup,
+                    button: false
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function copyShareLink(shareLink) {
+        // Salin tautan ke clipboard
+        navigator.clipboard.writeText(shareLink)
+            .then(function () {
+                // Tampilkan pesan sukses
+                swal("Link copied to clipboard!", "", "success");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
 @endsection

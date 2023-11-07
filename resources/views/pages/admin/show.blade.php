@@ -37,6 +37,9 @@
                             <label for="" class="form-label sm:w-20">Status</label>
                             <input id="" type="text" class="form-control {{ $project->status === 'active' ? 'text-success' : 'text-danger' }}" value="{{ ucfirst($project->status) }}" readonly>
                         </div>
+                        <div class="form-inline mt-5 ml-8 pl-1">
+                            <a href="{{ route('cetakPDFA', ['project_id' => $project->id]) }}" class="btn btn-primary" target="_blank">Generate PDF for All Steps</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,9 +106,9 @@
                                             <div class="font-medium whitespace-nowrap text-yellow-500">Waiting</div>
                                         @elseif($step->status == 3)
                                             <div class="text-red-500 mr-2">
-                                                <i data-feather="x" class="w-5 h-5"></i>
+                                                <i data-feather="x" class="w-5 h-5 text-danger"></i>
                                             </div>
-                                            <div class="font-medium whitespace-nowrap text-red-500">Rejected</div>
+                                            <div class="font-medium whitespace-nowrap text-danger">Rejected</div>
                                         @else
                                             <div class="text-gray-500 mr-2">
                                                 <i data-feather="x" class="w-5 h-5"></i>
@@ -116,11 +119,25 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{route('pdfa', $step->id)}}" class="flex items-center" target="_blank">
-                                    <div class="p-2 flex items-center justify-center rounded-full">
-                                        <i data-feather="printer" class="w-5 h-5 tooltip" title="Cetak PDF"></i>
-                                    </div>
-                                </a>
+                                <div class="flex items-center">
+                                    <a href="{{route('pdfa', $step->id)}}" class="flex items-center" target="_blank">
+                                        <div class="p-2 flex items-center justify-center rounded-full">
+                                            <i data-feather="printer" class="w-5 h-5 tooltip" title="Cetak PDF"></i>
+                                        </div>
+                                    </a>
+                                    @if ($step->status != 1)
+            <a href="{{ route('approveStep', ['id' => $step->id, 'action' => 'approve']) }}" class="flex items-center">
+                <div class="p-2 flex items-center justify-center rounded-full">
+                    <i data-feather="check" class="w-5 h-5 tooltip text-primary" title="Approve"></i>
+                </div>
+            </a>
+            <a href="{{ route('approveStep', ['id' => $step->id, 'action' => 'reject']) }}" class="flex items-center">
+                <div class="p-2 flex items-center justify-center rounded-full">
+                    <i data-feather="x" class="w-5 h-5 tooltip text-danger" title="Reject"></i>
+                </div>
+            </a>
+        @endif
+                                </div>
                             </td>
                         </tr>
                         @endforeach
