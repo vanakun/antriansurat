@@ -11,37 +11,46 @@
         <div class="content">
             @include('../layout/components/top-bar-tenagaahli')
             @yield('subcontent')
-            <div class="intro-y text-center mt-5">
-                <img alt="proyek_img" class="h-auto max-w-lg rounded-md mx-auto zoom-in" width="700" src="{{ asset('dist/poster_project/' . $project->image) }}">
-            </div>
-            <div class="intro-y box mt-5">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+            <div class="box">
+                <div class=" items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Detail</h2>
                 </div>
-                <div id="" class="p-5">
-                    <div class="preview">
-                        <div class="form-inline">
-                            <label for="" class="form-label sm:w-20">Nama</label>
-                            <input id="" type="text" class="form-control" value="{{ $project->nama ?? '' }}" readonly>
-                        </div>
-                        <div class="form-inline mt-5">
-                            <label for="" class="form-label sm:w-20">Lokasi</label>
-                            <input id="" type="text" class="form-control" value="{{ $project->lokasi  ?? ''}}" readonly>
-                        </div>
-                        <div class="form-inline mt-5">
-                            <label for="" class="form-label sm:w-20">Dibuat</label>
-                            <input id="" type="text" class="form-control" value="{{ $project->created_at->format('d F Y') }}" readonly>
-                        </div>
-                        <div class="form-inline mt-5">
-                            <label for="" class="form-label sm:w-20">Status</label>
-                            <input id="" type="text" class="form-control {{ $project ?? ''->status === 'active' ? 'text-success' : 'text-danger' }}" value="{{ $project->status ?? '' }}" readonly>
-                        </div>
-                        <div class="form-inline mt-5 ml-8 pl-1">
-                            <a href="{{ route('cetakPDF', ['project_id' => $project->id]) }}" class="btn btn-primary" target="_blank">Generate PDF for All Steps</a>
+                <div class="flex gap-4">
+                    <div class="intro-y text-center w-1/2 p-5">
+                        <img alt="proyek_img" class="h-auto w-full rounded-md mx-auto zoom-in" width="" src="{{ asset('dist/poster_project/' . $project->image) }}">
+                    </div>
+                    <div class="intro-y w-1/2">
+                        <!-- <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                            <h2 class="font-medium text-base mr-auto">Detail</h2>
+                        </div> -->
+                        <div id="" class="p-5">
+                            <div class="preview">
+                                <div class="form-inline">
+                                    <label for="" class="form-label">Nama</label>
+                                    <input id="" type="text" class="form-control" value="{{ $project->nama ?? '' }}" readonly>
+                                </div>
+                                <div class="form-inline mt-5">
+                                    <label for="" class="form-label">Lokasi</label>
+                                    <input id="" type="text" class="form-control" value="{{ $project->lokasi  ?? ''}}" readonly>
+                                </div>
+                                <div class="form-inline mt-5">
+                                    <label for="" class="form-label">Dibuat</label>
+                                    <input id="" type="text" class="form-control" value="{{ $project->created_at->format('d F Y') }}" readonly>
+                                </div>
+                                <div class="form-inline mt-5">
+                                    <label for="" class="form-label">Status</label>
+                                    <input id="" type="text" class="form-control {{ $project ?? ''->status === 'active' ? 'text-success' : 'text-danger' }}" value="{{ ucfirst($project->status ?? '') }}" readonly>
+                                </div>
+                                <div class="form-inline mt-5">
+                                    <a href="{{ route('cetakPDF', ['project_id' => $project->id]) }}" class="btn btn-primary" target="_blank">Generate PDF for All Steps</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {{-- Tahap --}}
             <div class="intro-y box mt-5">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Tahap</h2>
