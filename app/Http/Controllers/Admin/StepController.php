@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Step;
+use App\Models\StepMedia;
 use Carbon\Carbon;
 
 class StepController extends Controller
@@ -44,9 +45,14 @@ class StepController extends Controller
 
     public function show(Step $step)
     {   
+        $project_id = $step->project_id;
+        $project = Project::findOrFail($project_id);
+        $experts = $step->experts;
+        $stepMedia = StepMedia::all();
         $experts = $step->experts;
         //dd($step);
-        return view('pages.admin.showStep', compact('step', 'experts'));
+        
+        return view('pages.admin.showStep', compact('step', 'experts', 'project', 'stepMedia'));
     }
 
     
@@ -57,11 +63,18 @@ class StepController extends Controller
         //dd($step);
         $tenagaahliUsers = User::where('role', 'Tenagaahli')->get();
         //dd($tenagaahliUsers);
+
+        if (auth()->user()->role === 'Tenagaahli') {
+            return view('pages/tenagaahli/add-expert', ['step' => $step,'tenagaahliUsers' => $tenagaahliUsers]);
+        }
+
         return view('pages/admin/add-tahap-tostep', ['step' => $step,'tenagaahliUsers' => $tenagaahliUsers]);
     }
 
     public function storeExpert(Request $request, $stepId)
     {
+        $user = auth()->user();
+
         $step = Step::find($stepId);
 
         // Validasi input
@@ -78,7 +91,11 @@ class StepController extends Controller
 
         $step->experts()->attach($data['expert_id']);
 
-        return redirect()->route('showStep', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
+        if ($user->role === 'Admin') {
+            return redirect()->route('showStep', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
+        } else if ($user->role === 'Tenagaahli') {
+            return redirect()->route('stepProject', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
+        }
     }
 
     public function approveStep($id, $action)

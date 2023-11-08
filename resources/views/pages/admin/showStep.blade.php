@@ -51,6 +51,8 @@
                 </div>
             </div>
         </div>
+
+        {{-- Anggota --}}
         <div class="intro-y box mt-2">
             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                 <h2 class="font-medium text-base mr-auto">Anggota Terlibat</h2>
@@ -79,6 +81,81 @@
                 </table>
             </div>
         </div>
+
+        {{-- Media --}}
+            <div class="intro-y box mt-2">
+                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="font-medium text-base mr-auto">Media</h2>
+                </div>
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-12 2xl:col-span-12">
+                        <!-- BEGIN: Directory & Files -->
+                        <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 p-5">
+                        @foreach ($stepMedia as $media)
+                            @if ($media->step_id == $step->id)
+                                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                    <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+                                        @php
+                                            $extension = pathinfo($media->file_path, PATHINFO_EXTENSION);
+                                        @endphp
+                                        @if (in_array($extension, ['jpeg', 'jpg', 'png', 'gif']))
+                                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--image mx-auto" target="_blank">
+                                                <div class="file__icon--image__preview image-fit">
+                                                    <img alt="Image Preview" src="{{ asset($media->file_path) }}">
+                                                </div>
+                                            </a>
+                                            <div class="block font-medium mt-4 text-center truncate">
+                                                {{ $media->name_media }}
+                                            </div>
+                                        @elseif (in_array($extension, ['pdf', 'docx', 'txt', 'html']))
+                                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--file mx-auto" target="_blank">
+                                                <div class="file__icon__file-name">{{ $extension }}</div>
+                                            </a>
+                                            <div class="block font-medium mt-4 text-center truncate">
+                                                {{ $media->name_media }}
+                                            </div>
+                                        @else
+                                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--image mx-auto" target="_blank">
+                                                <div class="file__icon__file-name">{{ $extension }}</div>
+                                                {{ $media->name_media }}
+                                            </a>
+                                            <div class="block font-medium mt-4 text-center truncate">
+                                                {{ $media->name_media }}
+                                            </div>
+                                        @endif
+                                        <div class="absolute top-0 right-0 mr-2 mt-3 dropdown ml-auto tooltip" title="More">
+                                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown">
+                                                <i data-feather="more-vertical" class="w-5 h-5 text-slate-500"></i>
+                                            </a>
+                                            <div class="dropdown-menu w-40">
+                                                <ul class="dropdown-content">
+                                                    <li>
+                                                        <a href="" class="dropdown-item">
+                                                            <i data-feather="users" class="w-4 h-4 mr-2"></i> Share File
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="" class="dropdown-item text-danger">
+                                                            <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+    
+    
+    
+                        </div>
+                        <!-- END: Directory & Files -->
+                        <br>
+                    </div>
+                 </div>
+                </div>
+            </div>
     </div>
     @endsection
 

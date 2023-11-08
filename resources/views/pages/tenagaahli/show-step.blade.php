@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            {{-- Media --}}
+            {{-- Deskripsi --}}
             <div class="intro-y box mt-2">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Tahap: {{ $step->tahap }} {{ $step->nama }}</h2>
@@ -84,7 +84,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $expert->name }}</td>
-                                <td>{{ $expert->phone !== null ? '0' . $expert->phone : '-' }}</td>
+                                <td>{{ $expert->phone !== null ? $expert->phone : '-' }}</td>
                                 <td><a href="mailto:{{ $expert->email }}">{{ $expert->email }}</a></td>
                             </tr>
                             @endforeach
@@ -92,13 +92,16 @@
                     </table>
                 </div>
             </div>
+
+            {{-- Media --}}
             <div class="intro-y box mt-2">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                 <h2 class="font-medium text-base mr-auto">Media</h2>
                 </div>
-                <div id="single-file-upload" class="p-5">
-                    <div class="preview">
-                    <th class="whitespace-nowrap">Upload Media</th>
+                <div id="single-file-upload" class="">
+                    @if ($step->user_id === auth()->user()->id)
+                    <div class="preview p-5">
+                    <!-- <th class="whitespace-nowrap">Upload Media</th> -->
                     <form method="POST" action="{{ route('step-media.create', ['step' => $step]) }}" class="dropzone" id="my-dropzone" enctype="multipart/form-data">
                     @csrf
                         <div class="fallback">
@@ -108,44 +111,83 @@
                                 <div class="text-lg font-medium">Drop files here or click to upload.</div>
                             </div>
                     </form>
+                    @else
+                        
+                    @endif
                 </div>
-            </div>
-            <!-- END: Single File Upload -->
-            <div class="grid grid-cols-12 gap-6 mt-8">
-        <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
-            <!-- BEGIN: File Manager Menu -->
-            <div class="intro-y box p-5 mt-6">
-                <div class="mt-1">
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <i class="w-4 h-4 mr-2" data-feather="file"></i> Documents
-                    </a>
-                </div>
-            </div>
-            <!-- END: File Manager Menu -->
-        </div>
-        <div class="col-span-12 lg:col-span-9 2xl:col-span-10">
-            <!-- BEGIN: Directory & Files -->
-            <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
-                @foreach($stepMedia as $media)
-                    <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
-                        <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
-                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--directory mx-auto" target="_blank"> </a>
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-12 2xl:col-span-12">
+                        <!-- BEGIN: Directory & Files -->
+                        <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 p-5">
+                        @foreach ($stepMedia as $media)
+                            @if ($media->step_id == $step->id)
+                                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                    <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+                                        @php
+                                            $extension = pathinfo($media->file_path, PATHINFO_EXTENSION);
+                                        @endphp
+                                        @if (in_array($extension, ['jpeg', 'jpg', 'png', 'gif']))
+                                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--image mx-auto" target="_blank">
+                                                <div class="file__icon--image__preview image-fit">
+                                                    <img alt="Image Preview" src="{{ asset($media->file_path) }}">
+                                                </div>
+                                            </a>
+                                            <div class="block font-medium mt-4 text-center truncate">
+                                                {{ $media->name_media }}
+                                            </div>
+                                        @elseif (in_array($extension, ['pdf', 'docx', 'txt', 'html']))
+                                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--file mx-auto" target="_blank">
+                                                <div class="file__icon__file-name">{{ $extension }}</div>
+                                            </a>
+                                            <div class="block font-medium mt-4 text-center truncate">
+                                                {{ $media->name_media }}
+                                            </div>
+                                        @else
+                                            <a href="{{ asset($media->file_path) }}" class="w-3/5 file__icon file__icon--image mx-auto" target="_blank">
+                                                <div class="file__icon__file-name">{{ $extension }}</div>
+                                                {{ $media->name_media }}
+                                            </a>
+                                            <div class="block font-medium mt-4 text-center truncate">
+                                                {{ $media->name_media }}
+                                            </div>
+                                        @endif
+                                        <div class="absolute top-0 right-0 mr-2 mt-3 dropdown ml-auto tooltip" title="More">
+                                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown">
+                                                <i data-feather="more-vertical" class="w-5 h-5 text-slate-500"></i>
+                                            </a>
+                                            <div class="dropdown-menu w-40">
+                                                <ul class="dropdown-content">
+                                                    <li>
+                                                        <a href="" class="dropdown-item">
+                                                            <i data-feather="users" class="w-4 h-4 mr-2"></i> Share File
+                                                        </a>
+                                                    </li>
+                                                    @if ($step->user_id === auth()->user()->id)
+                                                    <li>
+                                                        <a href="" class="dropdown-item text-danger">
+                                                            <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
+                                                        </a>
+                                                    </li>
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+    
+    
+    
                         </div>
-                        <a href="" class="block font-medium mt-4 text-center truncate">{{ $media->name_media }}</a>
+                        <!-- END: Directory & Files -->
+                        <br>
                     </div>
-                @endforeach
-            </div>
-            <!-- END: Directory & Files -->
-            <br>
-    </div>
-                    </div>
-                        <!-- END: Content -->
-                    </div>
+                 </div>
                 </div>
             </div>
-            
-            
-   
+        </div>
+    </div>
 @endsection
 
 @section('script')

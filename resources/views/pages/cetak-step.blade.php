@@ -62,7 +62,7 @@
                             <tr>
                                 <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ $index + 1 }}</td>
                                 <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ $expert->name }}</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ $expert->phone !== null ? '0' . $expert->phone : '-' }}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ $expert->phone !== null ? $expert->phone : '-' }}</td>
                                 <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ $expert->email }}</a></td>
                             </tr>
                             @endforeach
