@@ -143,4 +143,13 @@ class AdminController extends Controller
 
         return redirect('/project')->with('success', 'Proyek berhasil dihapus.');
     }
+
+    public function delete(Request $request)
+    {
+        $projectId = $request->input('id');
+
+        // Lakukan logika penghapusan proyek berdasarkan $projectId
+
+        return response()->json(['success' => true]);
+    }
 }
