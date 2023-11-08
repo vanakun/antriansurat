@@ -28,40 +28,42 @@ class TenagaahliController extends Controller
     public function showStep($id)
     {
         $step = Step::findOrFail($id);
+        $project_id = $step->project_id;
+        $project = Project::findOrFail($project_id);
         $experts = $step->experts;
         $stepMedia = StepMedia::all();
         //dd($stepMedia);
 
-        return view ('pages/tenagaahli/show-step', compact('step', 'experts','stepMedia'));
+        return view ('pages/tenagaahli/show-step', compact('step', 'experts','stepMedia' ,'project'));
     }
     
     public function create(Request $request, $step_id)
-{
-    $step = Step::find($step_id);
+    {
+        $step = Step::find($step_id);
 
-    // Validasi data yang dikirim melalui request jika diperlukan
-    $request->validate([
-        'file' => 'required|file|mimes:pdf,docx,jpg', // Validasi jenis berkas yang diizinkan
-    ]);
+        // Validasi data yang dikirim melalui request jika diperlukan
+        $request->validate([
+            'file' => 'required|file|mimes:pdf,docx,jpg,png,txt', // Validasi jenis berkas yang diizinkan
+        ]);
 
-    // Mengunggah berkas ke direktori penyimpanan
-    $file = $request->file('file');
-    $filePath = $file->store('storage/step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
-    $file->move(public_path('storage/step_media'), $filePath);
+        // Mengunggah berkas ke direktori penyimpanan
+        $file = $request->file('file');
+        $filePath = $file->store('storage/step_media'); // Mengganti direktori penyimpanan sesuai kebutuhan
+        $file->move(public_path('storage/step_media'), $filePath);
 
-    // Dapatkan nama file yang diunggah
-    $fileName = $file->getClientOriginalName();
+        // Dapatkan nama file yang diunggah
+        $fileName = $file->getClientOriginalName();
 
-    // Membuat entri baru dalam tabel step_media dengan name_media yang diambil dari nama file
-    StepMedia::create([
-        'step_id' => $step_id,
-        'file_path' => $filePath,
-        'name_media' => $fileName, // Tambahkan kolom name_media sesuai kebutuhan
-    ]);
+        // Membuat entri baru dalam tabel step_media dengan name_media yang diambil dari nama file
+        StepMedia::create([
+            'step_id' => $step_id,
+            'file_path' => $filePath,
+            'name_media' => $fileName, // Tambahkan kolom name_media sesuai kebutuhan
+        ]);
 
-    // Redirect atau kirim respons sukses
-    return view('pages/admin/dashboard', compact('step', 'step_id'));
-}
+        // Redirect atau kirim respons sukses
+        return view('pages/admin/dashboard', compact('step', 'step_id'));
+    }
 
 
     public function shareLink($id)

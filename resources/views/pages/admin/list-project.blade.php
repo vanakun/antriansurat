@@ -84,7 +84,7 @@
                                 <a class="flex items-center mr-3" href="{{ route('projectEdit', ['id' => $pos->id, 'currentPage' => $post->currentPage()]) }}">
                                     <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                                 </a>
-                                <a class="flex items-center text-danger" href="{{ route('projectDelete', ['id' => $pos->id]) }}" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal">
+                                <a class="flex items-center text-danger delete-project" href="{{ route('projectDelete', ['id' => $pos->id]) }}  " data-tw-toggle="" data-id="{{ $pos->id }}" data-tw-target="#delete-confirmation-modal">
                                     <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
                                 </a>
                             </div>
@@ -197,11 +197,11 @@
                     <div class="p-5 text-center">
                         <i data-feather="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
                         <div class="text-3xl mt-5">Are you sure?</div>
-                        <div class="text-slate-500 mt-2">Do you really want to delete these records? <br>This process cannot be undone.</div>
+                        <div class="text-slate-500 mt-2">Do you really want to delete these project? <br>This process cannot be undone.</div>
                     </div>
                     <div class="px-5 pb-8 text-center">
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                        <button type="button" class="btn btn-danger w-24">Delete</button>
+                        <button type="button" class="btn btn-danger w-24"><a href="{{ route('projectDelete', ['id' => $pos->id]) }}">Delete</a></button>
                     </div>
                 </div>
             </div>

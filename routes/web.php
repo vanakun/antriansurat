@@ -53,8 +53,8 @@ Route::middleware('auth')->group(function() {
             Route::get('/deleteProject/{id}', [AdminController::class, 'deleteProject'])->name('projectDelete');
             Route::get('/{project}/createTahap', [StepController::class, 'create'])->name('tahapCreate');
             Route::post('/{project}/storeTahap', [StepController::class, 'store'])->name('tahapStore');
-            Route::get('/step/{step}', [StepController::class, 'show'])->name('showStep');
-            Route::get('/add-expert-tostep/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
+            Route::get('/step/{step}', [StepController::class, 'show'])->name('showSteps');
+            Route::get('/add-expert/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
             Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
             Route::get('/step/{id}/{action}', [StepController::class, 'approveStep'])->name('approveStep');
         });
@@ -66,6 +66,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/show/{id}/share-link', [TenagaahliController::class, 'shareLink'])->name('shareLink');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');
+        Route::get('/step/{step}', [StepController::class, 'show'])->name('showStep');
+        Route::get('/add-expert/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
+        Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
         Route::get('/show/step/add/{step}', [StepController::class, 'addToStep'])->name('isKetua');
         Route::get('/show/step/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdf');
         Route::get('/show/step/cetak-pdf/{project_id}', [CetakController::class, 'cetakPDF'])->name('cetakPDF');

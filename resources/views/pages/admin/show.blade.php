@@ -66,33 +66,33 @@
                         @foreach ($steps as $index => $step)
                         <tr class="intro-x image-fit zoom-in">
                             <td>
-                                <a href="{{ route('showStep', $step->id) }}">
+                                <a href="{{ route('showSteps', $step->id) }}">
                                     <div class="font-medium whitespace-nowrap ml-3">{{ $step->tahap }}</div>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('showStep', $step->id) }}">
+                                <a href="{{ route('showSteps', $step->id) }}">
                                     <div class="flex items-center">
                                         <div class="font-medium whitespace-nowrap">{{ $step->nama }}</div>
                                     </div>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('showStep', $step->id) }}">
+                                <a href="{{ route('showSteps', $step->id) }}">
                                     <div class="flex items-center">
                                         <div class="font-medium whitespace-nowrap">{{ $step->keterangan }}</div>
                                     </div>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('showStep', $step->id) }}">
+                                <a href="{{ route('showSteps', $step->id) }}">
                                     <div class="flex items-center">
                                         <div class="font-medium whitespace-nowrap">{{ $step->user->name }}</div>
                                     </div>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('stepProject', $step->id) }}">
+                                <a href="{{ route('showSteps', $step->id) }}">
                                     <div class="flex items-center">
                                         @if($step->status == 1)
                                             <div class="text-primary mr-2">
