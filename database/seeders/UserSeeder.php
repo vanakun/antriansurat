@@ -51,6 +51,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Jalan Menganti',
                 'image' => '202310272305Pembuatan-Jalan-Beton.png',
                 'lokasi' => 'Gresik',
+                'keterangan' => 'Jalan Menganti ini akan dibangun dengan panjang blablablabla',
                 'status' => 'active', // password
                 'created_at' => now(),
                 'updated_at' => now()
@@ -62,6 +63,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Jalan Bratang',
                 'image' => '202310280044jalan-beton2-min-800x445.png',
                 'lokasi' => 'Surabaya',
+                'keterangan' => 'Jalan Bratang ini akan dibangun dengan panjang blablablabla',
                 'status' => 'active', // password
                 'created_at' => now(),
                 'updated_at' => now()
@@ -73,6 +75,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Jalan Bringkang',
                 'image' => '202310272305Pembuatan-Jalan-Beton.png',
                 'lokasi' => 'Gresik',
+                'keterangan' => 'Jalan Bringkang ini akan dibangun dengan panjang blablablabla',
                 'status' => 'active', // password
                 'created_at' => now(),
                 'updated_at' => now()
@@ -84,6 +87,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Jalan Hayam Wuruk',
                 'image' => '202310280044jalan-beton2-min-800x445.png',
                 'lokasi' => 'Jakarta',
+                'keterangan' => 'Jalan Hayam Wuruk ini akan dibangun dengan panjang blablablabla',
                 'status' => 'active', // password
                 'created_at' => now(),
                 'updated_at' => now()

@@ -12,7 +12,8 @@ class Project extends Model
         'nama', 
         'image', 
         'lokasi', 
-        'status'
+        'status',
+        'keterangan'
     ];
     public function steps()
     {

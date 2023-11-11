@@ -39,6 +39,7 @@ class ProjectFactory extends Factory
             'nama' => $this->faker->randomElement($daftarNamaJalan), // Misalnya, judul acak dengan 3 kata
             'image' => '202310280044jalan-beton2-min-800x445.png',
             'lokasi' => $this->faker->city(), // Menggunakan nama kota acak
+            'keterangan' => $this->faker->sentence(),
             'status' => 'active', // Status acak
             'created_at' => now(),
             'updated_at' => now(),
