@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('nama');
             $table->string('image');
             $table->string('lokasi');
+            $table->string('keterangan');
             $table->enum('status', ['active', 'inactive'])->default('active')->nullable();;
             $table->timestamps();
         });

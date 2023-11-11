@@ -22,9 +22,9 @@
             <div class="intro-y box mt-2">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                     <h2 class="font-medium text-base mr-auto">Tahap: {{ $step->tahap }} {{ $step->nama }}</h2>
-                    @if ($step->user_id == auth()->user()->id)
+                    <!-- @if ($step->user_id == auth()->user()->id)
                         <button class="btn btn-primary shadow-md ml-auto"><a href="{{ route('isKetua', $step->id) }}">Tambah Dokumen</a></button>
-                    @endif
+                    @endif -->
                 </div>
                 <div class="flex p-5">
                     @if($step->status == 1)
@@ -84,7 +84,21 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $expert->name }}</td>
-                                <td>{{ $expert->phone !== null ? $expert->phone : '-' }}</td>
+                                <td>
+                                    @if ($expert->phone !== null)
+                                        @php
+                                            $phoneNumber = $expert->phone;
+                                            if (substr($phoneNumber, 0, 1) === '0') {
+                                                $phoneNumber = '+62' . substr($phoneNumber, 1);
+                                            }
+                                        @endphp
+
+                                        <a href="https://wa.me/{{ $phoneNumber }}" target="_blank">{{ $phoneNumber }}</a>
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+
                                 <td><a href="mailto:{{ $expert->email }}">{{ $expert->email }}</a></td>
                             </tr>
                             @endforeach

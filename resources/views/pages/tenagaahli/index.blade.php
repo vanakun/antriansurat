@@ -24,7 +24,7 @@
                                 
                                 <div class="ml-3 text-white mr-auto">
                                 </div>
-                                <div class="dropdown ml-3">
+                                <!-- <div class="dropdown ml-3">
                                     <a href="javascript:;" class="bg-white/20 dropdown-toggle w-8 h-8 flex items-center justify-center rounded-full" aria-expanded="false" data-tw-toggle="dropdown">
                                         <i data-feather="more-vertical" class="w-4 h-4 text-white"></i>
                                     </a>
@@ -42,14 +42,14 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="absolute bottom-0 text-white px-5 pb-6 z-10">
                                 <span class="bg-white/20 px-2 py-1 rounded">Category {{$pos->lokasi}}</span>
                                 <a href="{{ route('showProject', $pos->id) }}" class="block font-medium text-xl mt-3">{{ $pos->nama }} </a>
                             </div>
                         </div>
-                        <div class="p-5 text-slate-600 dark:text-slate-500">deskrip</div>
+                        <div class="p-5 text-slate-600 dark:text-slate-500">{{$pos->keterangan}}</div>
                         <div class="flex items-center px-5 py-3 border-t border-slate-200/60 dark:border-darkmode-400">
                             <a class="mr-auto flex items-center text-primary" href="{{ route('showProject', $pos->id) }}">
                                 <div><i data-feather="eye" class="w-4 h-4"></i></div>
