@@ -66,7 +66,10 @@ class StepController extends Controller
 
         if (auth()->user()->role === 'Tenagaahli') {
             return view('pages/tenagaahli/add-expert', ['step' => $step,'tenagaahliUsers' => $tenagaahliUsers]);
+        } if (auth()->user()->role === 'Admin') {
+            return view('pages/admin/add-tahap-tostep', ['step' => $step,'tenagaahliUsers' => $tenagaahliUsers]);
         }
+        
 
         return view('pages/admin/add-tahap-tostep', ['step' => $step,'tenagaahliUsers' => $tenagaahliUsers]);
     }
@@ -92,7 +95,7 @@ class StepController extends Controller
         $step->experts()->attach($data['expert_id']);
 
         if ($user->role === 'Admin') {
-            return redirect()->route('showStep', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
+            return redirect()->route('showSteps', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
         } else if ($user->role === 'Tenagaahli') {
             return redirect()->route('stepProject', $step->id)->with('success', 'Tenaga ahli berhasil ditambahkan ke langkah.');
         }

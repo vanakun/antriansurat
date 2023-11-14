@@ -8,33 +8,32 @@
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">Tambah Tenaga ahli yang terlibat </h2>
 </div>
-<form method="POST" action="{{ route('StoreExpert', $step->id) }}">
+<form method="POST" action="{{ route('StoreExpertA', $step->id) }}">
     @csrf
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-        <!-- <div class="intro-y col-span-12 lg:col-span-12">
-            <label class="form-label">Tenaga Ahli</label>
-            <div class="dropdown">
-                <select class="form-select" name="expert_id" id="expert_id" >
-                <option value="" required>Pilih Tenaga Ahli</option>
-                    @foreach($tenagaahliUsers as $ahli)
-                        <option value="{{ $ahli->id }}">{{ $ahli->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div> -->
 
 
         <div class="intro-y col-span-12 lg:col-span-12">
             <label for="expert_id" class="form-label">Tenaga Ahli</label>
-            <select data-placeholder="Pilih Tenaga Ahli yang Terlibat" class="tom-select w-full" id="expert_id" name="expert_id[]" multiple required>
+            <select data-placeholder="Pilih Tenaga Ahli yang Terlibatt" class="tom-select w-full" id="expert_id" name="expert_id[]" multiple required>
                 <!-- Nisor iki Tak tambah soal e lk gk ngunu pas reload awal" kyk ngedip foreach user -->
-                @foreach($tenagaahliUsers as $ahli)
-                @endforeach  
-                @foreach($tenagaahliUsers as $user)
-                    @if(!$step->experts->contains($user->id))
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endif
-                @endforeach
+                @if (auth()->user()->role === 'Admin')
+                    @foreach($tenagaahliUsers as $ahli)
+                    @endforeach  
+                    @foreach($tenagaahliUsers as $user)
+                        @if(!$step->experts->contains($user->id))
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endif
+                    @endforeach
+                @elseif (auth()->user()->role === 'Tenagaahli')
+                    @foreach($tenagaahliUsers as $ahlii)
+                    @endforeach  
+                    @foreach($tenagaahliUsers as $user)
+                        @if(!$step->experts->contains($user->id))
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endif
+                    @endforeach
+                @endif
             </select>
         </div>
         

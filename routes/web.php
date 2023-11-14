@@ -54,8 +54,8 @@ Route::middleware('auth')->group(function() {
             Route::get('/{project}/createTahap', [StepController::class, 'create'])->name('tahapCreate');
             Route::post('/{project}/storeTahap', [StepController::class, 'store'])->name('tahapStore');
             Route::get('/step/{step}', [StepController::class, 'show'])->name('showSteps');
-            Route::get('/add-expert/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
-            Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
+            Route::get('/add-expert/{step}', [StepController::class, 'addToStep'])->name('AddToStepA');
+            Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpertA');
             Route::get('/step/{id}/{action}', [StepController::class, 'approveStep'])->name('approveStep');
         });
         // ... tambahkan rute admin lainnya di sini
