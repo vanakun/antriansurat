@@ -56,7 +56,7 @@
         <div class="intro-y box mt-2">
             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                 <h2 class="font-medium text-base mr-auto">Anggota Terlibat</h2>
-                <button class="btn btn-primary shadow-md ml-auto"><a href="{{ route('AddToStep', $step->id) }}">Tambah Tenaga ahli</a></button>
+                <button class="btn btn-primary shadow-md ml-auto"><a href="{{ route('AddToStepA', $step->id) }}">Tambah Tenaga ahli</a></button>
             </div>
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                 <table class="table table-report -mt-2">
