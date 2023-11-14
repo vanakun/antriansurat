@@ -10,7 +10,7 @@
                 <h2 style="font-size: 18px;">{{ $user->name }}</h2>
             </div>
 
-            {{-- Media --}}
+            {{-- Mediaa --}}
             <div style="margin-bottom: 20px;">
                 <div style="text-align: center;">
                     <h2 style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Tahap: {{ $step->tahap }} {{ $step->nama }}</h2>
