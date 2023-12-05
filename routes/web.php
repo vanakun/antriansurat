@@ -12,6 +12,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\ColorSchemeController;
 
+use App\Http\Controllers\Perusahaan\JurnalController;
+use App\Http\Controllers\Perusahaan\JurnalUmumController;
+use App\Http\Controllers\Perusahaan\NeracalajurController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,13 +44,23 @@ Route::middleware('auth')->group(function() {
         Route::get('/', [AdminController::class, 'index'])->name('adminDashboard');
 
         Route::prefix('project')->group(function () {
-            Route::get('/', [AdminController::class, 'indexProject'])->name('projectIndex');
-            Route::get('/createProject', [AdminController::class, 'createProject'])->name('projectCreate');
+            Route::get('/', [JurnalUmumController::class, 'index'])->name('index');
+            Route::get('/createJurnalUmum', [JurnalUmumController::class, 'createJurnalUmum'])->name('createJurnalUmum');
+            Route::post('/storeJurnalUmum', [JurnalUmumController::class, 'storeJurnalUmum'])->name('storeJurnalUmum');
+            Route::get('/bukubesar', [JurnalUmumController::class, 'indexBukuBesar'])->name('indexBukuBesar');
+            Route::get('/search', [JurnalUmumController::class, 'projectSearch'])->name('projectSearch');
+
+            Route::get('/jurnal', [JurnalController::class, 'indexjurnal'])->name('indexjurnal');
+            Route::get('/createJurnal', [JurnalController::class, 'createjurnal'])->name('createjurnal');
+            Route::post('/storeJurnal', [JurnalController::class, 'storeJurnal'])->name('storeJurnal');
+
+            Route::get('/neracalajur', [NeracalajurController::class, 'indexNeracaLajur'])->name('indexNeracaLajur');
+
             Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
             Route::get('/show/{id}', [AdminController::class, 'show'])->name('projectShow');
             Route::get('/show/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdfa');
             Route::get('/show/step/cetak-pdf/{project_id}', [CetakController::class, 'cetakPDF'])->name('cetakPDFA');
-            Route::get('/search', [AdminController::class, 'searchProject'])->name('projectSearch');
+           
             Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
             Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
             Route::get('/get-current-time', [AdminController::class, 'getCurrentTime'])->name('getCurrentTime');

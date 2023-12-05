@@ -22,37 +22,60 @@ class SideMenu
                         ],
                         'title' => 'Dashboard'
                     ],
-            'Project' => [
+            'Jurnal' => [
+                        'icon' => 'box',
+                        'title' => 'Project',
+                                'route_name' => 'indexjurnal',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Jurnal'
+                            ],
+            'Jurnal umum' => [
                 'icon' => 'box',
                 'title' => 'Project',
-                        'route_name' => 'projectIndex',
+                        'route_name' => 'index',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'Project'
+                        'title' => 'Jurnal umum'
                     ],
-            'users' => [
-                'icon' => 'users',
-                'title' => 'Users',
-                'sub_menu' => [
-                    'users-layout-1' => [
-                        'icon' => '',
-                        'route_name' => 'users-layout-1',
+            'Buku Besar' => [
+                        'icon' => 'book',
+                        'title' => 'Buku besar',
+                                'route_name' => 'indexBukuBesar',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Buku Besar'
+                    ],
+            // 'Neraca' => [
+            //     'icon' => 'box',
+            //     'title' => 'Project',
+            //             'route_name' => 'index',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Neraca'
+            // ],
+            'Neraca Lajur' => [
+                'icon' => 'box',
+                'title' => 'Project',
+                        'route_name' => 'indexNeracaLajur',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'Team Leader'
-                    ],
-                    'users-layout-2' => [
-                        'icon' => '',
-                        'route_name' => 'users-layout-2',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Tenaga Ahli'
-                    ],
-                ]
+                        'title' => 'Neraca Lajur'
             ],
+            // 'Laba Rugi' => [
+            //     'icon' => 'box',
+            //     'title' => 'Project',
+            //             'route_name' => 'index',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Laba Rugi'
+            // ],
         ];
     }
 }

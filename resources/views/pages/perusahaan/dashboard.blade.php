@@ -11,7 +11,7 @@
                 <div class="mt-6 -mb-6 intro-y">
                     <div class="alert alert-dismissible show box bg-primary text-white flex items-center mb-6" role="alert">
                         <span>
-                            Introducing new dashboard! Download now at <a href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820" class="underline ml-1" target="blank">themeforest.net</a>.
+                            solusi akuntansi mu ! Download now at <a href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820" class="underline ml-1" target="blank">themeforest.net</a>.
                             <button class="rounded-md bg-white bg-opacity-20 dark:bg-darkmode-300 hover:bg-opacity-30 py-0.5 px-2 -my-3 ml-2">Live Preview</button>
                         </span>
                         <button type="button" class="btn-close text-white" data-bs-dismiss="alert" aria-label="Close">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="text-sm 2xl:text-base font-medium -mb-1">
-                            Hi Angelina, <span class="text-slate-600 dark:text-slate-300 font-normal">welcome back!</span>
+                            Hi, <span class="text-slate-600 dark:text-slate-300 font-normal">welcome back!</span>
                         </div>
                         <div class="text-base 2xl:text-lg justify-center sm:justify-start flex items-center text-slate-600 dark:text-slate-300 leading-3 mt-14 2xl:mt-24">
                             My Total Assets
