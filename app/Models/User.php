@@ -69,8 +69,8 @@ class User extends Authenticatable
             return url('media-example/no-image.png');
         }
     }
-    public function tenagaahli()
+    public function suratPengawasanPemilus()
     {
-        return $this->hasMany(Tenagaahli::class, 'user_id','expert_id');
+        return $this->hasMany(SuratPengawasanPemilu::class);
     }
 }

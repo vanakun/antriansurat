@@ -45,38 +45,49 @@ Route::middleware('auth')->group(function() {
 
         Route::prefix('project')->group(function () {
             Route::get('/', [JurnalUmumController::class, 'index'])->name('index');
-            Route::get('/createJurnalUmum', [JurnalUmumController::class, 'createJurnalUmum'])->name('createJurnalUmum');
-            Route::post('/storeJurnalUmum', [JurnalUmumController::class, 'storeJurnalUmum'])->name('storeJurnalUmum');
-            Route::get('/bukubesar', [JurnalUmumController::class, 'indexBukuBesar'])->name('indexBukuBesar');
-            Route::get('/search', [JurnalUmumController::class, 'projectSearch'])->name('projectSearch');
-
             Route::get('/jurnal', [JurnalController::class, 'indexjurnal'])->name('indexjurnal');
-            Route::get('/createJurnal', [JurnalController::class, 'createjurnal'])->name('createjurnal');
-            Route::post('/storeJurnal', [JurnalController::class, 'storeJurnal'])->name('storeJurnal');
-
-            Route::get('/neracalajur', [NeracalajurController::class, 'indexNeracaLajur'])->name('indexNeracaLajur');
-
-            Route::post('/storeProject', [AdminController::class, 'storeProject'])->name('projectStore');
-            Route::get('/show/{id}', [AdminController::class, 'show'])->name('projectShow');
-            Route::get('/show/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdfa');
-            Route::get('/show/step/cetak-pdf/{project_id}', [CetakController::class, 'cetakPDF'])->name('cetakPDFA');
-           
-            Route::get('/edit/{id}', [AdminController::class, 'editProject'])->name('projectEdit');
-            Route::put('/edit/{id}', [AdminController::class, 'updateProject'])->name('projectUpdate');
-            Route::get('/get-current-time', [AdminController::class, 'getCurrentTime'])->name('getCurrentTime');
-            Route::get('/deleteProject/{id}', [AdminController::class, 'deleteProject'])->name('projectDelete');
-            Route::get('/{project}/createTahap', [StepController::class, 'create'])->name('tahapCreate');
-            Route::post('/{project}/storeTahap', [StepController::class, 'store'])->name('tahapStore');
-            Route::get('/step/{step}', [StepController::class, 'show'])->name('showSteps');
-            Route::get('/add-expert/{step}', [StepController::class, 'addToStep'])->name('AddToStepA');
-            Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpertA');
-            Route::get('/step/{id}/{action}', [StepController::class, 'approveStep'])->name('approveStep');
+            Route::get('/antrian', [AdminController::class, 'indexAntrian'])->name('indexAntrian');
         });
         // ... tambahkan rute admin lainnya di sini
     });
     // Contoh: Rute pengguna biasa (tenaga ahli)
-    Route::middleware('role:Tenagaahli')->group(function () {
-        Route::get('/tenagaahli', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
+    Route::middleware('role:User')->group(function () {
+        Route::get('/user', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
+        Route::get('/create-surat', [TenagaahliController::class, 'createsurat'])->name('createsurat');
+
+        Route::get('/create-surat-pm', [TenagaahliController::class, 'createsuratpm'])->name('createsuratpm');
+        Route::post('/store-surat-pm', [TenagaahliController::class, 'storesuratpm'])->name('storesuratpm');
+
+        Route::get('/create-surat-pp', [TenagaahliController::class, 'createsuratpp'])->name('createsuratpp');
+        Route::post('/store-surat-pp', [TenagaahliController::class, 'storesuratpp'])->name('storesuratpp');
+
+        Route::get('/create-surat-ps', [TenagaahliController::class, 'createsuratps'])->name('createsuratps');
+        Route::post('/store-surat-ps', [TenagaahliController::class, 'storesuratps'])->name('storesuratps');
+
+        Route::get('/create-surat-pr', [TenagaahliController::class, 'createsuratpr'])->name('createsuratpr');
+        Route::post('/store-surat-pr', [TenagaahliController::class, 'storesuratpr'])->name('storesuratpr');
+
+        Route::get('/create-surat-ot', [TenagaahliController::class, 'createsuratot'])->name('createsuratot');
+        Route::post('/store-surat-ot', [TenagaahliController::class, 'storesuratot'])->name('storesuratot');
+
+        Route::get('/create-surat-ka', [TenagaahliController::class, 'createsuratka'])->name('createsuratka');
+        Route::post('/store-surat-ka', [TenagaahliController::class, 'storesuratka'])->name('storesuratka');
+
+        Route::get('/create-surat-ku', [TenagaahliController::class, 'createsuratku'])->name('createsuratku');
+        Route::post('/store-surat-ku', [TenagaahliController::class, 'storesuratku'])->name('storesuratku');
+
+        Route::get('/create-surat-pl', [TenagaahliController::class, 'createsuratpl'])->name('createsuratpl');
+        Route::post('/store-surat-pl', [TenagaahliController::class, 'storesuratpl'])->name('storesuratpl');
+
+        Route::get('/create-surat-hm', [TenagaahliController::class, 'createsurathm'])->name('createsurathm');
+        Route::post('/store-surat-hm', [TenagaahliController::class, 'storesurathm'])->name('storesurathm');
+
+        Route::get('/create-surat-kp', [TenagaahliController::class, 'createsuratkp'])->name('createsuratkp');
+        Route::post('/store-surat-kp', [TenagaahliController::class, 'storesuratkp'])->name('storesuratkp');
+        
+        Route::get('/create-surat-rt', [TenagaahliController::class, 'createsuratrt'])->name('createsuratrt');
+        Route::post('/store-surat-rt', [TenagaahliController::class, 'storesuratrt'])->name('storesuratrt');
+
         Route::get('/show/{id}/share-link', [TenagaahliController::class, 'shareLink'])->name('shareLink');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');

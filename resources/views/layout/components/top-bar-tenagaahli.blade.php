@@ -2,11 +2,11 @@
 <div class="top-bar -mx-4 px-4 md:mx-0 md:px-0">
     <!-- BEGIN: Breadcrumb -->
     <nav aria-label="" class="-intro-x mr-auto hidden sm:flex">
-      <a href="/tenagaahli" class="intro-x flex items-center pl-5 pt-4 mb-4">
-          <img alt="Tinker Tailwind HTML Admin Template" class="h-12"  src="{{ asset('dist/images/inkindo-rv.png') }}">
+      <a href="/user" class="intro-x flex items-center pl-5 pt-4 mb-4">
+         <img alt="Tinker Tailwind HTML Admin Template" class="h-12"  src="{{ asset('dist/images/inkindo-rv.png') }}">
           <span class="hidden xl:block text-lg ml-3">
               <!-- INKINDO -->
-          </span>
+          </span> 
       </a>
     </nav>
     <!-- END: Breadcrumb -->

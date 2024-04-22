@@ -105,7 +105,7 @@
                         <div class="font-medium"><span>Halo, {{ auth()->user()->name }}</span></div>
                         <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
                             @if(auth()->user()->role === 'Admin')
-                                Team leader
+                               Admin
                             @else
                                 {{ auth()->user()->role }}
                             @endif

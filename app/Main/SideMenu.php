@@ -25,57 +25,12 @@ class SideMenu
             'Jurnal' => [
                         'icon' => 'box',
                         'title' => 'Project',
-                                'route_name' => 'indexjurnal',
+                                'route_name' => 'indexAntrian',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
-                                'title' => 'Jurnal'
+                                'title' => 'Antrian Surat'
                             ],
-            'Jurnal umum' => [
-                'icon' => 'box',
-                'title' => 'Project',
-                        'route_name' => 'index',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Jurnal umum'
-                    ],
-            'Buku Besar' => [
-                        'icon' => 'book',
-                        'title' => 'Buku besar',
-                                'route_name' => 'indexBukuBesar',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Buku Besar'
-                    ],
-            // 'Neraca' => [
-            //     'icon' => 'box',
-            //     'title' => 'Project',
-            //             'route_name' => 'index',
-            //             'params' => [
-            //                 'layout' => 'side-menu'
-            //             ],
-            //             'title' => 'Neraca'
-            // ],
-            'Neraca Lajur' => [
-                'icon' => 'box',
-                'title' => 'Project',
-                        'route_name' => 'indexNeracaLajur',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Neraca Lajur'
-            ],
-            // 'Laba Rugi' => [
-            //     'icon' => 'box',
-            //     'title' => 'Project',
-            //             'route_name' => 'index',
-            //             'params' => [
-            //                 'layout' => 'side-menu'
-            //             ],
-            //             'title' => 'Laba Rugi'
-            // ],
         ];
     }
 }

@@ -11,9 +11,9 @@ class JurnalController extends Controller
 {
     public function indexjurnal()
     {
-        $jurnal = Jurnal::all();
+        
        
-        return view('pages.perusahaan.jurnal.list-project', compact('jurnal'));
+        return view('pages.perusahaan.jurnal.list-project');
     }
 
     public function createjurnal()

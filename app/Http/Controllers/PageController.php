@@ -11,7 +11,7 @@ class PageController extends Controller
         switch(Auth::user()->role) {
             case "Admin":
                 return redirect()->route('adminDashboard');
-            case 'Tenagaahli':
+            case 'User':
                 return redirect()->route('tenagaahliDashboard');
         }
     }

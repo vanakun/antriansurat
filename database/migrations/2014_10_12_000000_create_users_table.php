@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
-            $table->enum('role', ['Admin', 'Tenagaahli'])->default('Tenagaahli');
+            $table->enum('role', ['Admin', 'User'])->default('User');
             $table->integer('active')->default(1);
             $table->softDeletes();
             $table->rememberToken();
