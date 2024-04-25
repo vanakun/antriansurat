@@ -25,6 +25,8 @@ class CreateSuratKepegawaiansTable extends Migration
             $table->string('kota');
             $table->string('fasilitatif')->nullable();
             $table->string('no_surat');
+            $table->enum('status', ['waiting', 'done'])->default('waiting');
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

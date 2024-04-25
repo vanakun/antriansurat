@@ -135,23 +135,3 @@
     </div>
 @endsection
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const select = document.getElementById('fasilitatif');
-
-        select.addEventListener('input', function(event) {
-            const searchText = event.target.value.toLowerCase();
-            const options = select.getElementsByTagName('option');
-
-            for (let option of options) {
-                const optionText = option.textContent.toLowerCase();
-                const optionValue = option.value.toLowerCase();
-                if (optionText.includes(searchText) || optionValue.includes(searchText)) {
-                    option.style.display = 'block';
-                } else {
-                    option.style.display = 'none';
-                }
-            }
-        });
-    });
-</script>

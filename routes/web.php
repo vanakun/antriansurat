@@ -14,7 +14,7 @@ use App\Http\Controllers\ColorSchemeController;
 
 use App\Http\Controllers\Perusahaan\JurnalController;
 use App\Http\Controllers\Perusahaan\JurnalUmumController;
-use App\Http\Controllers\Perusahaan\NeracalajurController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,10 +43,25 @@ Route::middleware('auth')->group(function() {
     Route::middleware('role:Admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('adminDashboard');
 
-        Route::prefix('project')->group(function () {
+        Route::prefix('antrian')->group(function () {
             Route::get('/', [JurnalUmumController::class, 'index'])->name('index');
             Route::get('/jurnal', [JurnalController::class, 'indexjurnal'])->name('indexjurnal');
-            Route::get('/antrian', [AdminController::class, 'indexAntrian'])->name('indexAntrian');
+
+            Route::get('/surat', [AdminController::class, 'indexAntrian'])->name('indexAntrian');
+            Route::get('/suratpm', [AdminController::class, 'indexAntrianpm'])->name('indexAntrianpm');
+            Route::get('/suratpp', [AdminController::class, 'indexAntrianpp'])->name('indexAntrianpp');
+            Route::get('/suratps', [AdminController::class, 'indexAntrianps'])->name('indexAntrianps');
+            Route::get('/suratpr', [AdminController::class, 'indexAntrianpr'])->name('indexAntrianpr');
+            Route::get('/suratot', [AdminController::class, 'indexAntrianot'])->name('indexAntrianot');
+            Route::get('/suratka', [AdminController::class, 'indexAntrianka'])->name('indexAntrianka');
+            Route::get('/suratku', [AdminController::class, 'indexAntrianku'])->name('indexAntrianku');
+            Route::get('/suratpl', [AdminController::class, 'indexAntrianpl'])->name('indexAntrianpl');
+            Route::get('/surathk', [AdminController::class, 'indexAntrianhk'])->name('indexAntrianhk');
+            Route::get('/surathm', [AdminController::class, 'indexAntrianhm'])->name('indexAntrianhm');
+            Route::get('/suratkp', [AdminController::class, 'indexAntriankp'])->name('indexAntriankp');
+            Route::get('/suratrt', [AdminController::class, 'indexAntrianrt'])->name('indexAntrianrt');
+            Route::get('/suratpw', [AdminController::class, 'indexAntrianpw'])->name('indexAntrianpw');
+            Route::get('/suratti', [AdminController::class, 'indexAntrianti'])->name('indexAntrianti');
         });
         // ... tambahkan rute admin lainnya di sini
     });

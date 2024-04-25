@@ -26,6 +26,8 @@ class CreateSuratPenyelesaianSengketaTable extends Migration
             $table->string('substantif');
             $table->string('no_surat');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->enum('status', ['waiting', 'done'])->default('waiting');
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });

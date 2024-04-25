@@ -26,6 +26,7 @@ class CreateSuratPengawasanPemilusTable extends Migration
             $table->string('substantif');
             $table->string('no_surat');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->enum('status', ['waiting', 'done'])->default('waiting');
 
             // Foreign key constraint to connect user_id to the users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

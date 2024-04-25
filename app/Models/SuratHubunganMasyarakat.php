@@ -17,7 +17,7 @@ class SuratHubunganMasyarakat extends Model
         'jenis_surat',
         'keterangan',
         'kota',
-        'substantif',
+        'fasilitatif',
         'no_surat', 
         'user_id',
         'j_surat',

@@ -425,6 +425,7 @@ return redirect()->route('tenagaahliDashboard');
     $validatedData['user_id'] = $userId;
 
     // Create the record
+    
     SuratKeuangan::create($validatedData);
 
     // Redirect to success page or do any other operation upon successful submission
@@ -471,6 +472,7 @@ return redirect()->route('tenagaahliDashboard');
     $validatedData['user_id'] = $userId;
 
     // Create the record
+    
     SuratPerlengkapan::create($validatedData);
 
     // Redirect to success page or do any other operation upon successful submission

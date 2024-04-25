@@ -28,5 +28,24 @@ class AdminController extends Controller
         return view('pages/admin/index', compact('suratPengawasanPemilus'));
     }
 
+    public function indexAntrianpm()
+    {
+    $suratPengawasanPemilus = SuratPengawasanPemilu::where('status', 'waiting')
+                                                    ->paginate(5);
+    $suratPengawasanPemilusdone = SuratPengawasanPemilu::where('status', 'done')
+                                                    ->paginate(5);
+    return view('pages/admin/showpm', compact('suratPengawasanPemilus','suratPengawasanPemilusdone'));
+    }
+    
+    public function indexAntrianpp()
+    {
+    $suratpp = SuratPengawasanPemilu::where('status', 'waiting')
+                                                    ->paginate(5);
+    $suratppdone = SuratPengawasanPemilu::where('status', 'done')
+                                                    ->paginate(5);
+    return view('pages/admin/showpp', compact('suratpp','suratppdone'));
+    }
+
+
     
 }
