@@ -24,15 +24,17 @@ class CreateSuratPengawasanPemilusTable extends Migration
             $table->text('keterangan');
             $table->string('kota');
             $table->string('substantif');
-            $table->string('no_surat');
+            $table->string('no_surat')->nullable();
+            $table->string('file_surat')->nullable(); // Kolom untuk menyimpan nama file surat, dapat bernilai null
             $table->unsignedBigInteger('user_id')->nullable();
             $table->enum('status', ['waiting', 'done'])->default('waiting');
-
+    
             // Foreign key constraint to connect user_id to the users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

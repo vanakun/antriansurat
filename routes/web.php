@@ -48,7 +48,13 @@ Route::middleware('auth')->group(function() {
             Route::get('/jurnal', [JurnalController::class, 'indexjurnal'])->name('indexjurnal');
 
             Route::get('/surat', [AdminController::class, 'indexAntrian'])->name('indexAntrian');
+
             Route::get('/suratpm', [AdminController::class, 'indexAntrianpm'])->name('indexAntrianpm');
+            Route::get('/edit-suratpm/{id}', [AdminController::class, 'editsuratpm'])->name('editsuratpm');
+            Route::post('/updatesuratpm/{id}', [AdminController::class, 'updatepm'])->name('updatesuratpm');
+
+
+
             Route::get('/suratpp', [AdminController::class, 'indexAntrianpp'])->name('indexAntrianpp');
             Route::get('/suratps', [AdminController::class, 'indexAntrianps'])->name('indexAntrianps');
             Route::get('/suratpr', [AdminController::class, 'indexAntrianpr'])->name('indexAntrianpr');
