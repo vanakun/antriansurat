@@ -45,6 +45,7 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">#</th>
+                    <th class="whitespace-nowrap">Status</th>
                     <th class="whitespace-nowrap">Surat</th>
                     <th class="whitespace-nowrap">Tanggal</th>
                     <th class="whitespace-nowrap">Nama</th>
@@ -62,6 +63,11 @@
                 <td>
                         <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->id }}</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                            <div class="font-medium whitespace-nowrap">{{ $surat->status }}</div>
                         </a>
                     </td>
                     <td>

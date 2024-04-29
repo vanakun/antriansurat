@@ -188,11 +188,11 @@ public function index()
 }
 
 public function editsuratpm($id)
-    {
+{
     $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
     // Tampilkan halaman edit surat
     return view('pages/user/surat/show-surat/showpm', compact('suratPengawasanPemilus'));
-    }
+}
 
 public function storesuratps(Request $request)
 {
