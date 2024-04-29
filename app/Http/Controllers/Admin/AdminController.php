@@ -44,7 +44,7 @@ class AdminController extends Controller
     return view('pages/admin/pm/editpm', compact('suratPengawasanPemilus'));
     }
     public function updatepm(Request $request, $id)
-{
+    {
     // Validasi data yang diterima dari formulir
     $validatedData = $request->validate([
         'status' => 'required',
@@ -110,10 +110,64 @@ class AdminController extends Controller
     //dd($no_surat);
     // Redirect ke halaman yang sesuai setelah pembaruan
     return redirect()->route('adminDashboard')->with('success', 'Surat berhasil diperbarui.');
-}
+    }
+    public function editsuratpmdone($id)
+    {
+    $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
+    // Tampilkan halaman edit surat
+    return view('pages/admin/pm/editpmdone', compact('suratPengawasanPemilus'));
+    }
+    public function updatepmdone(Request $request, $id)
+    {
+    // Validasi data yang diterima dari formulir
+    $validatedData = $request->validate([
+        'status' => 'required',
+        'surat' => 'required',
+        'tanggal' => 'required|date',
+        'nama' => 'required',
+        'perihal' => 'required',
+        'tujuan' => 'required',
+        'jenis_surat' => 'required',
+        'keterangan' => 'required',
+        'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+        'substantif' => 'required', // Validasi untuk substantif
+        'kota' => 'required', // Validasi untuk kota
+        'nomor_surat' => 'required',
+    ]);
 
 
+    // Cari surat pengawasan pemilu berdasarkan ID
+    $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
 
+    // Perbarui data surat dengan data yang diterima dari formulir
+    $suratPengawasanPemilus->update([
+        'status' => $request->status,
+        'surat' => $request->surat,
+        'tanggal' => $request->tanggal,
+        'nama' => $request->nama,
+        'perihal' => $request->perihal,
+        'tujuan' => $request->tujuan,
+        'jenis_surat' => $request->jenis_surat,
+        'keterangan' => $request->keterangan,
+        'nomor_surat' => $request->no_surat, // Gunakan nomor surat baru
+    ]);
+
+    // Jika ada file surat yang diunggah, simpan file tersebut
+    if ($request->hasFile('file_surat')) {
+        $file = $request->file('file_surat');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+
+        // Simpan nama file surat dalam database
+        $suratPengawasanPemilus->file_surat = $fileName;
+        $suratPengawasanPemilus->status = 'done'; // Ubah status menjadi 'done'
+        $suratPengawasanPemilus->save();
+    }
+    $suratPengawasanPemilus->save();
+    //dd($no_surat);
+    // Redirect ke halaman yang sesuai setelah pembaruan
+    return redirect()->route('adminDashboard')->with('success', 'Surat berhasil diperbarui.');
+    }
 
     public function indexAntrianpp()
     {

@@ -49,7 +49,7 @@ public function index()
     $suratkp = SuratKepegawaian::where('user_id', $userId)->paginate(5);
     
     $suratrt = SuratKetatausahaanDanKerumahtangaan::where('user_id', $userId)->paginate(5);
-    
+    //dd($suratPengawasanPemilus);
     return view('pages.user.index', compact('suratPengawasanPemilus','suratpp','suratps','suratpr','suratot','suratka','suratku','suratpl',"surathm",'suratkp','suratrt'));
 }
 
@@ -186,6 +186,14 @@ public function index()
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
 }
+
+public function editsuratpm($id)
+    {
+    $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
+    // Tampilkan halaman edit surat
+    return view('pages/user/surat/show-surat/showpm', compact('suratPengawasanPemilus'));
+    }
+
 public function storesuratps(Request $request)
 {
 // Validasi data input

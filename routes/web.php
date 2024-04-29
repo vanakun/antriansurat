@@ -52,7 +52,8 @@ Route::middleware('auth')->group(function() {
             Route::get('/suratpm', [AdminController::class, 'indexAntrianpm'])->name('indexAntrianpm');
             Route::get('/edit-suratpm/{id}', [AdminController::class, 'editsuratpm'])->name('editsuratpm');
             Route::post('/updatesuratpm/{id}', [AdminController::class, 'updatepm'])->name('updatesuratpm');
-
+            Route::get('/edit-suratpmdone/{id}', [AdminController::class, 'editsuratpmdone'])->name('editsuratpmdone');
+            Route::post('/updatesuratpmdone/{id}', [AdminController::class, 'updatepmdone'])->name('updatepmdone');
 
 
             Route::get('/suratpp', [AdminController::class, 'indexAntrianpp'])->name('indexAntrianpp');
@@ -73,8 +74,10 @@ Route::middleware('auth')->group(function() {
     });
     // Contoh: Rute pengguna biasa (tenaga ahli)
     Route::middleware('role:User')->group(function () {
+       
         Route::get('/user', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         Route::get('/create-surat', [TenagaahliController::class, 'createsurat'])->name('createsurat');
+        Route::get('/show-suratpm/{id}', [TenagaahliController::class, 'editsuratpm'])->name('editsuratpm');
 
         Route::get('/create-surat-pm', [TenagaahliController::class, 'createsuratpm'])->name('createsuratpm');
         Route::post('/store-surat-pm', [TenagaahliController::class, 'storesuratpm'])->name('storesuratpm');

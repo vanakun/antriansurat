@@ -5,7 +5,6 @@
 @endsection
 
 @section('subcontent')
-    @include('../layout/components/mobile-menu')
     <div class="flex overflow-hidden">
         <!-- BEGIN: Content -->
         <div class="content">
@@ -124,60 +123,60 @@
                             @foreach($suratPengawasanPemilusdone as $surat)
                             <tr class="intro-x image-fit zoom-in">
                                 <td>
-                                    <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                                    <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->id }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                                    <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                                    <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->status }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->j_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tanggal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->nama }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->perihal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tujuan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->jenis_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->keterangan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->no_surat }}</div>
                         </a>
                     </td>
                    
                     <td>
-                        <a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsuratpmdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->user->name }}</div>
                         </a>
                     </td>

@@ -9,10 +9,10 @@
 
     <!-- Content -->
     <div class="content">
-        <h2 class="intro-y text-lg font-medium mt-10">Upload Surat Pengawasan Pemilu</h2>
+        <h2 class="intro-y text-lg font-medium mt-10">Edit Surat Pengawasan Pemilu</h2>
         
         <!-- Form untuk mengunggah surat -->
-        <form action="{{ route('updatesuratpm', ['id' => $suratPengawasanPemilus->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updatepmdone', ['id' => $suratPengawasanPemilus->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- Kolom input dan tombol submit -->
 

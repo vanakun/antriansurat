@@ -9,10 +9,10 @@
 
     <!-- Content -->
     <div class="content">
-        <h2 class="intro-y text-lg font-medium mt-10">Upload Surat Pengawasan Pemilu</h2>
+        <h2 class="intro-y text-lg font-medium mt-10">Surat Pengawasan Pemilu</h2>
         
         <!-- Form untuk mengunggah surat -->
-        <form action="{{ route('updatesuratpm', ['id' => $suratPengawasanPemilus->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updatepmdone', ['id' => $suratPengawasanPemilus->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- Kolom input dan tombol submit -->
 
@@ -120,27 +120,9 @@
                     @endif
                 </div>
                 
-                <div class="col-span-12 sm:col-span-6">
-                    <label for="file_surat" class="form-label">File Surat (PDF)</label>
-                    <input id="file_surat" type="file" name="file_surat" class="form-control">
-                </div>
             </div>
            
-            <!-- Tombol untuk mengunggah surat -->
-            <div class="grid grid-cols-12 gap-6 mt-5">
-                <!-- Input tersembunyi untuk status -->
-                <input type="hidden" name="status" value="{{ $suratPengawasanPemilus->status }}">
-                
-                <!-- Tambahkan kondisi untuk mengubah nama tombol -->
-                @php
-                    $buttonText = ($suratPengawasanPemilus->status == 'done') ? 'Update Surat' : 'Unggah Surat';
-                @endphp
-    
-                <!-- Tombol untuk mengunggah surat -->
-                <div class="text-right mt-5 col-span-12">
-                    <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
-                </div>
-            </div>
+           
         </form>
     </div>
 @endsection
