@@ -27,7 +27,7 @@ class CreateSuratPengawasanPemilusTable extends Migration
             $table->string('no_surat')->nullable();
             $table->string('file_surat')->nullable(); // Kolom untuk menyimpan nama file surat, dapat bernilai null
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->enum('status', ['waiting', 'done'])->default('waiting');
+            $table->enum('status', ['queue','waiting', 'done'])->default('queue');
     
             // Foreign key constraint to connect user_id to the users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

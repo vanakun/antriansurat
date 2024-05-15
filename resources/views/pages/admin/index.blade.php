@@ -95,7 +95,7 @@
                         </div>
                         <div class="p-5 text-slate-600 dark:text-slate-500"></div>
                         <div class="flex items-center px-5 py-3 border-t border-slate-200/60 dark:border-darkmode-400">
-                            <a class="mr-auto flex items-center text-primary" href="">
+                            <a class="mr-auto flex items-center text-primary" href="{{ route('indexAntrianpp') }}">
                                 <div><i data-feather="eye" class="w-4 h-4"></i></div>
                                 <div class="ml-1">View Details</div>
                             </a>
@@ -139,7 +139,7 @@
                         </div>
                         <div class="p-5 text-slate-600 dark:text-slate-500"></div>
                         <div class="flex items-center px-5 py-3 border-t border-slate-200/60 dark:border-darkmode-400">
-                            <a class="mr-auto flex items-center text-primary" href="">
+                            <a class="mr-auto flex items-center text-primary" href="{{ route('indexAntrianps') }}">
                                 <div><i data-feather="eye" class="w-4 h-4"></i></div>
                                 <div class="ml-1">View Details</div>
                             </a>

@@ -55,9 +55,19 @@ Route::middleware('auth')->group(function() {
             Route::get('/edit-suratpmdone/{id}', [AdminController::class, 'editsuratpmdone'])->name('editsuratpmdone');
             Route::post('/updatesuratpmdone/{id}', [AdminController::class, 'updatepmdone'])->name('updatepmdone');
 
-
             Route::get('/suratpp', [AdminController::class, 'indexAntrianpp'])->name('indexAntrianpp');
+            Route::get('/edit-suratpp/{id}', [AdminController::class, 'editsuratpp'])->name('editsuratpp');
+            Route::post('/updatesuratpp/{id}', [AdminController::class, 'updatepp'])->name('updatesuratpp');
+            Route::get('/edit-suratppdone/{id}', [AdminController::class, 'editsuratppdone'])->name('editsuratppdone');
+            Route::post('/updatesuratppdone/{id}', [AdminController::class, 'updateppdone'])->name('updateppdone');
+
             Route::get('/suratps', [AdminController::class, 'indexAntrianps'])->name('indexAntrianps');
+            Route::get('/edit-suratps/{id}', [AdminController::class, 'editsuratps'])->name('editsuratps');
+            Route::post('/updatesuratps/{id}', [AdminController::class, 'updatesuratps'])->name('updatesuratps');
+            Route::get('/edit-suratpsdone/{id}', [AdminController::class, 'editsuratpsdone'])->name('editsuratpsdone');
+            Route::post('/updatesuratpsdone/{id}', [AdminController::class, 'updatepsdone'])->name('updatepsdone');
+
+
             Route::get('/suratpr', [AdminController::class, 'indexAntrianpr'])->name('indexAntrianpr');
             Route::get('/suratot', [AdminController::class, 'indexAntrianot'])->name('indexAntrianot');
             Route::get('/suratka', [AdminController::class, 'indexAntrianka'])->name('indexAntrianka');
@@ -77,10 +87,11 @@ Route::middleware('auth')->group(function() {
        
         Route::get('/user', [TenagaahliController::class, 'index'])->name('tenagaahliDashboard');
         Route::get('/create-surat', [TenagaahliController::class, 'createsurat'])->name('createsurat');
-        Route::get('/show-suratpm/{id}', [TenagaahliController::class, 'editsuratpm'])->name('editsuratpm');
 
+        Route::get('/show-suratpm/{id}', [TenagaahliController::class, 'showsuratpmuser'])->name('showsuratpmuser');
         Route::get('/create-surat-pm', [TenagaahliController::class, 'createsuratpm'])->name('createsuratpm');
         Route::post('/store-surat-pm', [TenagaahliController::class, 'storesuratpm'])->name('storesuratpm');
+        Route::post('/tolak-surat/{id}', [TenagaahliController::class, 'tolakSurat'])->name('tolakSurat');
 
         Route::get('/create-surat-pp', [TenagaahliController::class, 'createsuratpp'])->name('createsuratpp');
         Route::post('/store-surat-pp', [TenagaahliController::class, 'storesuratpp'])->name('storesuratpp');

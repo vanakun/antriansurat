@@ -9,7 +9,7 @@
 
     <!-- Content -->
     <div class="content">
-        <h2 class="intro-y text-lg font-medium mt-10">Upload Surat Pengawasan Pemilu</h2>
+        <h2 class="intro-y text-lg font-medium mt-10">Approve Surat Pengawasan Pemilu</h2>
         
         <!-- Form untuk mengunggah surat -->
         <form action="{{ route('updatesuratpm', ['id' => $suratPengawasanPemilus->id]) }}" method="POST" enctype="multipart/form-data">
@@ -133,14 +133,66 @@
                 
                 <!-- Tambahkan kondisi untuk mengubah nama tombol -->
                 @php
-                    $buttonText = ($suratPengawasanPemilus->status == 'done') ? 'Update Surat' : 'Unggah Surat';
+                    $buttonText = ($suratPengawasanPemilus->status == 'done') ? 'Update Surat' : 'Approve Pengajuan Surat';
                 @endphp
     
                 <!-- Tombol untuk mengunggah surat -->
                 <div class="text-right mt-5 col-span-12">
                     <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
+                    <button id="tolakSuratButton" type="button" class="btn btn-danger">Tolak Surat</button>
+
                 </div>
             </div>
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                <!-- Input tersembunyi untuk status -->
+                <input type="hidden" name="status" value="{{ $suratPengawasanPemilus->status }}">
+                
+                <!-- Tambahkan kondisi untuk mengubah nama tombol -->
+                @php
+                    $buttonText = ($suratPengawasanPemilus->status == 'queue') ? 'Update Surat' : 'Approve Pengajuan Surat';
+                @endphp
+    
+                <!-- Tombol untuk mengunggah surat -->
+                
+                
+            </div>
+            
         </form>
+       
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tolakSuratButton = document.querySelector('#tolakSuratButton');
+
+        tolakSuratButton.addEventListener('click', function (event) {
+            // Kirim permintaan HTTP menggunakan fetch API
+            fetch('{{ route("tolakSurat", ["id" => $suratPengawasanPemilus->id]) }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    status: 'reject'
+                })
+            })
+            .then(response => {
+                // Handle respon dari backend
+                if (response.ok) {
+                    // Jika berhasil, refresh halaman atau lakukan tindakan lain
+                    location.reload();
+                } else {
+                    // Jika gagal, tampilkan pesan error
+                    alert('Gagal menolak surat. Mohon coba lagi.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan. Mohon coba lagi.');
+            });
+        });
+    });
+</script>
+
 @endsection

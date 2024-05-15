@@ -24,9 +24,10 @@ class CreateSuratPenyelesaianSengketaTable extends Migration
             $table->text('keterangan');
             $table->string('kota');
             $table->string('substantif');
-            $table->string('no_surat');
+            $table->string('no_surat')->nullable();
+            $table->string('file_surat')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->enum('status', ['waiting', 'done'])->default('waiting');
+            $table->enum('status', ['queue','waiting', 'done'])->default('queue');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();

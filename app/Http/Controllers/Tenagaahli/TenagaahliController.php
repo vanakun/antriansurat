@@ -111,7 +111,19 @@ public function index()
     {
         return view ('pages/user/surat/creatert');
     }
-
+    public function tolakSurat(Request $request, $id)
+    {
+        // Ambil data surat berdasarkan ID
+        $surat = Surat::findOrFail($id);
+    
+        // Ubah status surat menjadi "reject"
+        $surat->status = 'reject';
+        $surat->save();
+    
+        // Redirect atau berikan respon yang sesuai
+        return response()->json(['message' => 'Status surat berhasil diubah menjadi reject']);
+    }
+    
     public function storesuratpm(Request $request)
     {
     // Validasi data input
@@ -154,31 +166,13 @@ public function index()
         'kota' => 'required|string',
         'substantif' => 'required|string',
     ]);
-
-    $validatedData['j_surat'] = 'Penanganan Pelangaran dan Sengketa Pemilu (PP)';
-
-    // Ambil ID pengguna yang sedang masuk
+    
     $userId = auth()->id();
 
-    // Ambil nomor surat terakhir dari database
-    $lastSuratNumber = SuratPenangananPelanggaranSengketaPemilu::max('no_surat');
-
-    // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
-    if (!$lastSuratNumber) {
-        $lastSuratNumber = '001';
-    } else {
-        // Ambil angka dari nomor surat terakhir dan tambahkan 1
-        $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
-        // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
-        $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
-    }
-
-    // Generate nomor surat baru
-    $no_surat = $lastSuratNumber . '/' . $validatedData['substantif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
-
-    // Assign nomor surat dan ID pengguna to validated data
-    $validatedData['no_surat'] = $no_surat;
+   
     $validatedData['user_id'] = $userId;
+
+    $validatedData['j_surat'] = 'Penanganan Pelangaran dan Sengketa Pemilu (PP)';
 
     // Create the record
     SuratPenangananPelanggaranSengketaPemilu::create($validatedData);
@@ -187,7 +181,7 @@ public function index()
     return redirect()->route('tenagaahliDashboard');
 }
 
-public function editsuratpm($id)
+public function showsuratpmuser($id)
 {
     $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
     // Tampilkan halaman edit surat
@@ -213,24 +207,6 @@ $validatedData['j_surat'] = 'PENYELESAIAN SENGKETA (PS)';
 // Ambil ID pengguna yang sedang masuk
 $userId = auth()->id();
 
-// Ambil nomor surat terakhir dari database
-$lastSuratNumber = SuratPenyelesaianSengketa::max('no_surat');
-
-// Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
-if (!$lastSuratNumber) {
-    $lastSuratNumber = '001';
-} else {
-    // Ambil angka dari nomor surat terakhir dan tambahkan 1
-    $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
-    // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
-    $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
-}
-
-// Generate nomor surat baru
-$no_surat = $lastSuratNumber . '/' . $validatedData['substantif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
-
-// Assign nomor surat dan ID pengguna to validated data
-$validatedData['no_surat'] = $no_surat;
 $validatedData['user_id'] = $userId;
 
 // Create the record

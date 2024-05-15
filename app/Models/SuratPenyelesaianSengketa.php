@@ -10,6 +10,7 @@ class SuratPenyelesaianSengketa extends Model
     use HasFactory;
 
     protected $fillable = [
+        'status',
         'tanggal',
         'nama',
         'perihal',

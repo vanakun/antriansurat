@@ -1,14 +1,15 @@
-@extends('../layout/' . $layout)
+@extends('../layout/main')
 
-@section('subhead')
-    <title>Upload Surat - Tinker - Tailwind HTML Admin Template</title>
+@section('head')
+    @yield('subhead')
 @endsection
 
-@section('subcontent')
-    
-
-    <!-- Content -->
-    <div class="content">
+@section('content')
+    @include('../layout/components/mobile-menu')
+    <div class="flex overflow-hidden">
+        <!-- BEGIN: Content -->
+        <div class="content">
+        @include('../layout/components/top-bar-tenagaahli')
         <h2 class="intro-y text-lg font-medium mt-10">Surat Pengawasan Pemilu</h2>
         
         <!-- Form untuk mengunggah surat -->
