@@ -67,11 +67,11 @@
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
             <div class="flex items-center">
                 <div class="container">
-                    <canvas id="suratChart4"></canvas>
+                    <canvas id="suratChartpr"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PM Terakhir = <br> {{ $noSuratTerakhirPM }}</div>
+            <div class="text-slate-500">No Surat PR Terakhir = <br> {{ $noSuratTerakhirPr }}</div>
         </div>
     </div>
 
@@ -79,11 +79,11 @@
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
             <div class="flex items-center">
                 <div class="container">
-                    <canvas id="suratChart5"></canvas>
+                    <canvas id="suratChartot"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PP Terakhir = <br> {{ $noSuratTerakhirPP }}</div>
+            <div class="text-slate-500">No Surat PP Terakhir = <br> {{ $noSuratTerakhirOt }}</div>
         </div>
     </div>
 
@@ -245,14 +245,17 @@
                                         <div class="text-slate-500">No Surat PM Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirPM }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pm yang selesai  {{ $totalSuratPM }}">
+                                           <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
                                         <div class="text-slate-500">No Surat PP Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirPP }}</div>
-                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="0.1% Lower than last month">
-                                                49% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pp yang selesai {{ $totalSuratPP }}">
+                                            <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -260,15 +263,27 @@
                                         <div class="text-slate-500">No Surat PS Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirPs }}</div>
-                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="49% Higher than last month">
-                                                36% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat PS yang selesai {{ $totalSuratPS }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
-                                        <div class="text-slate-500">Success Payment</div>
+                                        <div class="text-slate-500">No Surat PR Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
-                                            <div class="text-lg">100%</div>
+                                            <div class="text-lg">{{ $noSuratTerakhirPr }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pr yang selesai {{ $totalSuratPR }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
+                                        <div class="text-slate-500">No Surat OT Terakhir</div>
+                                        <div class="mt-1.5 flex items-center">
+                                            <div class="text-lg">{{ $noSuratTerakhirOt }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pr yang selesai {{ $totalSuratOT }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
@@ -578,8 +593,8 @@
                 datasets: [{
                     label: 'Total Surat (PM)',
                     data: @json($totalspm),
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(75, 192, 192, 1)', 
                     borderWidth: 1
                 }]
             },
@@ -593,16 +608,40 @@
         });
     </script>
     <script>
-        var ctx = document.getElementById('suratChartpp').getContext('2d');
+    var ctx = document.getElementById('suratChartpp').getContext('2d');
+    var suratChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @json($statusespp),
+            datasets: [{
+                label: 'Total Surat (PP)',
+                data: @json($totalspp),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                borderColor: 'rgba(75, 192, 192, 1)',        // Green border
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+     <script>
+        var ctx = document.getElementById('suratChartps').getContext('2d');
         var suratChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: @json($statusespp),
+                labels: @json($statusesps),
                 datasets: [{
-                    label: 'Total Surat (PP)',
-                    data: @json($totalspp),
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    label: 'Total Surat (PS)',
+                    data: @json($totalsps),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(75, 192, 192, 1)', 
                     borderWidth: 1
                 }]
             },
@@ -615,17 +654,40 @@
             }
         });
     </script>
-     <script>
-        var ctx = document.getElementById('suratChartps').getContext('2d');
+    <script>
+        var ctx = document.getElementById('suratChartpr').getContext('2d');
         var suratChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: @json($statusesps),
+                labels: @json($statusespr),
                 datasets: [{
-                    label: 'Total Surat (PS)',
-                    data: @json($totalsps),
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    label: 'Total Surat (PR)',
+                    data: @json($totalspr),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('suratChartot').getContext('2d');
+        var suratChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($statusesot),
+                datasets: [{
+                    label: 'Total Surat (PR)',
+                    data: @json($totalsot),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(75, 192, 192, 1)', 
                     borderWidth: 1
                 }]
             },

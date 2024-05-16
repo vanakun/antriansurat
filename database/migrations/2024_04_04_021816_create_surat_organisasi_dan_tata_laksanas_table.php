@@ -24,10 +24,11 @@ class CreateSuratOrganisasiDanTataLaksanasTable extends Migration
             $table->text('keterangan')->nullable();
             $table->string('kota');
             $table->string('fasilitatif')->nullable();
-            $table->string('no_surat');
-            $table->enum('status', ['waiting', 'done'])->default('waiting');
-
+            $table->string('no_surat')->nullable();
+            $table->string('file_surat')->nullable(); // Kolom untuk menyimpan nama file surat, dapat bernilai null
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->enum('status', ['queue','waiting', 'done'])->default('queue');
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -67,10 +67,22 @@ Route::middleware('auth')->group(function() {
             Route::get('/edit-suratpsdone/{id}', [AdminController::class, 'editsuratpsdone'])->name('editsuratpsdone');
             Route::post('/updatesuratpsdone/{id}', [AdminController::class, 'updatepsdone'])->name('updatepsdone');
 
-
             Route::get('/suratpr', [AdminController::class, 'indexAntrianpr'])->name('indexAntrianpr');
+            Route::get('/edit-suratpr/{id}', [AdminController::class, 'editsuratpr'])->name('editsuratpr');
+            Route::post('/updatesuratpr/{id}', [AdminController::class, 'updatesuratpr'])->name('updatesuratpr');
+            Route::get('/edit-suratprdone/{id}', [AdminController::class, 'editsuratprdone'])->name('editsuratprdone');
+            Route::post('/updatesuratprdone/{id}', [AdminController::class, 'updateprdone'])->name('updateprdone');
+
             Route::get('/suratot', [AdminController::class, 'indexAntrianot'])->name('indexAntrianot');
+            Route::get('/edit-suratot/{id}', [AdminController::class, 'editsuratot'])->name('editsuratot');
+            Route::post('/updatesuratot/{id}', [AdminController::class, 'updatesuratot'])->name('updatesuratot');
+            Route::get('/edit-suratotdone/{id}', [AdminController::class, 'editsuratotdone'])->name('editsuratotdone');
+            Route::post('/updatesuratotdone/{id}', [AdminController::class, 'updateotdone'])->name('updateotdone');
+
             Route::get('/suratka', [AdminController::class, 'indexAntrianka'])->name('indexAntrianka');
+            Route::get('/edit-suratka/{id}', [AdminController::class, 'editsuratka'])->name('editsuratka');
+            Route::post('/updatesuratka/{id}', [AdminController::class, 'updatesuratka'])->name('updatesuratka');
+
             Route::get('/suratku', [AdminController::class, 'indexAntrianku'])->name('indexAntrianku');
             Route::get('/suratpl', [AdminController::class, 'indexAntrianpl'])->name('indexAntrianpl');
             Route::get('/surathk', [AdminController::class, 'indexAntrianhk'])->name('indexAntrianhk');

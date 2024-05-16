@@ -12,6 +12,7 @@ class SuratOrganisasiDanTataLaksana extends Model
 
 
     protected $fillable = [
+        'status',
         'tanggal',
         'nama',
         'perihal',

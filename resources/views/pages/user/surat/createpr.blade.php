@@ -51,39 +51,39 @@
                     </div>
 
                     <div class="mb-4">
-    <label for="kota" class="block text-sm font-medium text-gray-700">Kota:</label>
-    <select id="kota" name="kota" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-        <!-- Options for Aceh -->
-        <optgroup label="PROVINSI ACEH">
-            <option value="AC-01">Kabupaten Aceh Barat</option>
-            <option value="AC-02">Kabupaten Aceh Barat Daya</option>
-            <option value="AC-03">Kabupaten Aceh Besar</option>
-            <option value="AC-04">Kabupaten Aceh Jaya</option>
-            <option value="AC-05">Kabupaten Aceh Selatan</option>
-            <option value="AC-06">Kabupaten Aceh Singkil</option>
-            <option value="AC-07">Kabupaten Aceh Tamiang</option>
-            <option value="AC-08">Kabupaten Aceh Tengah</option>
-            <option value="AC-09">Kabupaten Aceh Tenggara</option>
-            <option value="AC-10">Kabupaten Aceh Timur</option>
-            <option value="AC-11">Kabupaten Aceh Utara</option>
-            <option value="AC-12">Kabupaten Bener Meriah</option>
-            <option value="AC-13">Kabupaten Bireun</option>
-            <option value="AC-14">Kabupaten Gayo Lues</option>
-            <option value="AC-15">Kabupaten Nagan Raya</option>
-            <option value="AC-16">Kabupaten Pidie</option>
-            <option value="AC-17">Kabupaten Pidie Jaya</option>
-            <option value="AC-18">Kabupaten Simeulue</option>
-            <option value="AC-19">Kota Banda Aceh</option>
-            <option value="AC-20">Kota Subulussalam</option>
-            <option value="AC-21">Kota Langsa</option>
-            <option value="AC-22">Kota Lhokseumawe</option>
-            <option value="AC-23">Kota Sabang</option>
-        </optgroup>
+                        <label for="kota" class="block text-sm font-medium text-gray-700">Kota:</label>
+                        <select id="kota" name="kota" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <!-- Options for Aceh -->
+                            <optgroup label="PROVINSI ACEH">
+                                <option value="AC-01">Kabupaten Aceh Barat</option>
+                                <option value="AC-02">Kabupaten Aceh Barat Daya</option>
+                                <option value="AC-03">Kabupaten Aceh Besar</option>
+                                <option value="AC-04">Kabupaten Aceh Jaya</option>
+                                <option value="AC-05">Kabupaten Aceh Selatan</option>
+                                <option value="AC-06">Kabupaten Aceh Singkil</option>
+                                <option value="AC-07">Kabupaten Aceh Tamiang</option>
+                                <option value="AC-08">Kabupaten Aceh Tengah</option>
+                                <option value="AC-09">Kabupaten Aceh Tenggara</option>
+                                <option value="AC-10">Kabupaten Aceh Timur</option>
+                                <option value="AC-11">Kabupaten Aceh Utara</option>
+                                <option value="AC-12">Kabupaten Bener Meriah</option>
+                                <option value="AC-13">Kabupaten Bireun</option>
+                                <option value="AC-14">Kabupaten Gayo Lues</option>
+                                <option value="AC-15">Kabupaten Nagan Raya</option>
+                                <option value="AC-16">Kabupaten Pidie</option>
+                                <option value="AC-17">Kabupaten Pidie Jaya</option>
+                                <option value="AC-18">Kabupaten Simeulue</option>
+                                <option value="AC-19">Kota Banda Aceh</option>
+                                <option value="AC-20">Kota Subulussalam</option>
+                                <option value="AC-21">Kota Langsa</option>
+                                <option value="AC-22">Kota Lhokseumawe</option>
+                                <option value="AC-23">Kota Sabang</option>
+                            </optgroup>
 
-        <!-- Options for AC -->
-        
-    </select>
-</div>
+                            <!-- Options for AC -->
+                            
+                        </select>
+                    </div>
 
                     <div class="mb-4">
                         <label for="fasilitatif" class="block text-sm font-medium text-gray-700">FASILITATIF:</label>
