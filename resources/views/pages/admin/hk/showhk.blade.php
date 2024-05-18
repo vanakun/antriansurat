@@ -8,7 +8,7 @@
     <div class="flex overflow-hidden">
         <!-- BEGIN: Content -->
         <div class="content">
-        <h2 class="intro-y text-lg font-medium mt-10">Antrian SURAT PERSURATAN DAN KEARSIPAN (KA)</h2>
+        <h2 class="intro-y text-lg font-medium mt-10">Antrian SURAT HUKUM (HK)</h2>
             <div class="grid grid-cols-12 gap-6 mt-5">
                 <!-- BEGIN: Data List -->
                 <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -31,63 +31,63 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($suratkaqueue as $surat)
+                            @foreach($surathkqueue as $surat)
                             <tr class="intro-x image-fit zoom-in">
                                 <td>
-                                <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                                <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->id }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                                    <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                                    <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->status }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->j_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tanggal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->nama }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->perihal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tujuan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->jenis_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->keterangan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->no_surat }}</div>
                         </a>
                     </td>
                    
                     <td>
-                        <a href="{{ route('editsuratka', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathk', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->user->name }}</div>
                         </a>
                     </td>
@@ -96,7 +96,7 @@
                         </tbody>
                     </table>
                     <div class="intro-y flex flex-col mt-4">
-                        {!! $suratkaqueue->links('pagination') !!}
+                        {!! $surathkqueue->links('pagination') !!}
                     </div>
                 </div>
                 <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -119,63 +119,63 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($suratka as $surat)
+                            @foreach($surathk as $surat)
                             <tr class="intro-x image-fit zoom-in">
                                 <td>
-                                <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                                <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->id }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                                    <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                                    <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->status }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->j_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tanggal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->nama }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->perihal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tujuan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->jenis_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->keterangan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->no_surat }}</div>
                         </a>
                     </td>
                    
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->user->name }}</div>
                         </a>
                     </td>
@@ -184,7 +184,7 @@
                         </tbody>
                     </table>
                     <div class="intro-y flex flex-col mt-4">
-                        {!! $suratka->links('pagination') !!}
+                        {!! $surathk->links('pagination') !!}
                     </div>
                 </div>
                 <!-- END: Data List -->
@@ -208,63 +208,63 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($suratkadone as $surat)
+                            @foreach($surathkdone as $surat)
                             <tr class="intro-x image-fit zoom-in">
                                 <td>
-                                    <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                                    <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->id }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                                    <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                                    <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                                         <div class="font-medium whitespace-nowrap">{{ $surat->status }}</div>
                                     </a>
                                 </td>
                                 <!-- Other columns -->
                                 <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->j_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tanggal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->nama }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->perihal }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->tujuan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->jenis_surat }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->keterangan }}</div>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->no_surat }}</div>
                         </a>
                     </td>
                    
                     <td>
-                        <a href="{{ route('editsuratkadone', ['id' => $surat->id]) }}">
+                        <a href="{{ route('editsurathkdone', ['id' => $surat->id]) }}">
                             <div class="font-medium whitespace-nowrap">{{ $surat->user->name }}</div>
                         </a>
                     </td>
@@ -273,7 +273,7 @@
                         </tbody>
                     </table>
                     <div class="intro-y flex flex-col mt-4">
-                        {!! $suratkadone->links('pagination') !!}
+                        {!! $surathkdone->links('pagination') !!}
                     </div>
                 </div>
             </div>

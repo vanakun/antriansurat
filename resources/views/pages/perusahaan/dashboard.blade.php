@@ -20,18 +20,40 @@
                     </div>
                 </div>
                 
+       
+   
                 <div class="mt-14 mb-3 grid grid-cols-12 sm:gap-10 intro-y">
     <!-- Row 1 -->
-    <div class="col-span-12 sm:col-span-6 md:col-span-4 py-6 sm:pl-5 md:pl-0 lg:pl-5 relative text-center sm:text-left">
+    
+    <div class="col-span-12 lg:col-span-8 lg:col-span-8 py-6 sm:pl-5 lg:pl-1 lg:pl-5 relative text-center sm:text-left">
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+            <div class="flex items-center">
+                <div class="container">
+                <canvas id="suratDoughnutChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+                <!-- END: Official Store -->
+    <div class="col-span-12 md:col-span-8 md:col-span-4 py-6 sm:pl-5 md:pl-1 lg:pl-5 relative text-center sm:text-left">
+        <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+        <div class="text-slate-500">No Surat PM Terakhir </div> <br>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirPM }}</div>
+            <br>
+            <br>
             <div class="flex items-center">
                 <div class="container">
                     <canvas id="suratChart"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PM Terakhir </div> <br>
-            <div class="text-slate-500">{{ $noSuratTerakhirPM }}</div>
+            <br>
+            
+            <br>
+            <br>
+           
+           
         </div>
     </div>
 
@@ -71,7 +93,9 @@
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PR Terakhir = <br> {{ $noSuratTerakhirPr }}</div>
+            <div class="text-slate-500">No Surat PR Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirPr }}</div>
         </div>
     </div>
 
@@ -83,7 +107,9 @@
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PP Terakhir = <br> {{ $noSuratTerakhirOt }}</div>
+            <div class="text-slate-500">No Surat OT Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirOt }}</div>
         </div>
     </div>
 
@@ -91,11 +117,13 @@
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
             <div class="flex items-center">
                 <div class="container">
-                    <canvas id="suratChart6"></canvas>
+                    <canvas id="suratChartka"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PP Terakhir = <br> {{ $noSuratTerakhirPP }}</div>
+            <div class="text-slate-500">No Surat KA Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirKa }}</div>
         </div>
     </div>
 
@@ -104,11 +132,13 @@
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
             <div class="flex items-center">
                 <div class="container">
-                    <canvas id="suratChart7"></canvas>
+                    <canvas id="suratChartku"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PM Terakhir = <br> {{ $noSuratTerakhirPM }}</div>
+            <div class="text-slate-500">No Surat KU Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirKu }}</div>
         </div>
     </div>
 
@@ -116,11 +146,13 @@
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
             <div class="flex items-center">
                 <div class="container">
-                    <canvas id="suratChart8"></canvas>
+                    <canvas id="suratChartpl"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PP Terakhir = <br> {{ $noSuratTerakhirPP }}</div>
+            <div class="text-slate-500">No Surat PL Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirPl }}</div>
         </div>
     </div>
 
@@ -128,57 +160,82 @@
         <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
             <div class="flex items-center">
                 <div class="container">
-                    <canvas id="suratChart9"></canvas>
+                    <canvas id="suratCharthk"></canvas>
                 </div>
             </div>
             <br>
-            <div class="text-slate-500">No Surat PP Terakhir = <br> {{ $noSuratTerakhirPP }}</div>
+            <div class="text-slate-500">No Surat HK Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirHk }}</div>
         </div>
     </div>
+    <div class="col-span-12 sm:col-span-6 md:col-span-4 py-6 sm:pl-5 md:pl-0 lg:pl-5 relative text-center sm:text-left">
+        <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+            <div class="flex items-center">
+                <div class="container">
+                    <canvas id="suratCharthk"></canvas>
+                </div>
+            </div>
+            <br>
+            <div class="text-slate-500">No Surat HK Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirHk }}</div>
+        </div>
+    </div>
+    <div class="col-span-12 sm:col-span-6 md:col-span-4 py-6 sm:pl-5 md:pl-0 lg:pl-5 relative text-center sm:text-left">
+        <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+            <div class="flex items-center">
+                <div class="container">
+                    <canvas id="suratCharthk"></canvas>
+                </div>
+            </div>
+            <br>
+            <div class="text-slate-500">No Surat HK Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirHk }}</div>
+        </div>
+    </div>
+    <div class="col-span-12 sm:col-span-6 md:col-span-4 py-6 sm:pl-5 md:pl-0 lg:pl-5 relative text-center sm:text-left">
+        <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+            <div class="flex items-center">
+                <div class="container">
+                    <canvas id="suratCharthk"></canvas>
+                </div>
+            </div>
+            <br>
+            <div class="text-slate-500">No Surat HK Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirHk }}</div>
+        </div>
+    </div>
+    <div class="col-span-12 sm:col-span-6 md:col-span-4 py-6 sm:pl-5 md:pl-0 lg:pl-5 relative text-center sm:text-left">
+        <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+            <div class="flex items-center">
+                <div class="container">
+                    <canvas id="suratCharthk"></canvas>
+                </div>
+            </div>
+            <br>
+            <div class="text-slate-500">No Surat HK Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirHk }}</div>
+        </div>
+    </div>
+    <div class="col-span-12 sm:col-span-6 md:col-span-4 py-6 sm:pl-5 md:pl-0 lg:pl-5 relative text-center sm:text-left">
+        <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
+            <div class="flex items-center">
+                <div class="container">
+                    <canvas id="suratCharthk"></canvas>
+                </div>
+            </div>
+            <br>
+            <div class="text-slate-500">No Surat HK Terakhir </div>
+            <br>
+            <div class="text-slate-500">{{ $noSuratTerakhirHk }}</div>
+        </div>
+    </div>
+    
 </div>
-
-            <div class="report-box-3 px-5 pt-8 pb-14 col-span-12 z-10">
-                <div class="grid grid-cols-12 gap-6 relative intro-y">
-                    <div class="col-span-12 sm:col-span-4 xl:col-span-3 px-0 lg:px-6 xl:px-0 2xl:px-6">
-                        <div class="flex items-center flex-wrap lg:flex-nowrap gap-3">
-                            <div class="sm:w-full lg:w-auto text-lg font-medium truncate mr-auto">Laporan</div>
-                            <div class="py-1 px-2.5 rounded-full text-xs bg-slate-300/50 dark:bg-darkmode-400 text-slate-600 dark:text-slate-300 cursor-pointer truncate">180 Campaign</div>
-                        </div>
-                        <div class="px-10 sm:px-0">
-                            <canvas class="simple-line-chart-3 mt-8" height="110"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-span-12 sm:col-span-4 xl:col-span-3 px-0 lg:px-6 xl:px-0 2xl:px-6">
-                        <div class="flex items-center flex-wrap lg:flex-nowrap gap-3">
-                            <div class="sm:w-full lg:w-auto text-lg font-medium truncate mr-auto">Social Media</div>
-                            <a href="" class="flex items-center text-primary">
-                                <div class="truncate 2xl:mr-auto">View Details</div>
-                                <i data-feather="arrow-right" class="w-4 h-4 ml-3"></i>
-                            </a>
-                        </div>
-                        <div class="flex items-center justify-center mt-10">
-                            <div class="text-right">
-                                <div class="text-3xl font-medium">149</div>
-                                <div class="truncate mt-1 text-slate-500">Active Lenders</div>
-                            </div>
-                            <div class="w-px h-16 border border-r border-dashed border-slate-300 dark:border-darkmode-400 mx-4 xl:mx-6"></div>
-                            <div>
-                                <div class="text-3xl font-medium">135</div>
-                                <div class="truncate mt-1 text-slate-500">Total Lenders</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 sm:col-span-4 xl:col-span-3 px-0 lg:px-6 xl:px-0 2xl:px-6">
-                        <div class="flex items-center flex-wrap lg:flex-nowrap gap-3">
-                            <div class="sm:w-full lg:w-auto text-lg font-medium truncate mr-auto">Posted Ads</div>
-                            <div class="py-1 px-2.5 rounded-full text-xs bg-slate-300/50 dark:bg-darkmode-400 text-slate-600 dark:text-slate-300 cursor-pointer truncate">320 Followers</div>
-                        </div>
-                        <div class="px-10 sm:px-0">
-                            <canvas class="simple-line-chart-4 mt-8" height="110"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="report-box-4 w-full h-full grid grid-cols-12 gap-6 xl:absolute -mt-8 xl:mt-0 pb-6 xl:pb-0 top-0 right-0 z-30 xl:z-auto">
             <div class="col-span-12 xl:col-span-3 xl:col-start-10 xl:pb-16 z-30">
@@ -199,15 +256,21 @@
                             </a>
                         </div>
                     </div>
+                    
                     <div class="report-box-4__content xl:min-h-0 intro-x">
                         <div class="max-h-full xl:overflow-y-auto box mt-5">
                             <div class="xl:sticky top-0 px-5 pt-5 pb-6">
                                 <div class="flex items-center">
                                     <div class="text-lg font-medium truncate mr-5">Laporan</div>
+                                   
+                                    
+                                   
                                     <a href="" class="ml-auto flex items-center text-primary">
                                         <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Refresh
                                     </a>
                                 </div>
+                              
+                               
                                 <ul
                                     class="
                                         nav
@@ -233,20 +296,36 @@
                                             aria-controls="weekly-report"
                                             aria-selected="true"
                                         >
-                                            Weekly
+                                            Details
                                         </button>
                                     </li>
 
                                 </ul>
+                                <br>
+                                <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                                    <button class="btn box flex items-center text-slate-600 dark:text-slate-300">
+                                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                                    </button>
+                                    <button class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300">
+                                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF
+                                    </button>
+                                </div>
                             </div>
+                            
                             <div class="tab-content px-5 pb-5">
+                            
                                 <div class="tab-pane active grid grid-cols-12 gap-y-6" id="weekly-report" role="tabpanel" aria-labelledby="weekly-report-tab">
+                                    
+                                <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
+                                    
+                                      
+                                    </div>
                                     <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
                                         <div class="text-slate-500">No Surat PM Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirPM }}</div>
-                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pm yang selesai  {{ $totalSuratPM }}">
-                                           <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat PM yang selesai {{ $totalSuratPP }}">
+                                            <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -254,7 +333,7 @@
                                         <div class="text-slate-500">No Surat PP Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirPP }}</div>
-                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pp yang selesai {{ $totalSuratPP }}">
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat PP yang selesai {{ $totalSuratPP }}">
                                             <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
@@ -272,7 +351,7 @@
                                         <div class="text-slate-500">No Surat PR Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirPr }}</div>
-                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pr yang selesai {{ $totalSuratPR }}">
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat PR yang selesai {{ $totalSuratPR }}">
                                                 <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
@@ -281,23 +360,44 @@
                                         <div class="text-slate-500">No Surat OT Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
                                             <div class="text-lg">{{ $noSuratTerakhirOt }}</div>
-                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat Pr yang selesai {{ $totalSuratOT }}">
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat OT yang selesai {{ $totalSuratOT }}">
                                                 <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
-                                        <div class="text-slate-500">Waiting For Disbursement</div>
+                                        <div class="text-slate-500">No Surat KA Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
-                                            <div class="text-lg">0</div>
+                                            <div class="text-lg">{{ $noSuratTerakhirKa }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat KA yang selesai {{ $totalSuratKA }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
-                                        <div class="text-slate-500">Unpaid Loan</div>
+                                        <div class="text-slate-500">No Surat KU Terakhir</div>
                                         <div class="mt-1.5 flex items-center">
-                                            <div class="text-lg">$21.430.000</div>
-                                            <div class="text-danger flex text-xs font-medium tooltip cursor-pointer ml-2" title="2% Lower than last month">
-                                                23% <i data-feather="chevron-down" class="w-4 h-4 ml-0.5"></i>
+                                            <div class="text-lg">{{ $noSuratTerakhirKu }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat KU yang selesai {{ $totalSuratKA }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
+                                        <div class="text-slate-500">No Surat PL Terakhir</div>
+                                        <div class="mt-1.5 flex items-center">
+                                            <div class="text-lg">{{ $noSuratTerakhirPl }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat PL yang selesai {{ $totalSuratPL }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-12">
+                                        <div class="text-slate-500">No Surat HK Terakhir</div>
+                                        <div class="mt-1.5 flex items-center">
+                                            <div class="text-lg">{{ $noSuratTerakhirHk }}</div>
+                                            <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="Total Surat PL yang selesai {{ $totalSuratHK }}">
+                                                <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -315,275 +415,16 @@
             </div>
         </div>
     </div>
-    <div class="report-box-3 report-box-3--content grid grid-cols-12 gap-6 xl:-mt-5 2xl:-mt-8 -mb-10 z-40 2xl:z-10">
-        <div class="col-span-12 2xl:col-span-9">
-            <div class="grid grid-cols-12 gap-6">
-                <!-- BEGIN: Official Store -->
-                <div class="col-span-12 xl:col-span-8 mt-6">
-                    <div class="intro-y block sm:flex items-center h-10">
-                        <h2 class="text-lg font-medium truncate mr-5">Official Store</h2>
-                        <div class="sm:ml-auto mt-3 sm:mt-0 relative text-slate-500">
-                            <i data-feather="map-pin" class="w-4 h-4 z-10 absolute my-auto inset-y-0 ml-3 left-0"></i>
-                            <input type="text" class="form-control sm:w-40 box pl-10" placeholder="Filter by city">
-                        </div>
-                    </div>
-                    <div class="intro-y box p-5 mt-12 sm:mt-5">
-                        <div>250 Official stores in 21 countries, click the marker to see location details.</div>
-                        <div class="report-maps mt-5 bg-slate-200 rounded-md" data-center="-6.2425342, 106.8626478" data-sources="/dist/json/location.json"></div>
-                    </div>
-                </div>
-                <!-- END: Official Store -->
-                <!-- BEGIN: Weekly Best Sellers -->
-                <div class="col-span-12 xl:col-span-4 mt-6">
-                    <div class="intro-y flex items-center h-10">
-                        <h2 class="text-lg font-medium truncate mr-5">Weekly Best Sellers</h2>
-                    </div>
-                    <div class="mt-5">
-                        @foreach (array_slice($fakers, 0, 4) as $faker)
-                            <div class="intro-y">
-                                <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
-                                    <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
-                                        <img alt="Tinker Tailwind HTML Admin Template" src="{{ asset('dist/images/' . $faker['photos'][0]) }}">
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <div class="font-medium">{{ $faker['users'][0]['name'] }}</div>
-                                        <div class="text-slate-500 text-xs mt-0.5">{{ $faker['dates'][0] }}</div>
-                                    </div>
-                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">137 Sales</div>
-                                </div>
-                            </div>
-                        @endforeach
-                        <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500">View More</a>
-                    </div>
-                </div>
-                <!-- END: Weekly Best Sellers -->
-                <!-- BEGIN: Weekly Top Products -->
-                <div class="col-span-12 mt-6">
-                    <div class="intro-y block sm:flex items-center h-10">
-                        <h2 class="text-lg font-medium truncate mr-5">Weekly Top Products</h2>
-                        <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-                            <button class="btn box flex items-center text-slate-600 dark:text-slate-300">
-                                <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
-                            </button>
-                            <button class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300">
-                                <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF
-                            </button>
-                        </div>
-                    </div>
-                    <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                        <table class="table table-report sm:mt-2">
-                            <thead>
-                                <tr>
-                                    <th class="whitespace-nowrap">IMAGES</th>
-                                    <th class="whitespace-nowrap">PRODUCT NAME</th>
-                                    <th class="text-center whitespace-nowrap">STOCK</th>
-                                    <th class="text-center whitespace-nowrap">STATUS</th>
-                                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (array_slice($fakers, 0, 4) as $faker)
-                                    <tr class="intro-x">
-                                        <td class="w-40">
-                                            <div class="flex">
-                                                <div class="w-10 h-10 image-fit zoom-in">
-                                                    <img alt="Tinker Tailwind HTML Admin Template" class="tooltip rounded-full" src="{{ asset('dist/images/' . $faker['images'][0]) }}" title="Uploaded at {{ $faker['dates'][0] }}">
-                                                </div>
-                                                <div class="w-10 h-10 image-fit zoom-in -ml-5">
-                                                    <img alt="Tinker Tailwind HTML Admin Template" class="tooltip rounded-full" src="{{ asset('dist/images/' . $faker['images'][1]) }}" title="Uploaded at {{ $faker['dates'][1] }}">
-                                                </div>
-                                                <div class="w-10 h-10 image-fit zoom-in -ml-5">
-                                                    <img alt="Tinker Tailwind HTML Admin Template" class="tooltip rounded-full" src="{{ asset('dist/images/' . $faker['images'][2]) }}" title="Uploaded at {{ $faker['dates'][2] }}">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="" class="font-medium whitespace-nowrap">{{ $faker['products'][0]['name'] }}</a>
-                                            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{ $faker['products'][0]['category'] }}</div>
-                                        </td>
-                                        <td class="text-center">{{ $faker['stocks'][0] }}</td>
-                                        <td class="w-40">
-                                            <div class="flex items-center justify-center {{ $faker['true_false'][0] ? 'text-success' : 'text-danger' }}">
-                                                <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{ $faker['true_false'][0] ? 'Active' : 'Inactive' }}
-                                            </div>
-                                        </td>
-                                        <td class="table-report__action w-56">
-                                            <div class="flex justify-center items-center">
-                                                <a class="flex items-center mr-3" href="">
-                                                    <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
-                                                </a>
-                                                <a class="flex items-center text-danger" href="">
-                                                    <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
-                        <nav class="w-full sm:w-auto sm:mr-auto">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="w-4 h-4" data-feather="chevrons-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="w-4 h-4" data-feather="chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">...</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">...</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="w-4 h-4" data-feather="chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="w-4 h-4" data-feather="chevrons-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <select class="w-20 form-select box mt-3 sm:mt-0">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>35</option>
-                            <option>50</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- END: Weekly Top Products -->
-            </div>
-        </div>
-        <div class="col-span-12 2xl:col-span-3 relative z-10">
-            <div class="2xl:border-l pb-10 intro-y">
-                <div class="2xl:pl-6 grid grid-cols-12 gap-6">
-                    <!-- BEGIN: Recent Activities -->
-                    <div class="col-span-12 md:col-span-6 2xl:col-span-12 mt-3 2xl:mt-6">
-                        <div class="intro-x flex items-center h-10">
-                            <h2 class="text-lg font-medium truncate mr-5">Recent Activities</h2>
-                            <a href="" class="ml-auto text-primary truncate">Show More</a>
-                        </div>
-                        <div class="mt-5 relative before:block before:absolute before:w-px before:h-[85%] before:bg-slate-200 before:dark:bg-darkmode-400 before:ml-5 before:mt-5">
-                            <div class="intro-x relative flex items-center mb-3">
-                                <div class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                        <img alt="Tinker Tailwind HTML Admin Template" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}">
-                                    </div>
-                                </div>
-                                <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
-                                    <div class="flex items-center">
-                                        <div class="font-medium">{{ $fakers[9]['users'][0]['name'] }}</div>
-                                        <div class="text-xs text-slate-500 ml-auto">07:00 PM</div>
-                                    </div>
-                                    <div class="text-slate-500 mt-1">Has joined the team</div>
-                                </div>
-                            </div>
-                            <div class="intro-x relative flex items-center mb-3">
-                                <div class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                        <img alt="Tinker Tailwind HTML Admin Template" src="{{ asset('dist/images/' . $fakers[8]['photos'][0]) }}">
-                                    </div>
-                                </div>
-                                <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
-                                    <div class="flex items-center">
-                                        <div class="font-medium">{{ $fakers[8]['users'][0]['name'] }}</div>
-                                        <div class="text-xs text-slate-500 ml-auto">07:00 PM</div>
-                                    </div>
-                                    <div class="text-slate-500">
-                                        <div class="mt-1">Added 3 new photos</div>
-                                        <div class="flex mt-2">
-                                            <div class="tooltip w-8 h-8 image-fit mr-1 zoom-in" title="{{ $fakers[0]['products'][0]['name'] }}">
-                                                <img alt="Tinker Tailwind HTML Admin Template" class="rounded-md border border-white" src="{{ asset('dist/images/' . $fakers[8]['images'][0]) }}">
-                                            </div>
-                                            <div class="tooltip w-8 h-8 image-fit mr-1 zoom-in" title="{{ $fakers[1]['products'][0]['name'] }}">
-                                                <img alt="Tinker Tailwind HTML Admin Template" class="rounded-md border border-white" src="{{ asset('dist/images/' . $fakers[8]['images'][1]) }}">
-                                            </div>
-                                            <div class="tooltip w-8 h-8 image-fit mr-1 zoom-in" title="{{ $fakers[2]['products'][0]['name'] }}">
-                                                <img alt="Tinker Tailwind HTML Admin Template" class="rounded-md border border-white" src="{{ asset('dist/images/' . $fakers[8]['images'][2]) }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="intro-x text-slate-500 text-xs text-center my-4">12 November</div>
-                            <div class="intro-x relative flex items-center mb-3">
-                                <div class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                        <img alt="Tinker Tailwind HTML Admin Template" src="{{ asset('dist/images/' . $fakers[7]['photos'][0]) }}">
-                                    </div>
-                                </div>
-                                <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
-                                    <div class="flex items-center">
-                                        <div class="font-medium">{{ $fakers[7]['users'][0]['name'] }}</div>
-                                        <div class="text-xs text-slate-500 ml-auto">07:00 PM</div>
-                                    </div>
-                                    <div class="text-slate-500 mt-1">Has changed <a class="text-primary" href="">{{ $fakers[7]['products'][0]['name'] }}</a> price and description</div>
-                                </div>
-                            </div>
-                            <div class="intro-x relative flex items-center mb-3">
-                                <div class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                        <img alt="Tinker Tailwind HTML Admin Template" src="{{ asset('dist/images/' . $fakers[6]['photos'][0]) }}">
-                                    </div>
-                                </div>
-                                <div class="box px-5 py-3 ml-4 flex-1 zoom-in">
-                                    <div class="flex items-center">
-                                        <div class="font-medium">{{ $fakers[6]['users'][0]['name'] }}</div>
-                                        <div class="text-xs text-slate-500 ml-auto">07:00 PM</div>
-                                    </div>
-                                    <div class="text-slate-500 mt-1">Has changed <a class="text-primary" href="">{{ $fakers[6]['products'][0]['name'] }}</a> description</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END: Recent Activities -->
-                    <!-- BEGIN: Transactions -->
-                    <div class="col-span-12 md:col-span-6 2xl:col-span-12 mt-3">
-                        <div class="intro-x flex items-center h-10">
-                            <h2 class="text-lg font-medium truncate mr-5">Transactions</h2>
-                        </div>
-                        <div class="mt-5">
-                            @foreach (array_slice($fakers, 0, 5) as $faker)
-                                <div class="intro-x">
-                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
-                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                            <img alt="Tinker Tailwind HTML Admin Template" src="{{ asset('dist/images/' . $faker['photos'][0]) }}">
-                                        </div>
-                                        <div class="ml-4 mr-auto">
-                                            <div class="font-medium">{{ $faker['users'][0]['name'] }}</div>
-                                            <div class="text-slate-500 text-xs mt-0.5">{{ $faker['dates'][0] }}</div>
-                                        </div>
-                                        <div class="{{ $faker['true_false'][0] ? 'text-success' : 'text-danger' }}">{{ $faker['true_false'][0] ? '+' : '-' }}${{ $faker['totals'][0] }}</div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500">View More</a>
-                        </div>
-                    </div>
-                    <!-- END: Transactions -->
+    
+                
+                    
+       
+                    
                 </div>
             </div>
         </div>
     </div>
+    
     <script>
         var ctx = document.getElementById('suratChart').getContext('2d');
         var suratChart = new Chart(ctx, {
@@ -594,8 +435,8 @@
                     label: 'Total Surat (PM)',
                     data: @json($totalspm),
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
-                    borderColor: 'rgba(75, 192, 192, 1)', 
-                    borderWidth: 1
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -617,8 +458,8 @@
                 label: 'Total Surat (PP)',
                 data: @json($totalspp),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
-                borderColor: 'rgba(75, 192, 192, 1)',        // Green border
-                borderWidth: 1
+                borderColor: 'rgba(91, 173, 128, 1)',        // Green border
+                borderWidth: 2
             }]
         },
         options: {
@@ -641,8 +482,8 @@
                     label: 'Total Surat (PS)',
                     data: @json($totalsps),
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
-                    borderColor: 'rgba(75, 192, 192, 1)', 
-                    borderWidth: 1
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -664,8 +505,8 @@
                     label: 'Total Surat (PR)',
                     data: @json($totalspr),
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
-                    borderColor: 'rgba(75, 192, 192, 1)', 
-                    borderWidth: 1
+                    borderColor: 'rgba(91, 173, 128, 1)',  
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -684,11 +525,11 @@
             data: {
                 labels: @json($statusesot),
                 datasets: [{
-                    label: 'Total Surat (PR)',
+                    label: 'Total Surat (OT)',
                     data: @json($totalsot),
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
-                    borderColor: 'rgba(75, 192, 192, 1)', 
-                    borderWidth: 1
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -700,4 +541,179 @@
             }
         });
     </script>
+    <script>
+        var ctx = document.getElementById('suratChartka').getContext('2d');
+        var suratChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($statuseska),
+                datasets: [{
+                    label: 'Total Surat (KA)',
+                    data: @json($totalska),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('suratChartku').getContext('2d');
+        var suratChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($statusesku),
+                datasets: [{
+                    label: 'Total Surat (KU)',
+                    data: @json($totalsku),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('suratChartpl').getContext('2d');
+        var suratChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($statusespl),
+                datasets: [{
+                    label: 'Total Surat (PL)',
+                    data: @json($totalspl),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('suratCharthk').getContext('2d');
+        var suratChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($statuseshk),
+                datasets: [{
+                    label: 'Total Surat (HK)',
+                    data: @json($totalshk),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Green background
+                    borderColor: 'rgba(91, 173, 128, 1)', 
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('suratDoughnutChart').getContext('2d');
+
+        const suratData = {
+            labels: [
+                'PM',
+                'PP',
+                'PS',
+                'PR',
+                'OT',
+                'KA',
+                'KU',
+                'PL',
+                'HK'
+            ],
+            datasets: [{
+                data: [
+                    {{ $totalSuratPM }},
+                    {{ $totalSuratPP }},
+                    {{ $totalSuratPS }},
+                    {{ $totalSuratPR }},
+                    {{ $totalSuratOT }},
+                    {{ $totalSuratKA }},
+                    {{ $totalSuratKU }},
+                    {{ $totalSuratPL }},
+                    {{ $totalSuratHK }}
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 2
+            }]
+        };
+
+        const doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: suratData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true, // Show the legend
+                    },
+                    title: {
+                        display: true, // Show the title
+                    }
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            const label = suratData.labels[tooltipItem.index];
+                            const value = suratData.datasets[0].data[tooltipItem.index];
+                            return  `${label} Yang Sudah Selesai: ${value} Surat`;
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
 @endsection

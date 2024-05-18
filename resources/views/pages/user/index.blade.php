@@ -433,7 +433,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($suratps as $surat)
+            @foreach($surathk as $surat)
             <tr class="intro-x image-fit zoom-in">
                
                 <td><a href="#">{{ $surat->id }}</a></td>
@@ -451,7 +451,7 @@
         </tbody>
     </table>
     <div class="intro-y flex flex-col mt-4">
-        {!! $suratps->links('pagination') !!}
+        {!! $surathk->links('pagination') !!}
     </div>
 </div>
 

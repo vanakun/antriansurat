@@ -82,10 +82,27 @@ Route::middleware('auth')->group(function() {
             Route::get('/suratka', [AdminController::class, 'indexAntrianka'])->name('indexAntrianka');
             Route::get('/edit-suratka/{id}', [AdminController::class, 'editsuratka'])->name('editsuratka');
             Route::post('/updatesuratka/{id}', [AdminController::class, 'updatesuratka'])->name('updatesuratka');
+            Route::get('/edit-suratkadone/{id}', [AdminController::class, 'editsuratkadone'])->name('editsuratkadone');
+            Route::post('/updatesuratkadone/{id}', [AdminController::class, 'updatekadone'])->name('updatekadone');
 
             Route::get('/suratku', [AdminController::class, 'indexAntrianku'])->name('indexAntrianku');
+            Route::get('/edit-suratku/{id}', [AdminController::class, 'editsuratku'])->name('editsuratku');
+            Route::post('/updatesuratku/{id}', [AdminController::class, 'updatesuratku'])->name('updatesuratku');
+            Route::get('/edit-suratkudone/{id}', [AdminController::class, 'editsuratkudone'])->name('editsuratkudone');
+            Route::post('/updatesuratkudone/{id}', [AdminController::class, 'updatekudone'])->name('updatekudone');
+
             Route::get('/suratpl', [AdminController::class, 'indexAntrianpl'])->name('indexAntrianpl');
+            Route::get('/edit-suratpl/{id}', [AdminController::class, 'editsuratpl'])->name('editsuratpl');
+            Route::post('/updatesuratpl/{id}', [AdminController::class, 'updatesuratpl'])->name('updatesuratpl');
+            Route::get('/edit-suratpldone/{id}', [AdminController::class, 'editsuratpldone'])->name('editsuratpldone');
+            Route::post('/updatesuratpldone/{id}', [AdminController::class, 'updatepldone'])->name('updatepldone');
+
             Route::get('/surathk', [AdminController::class, 'indexAntrianhk'])->name('indexAntrianhk');
+            Route::get('/edit-surathk/{id}', [AdminController::class, 'editsurathk'])->name('editsurathk');
+            Route::post('/updatesurathk/{id}', [AdminController::class, 'updatesurathk'])->name('updatesurathk');
+            Route::get('/edit-surathkdone/{id}', [AdminController::class, 'editsurathkdone'])->name('editsurathkdone');
+            Route::post('/updatesurathkdone/{id}', [AdminController::class, 'updatehkdone'])->name('updatehkdone');
+
             Route::get('/surathm', [AdminController::class, 'indexAntrianhm'])->name('indexAntrianhm');
             Route::get('/suratkp', [AdminController::class, 'indexAntriankp'])->name('indexAntriankp');
             Route::get('/suratrt', [AdminController::class, 'indexAntrianrt'])->name('indexAntrianrt');
@@ -125,6 +142,9 @@ Route::middleware('auth')->group(function() {
 
         Route::get('/create-surat-pl', [TenagaahliController::class, 'createsuratpl'])->name('createsuratpl');
         Route::post('/store-surat-pl', [TenagaahliController::class, 'storesuratpl'])->name('storesuratpl');
+
+        Route::get('/create-surat-hk', [TenagaahliController::class, 'createsurathk'])->name('createsurathk');
+        Route::post('/store-surat-hk', [TenagaahliController::class, 'storesurathk'])->name('storesurathk');
 
         Route::get('/create-surat-hm', [TenagaahliController::class, 'createsurathm'])->name('createsurathm');
         Route::post('/store-surat-hm', [TenagaahliController::class, 'storesurathm'])->name('storesurathm');

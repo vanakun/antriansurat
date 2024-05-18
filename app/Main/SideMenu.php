@@ -31,6 +31,15 @@ class SideMenu
                                 ],
                                 'title' => 'Antrian Surat'
                             ],
+            'Regis' => [
+                                'icon' => 'user',
+                                'title' => 'Regis',
+                                        
+                                        'params' => [
+                                            'layout' => 'side-menu'
+                                        ],
+                                        'title' => 'Registrasi User'
+                                    ],
         ];
     }
 }

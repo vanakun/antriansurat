@@ -40,7 +40,7 @@
                     <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsuratpl') }}">Tambah Pengajuan Surat PERLENGKAPAN </a></button>
                 </div>
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsuratpm') }}">Tambah Pengajuan Surat HUKUM </a></button>
+                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsurathk') }}">Tambah Pengajuan Surat HUKUM </a></button>
                 </div>
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
                     <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsurathm') }}">Tambah Pengajuan Surat HUBUNGAN MASYARAKAT </a></button>
