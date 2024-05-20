@@ -28,4 +28,8 @@ class SuratPenyelesaianSengketa extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function surat()
+    {
+        return $this->morphTo();
+    }
 }

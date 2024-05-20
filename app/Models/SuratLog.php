@@ -5,23 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratKeuangan extends Model
+class SuratLog extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'status',
-        'tanggal',
-        'nama',
-        'perihal',
-        'tujuan',
-        'jenis_surat',
-        'keterangan',
-        'kota',
-        'fasilitatif',
-        'no_surat',
         'user_id',
-        'j_surat',
+        'surat_id',
+        'surat_type',
     ];
+
+    public $timestamps = false; // Nonaktifkan timestamps
 
     public function user()
     {
@@ -31,4 +25,7 @@ class SuratKeuangan extends Model
     {
         return $this->morphTo();
     }
+    
+    
 }
+

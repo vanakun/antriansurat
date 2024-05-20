@@ -52,7 +52,10 @@
                     <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsuratrt') }}">Tambah Pengajuan Surat KETATAUSAHAAN DAN KERUMAHTANGGAAN  </a></button>
                 </div>
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsuratpm') }}">Tambah Pengajuan Surat TEKNOLOGI INFORMASI</a></button>
+                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsuratpw') }}">Tambah Pengajuan Surat PENGAWASAN</a></button>
+                </div>
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+                    <button class="btn btn-primary shadow-md mr-2"><a href="{{ route('createsuratti') }}">Tambah Pengajuan Surat TEKNOLOGI INFORMASI</a></button>
                 </div>
                 <!-- END: Blog Layout -->
             </div>

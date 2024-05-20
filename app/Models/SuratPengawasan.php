@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratKeuangan extends Model
+class SuratPengawasan extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'status',
         'tanggal',
@@ -18,11 +19,10 @@ class SuratKeuangan extends Model
         'keterangan',
         'kota',
         'fasilitatif',
-        'no_surat',
+        'no_surat', 
         'user_id',
-        'j_surat',
+        'j_surat',// Tambahkan kolom no_surat ke daftar fillable
     ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -31,4 +31,5 @@ class SuratKeuangan extends Model
     {
         return $this->morphTo();
     }
+    
 }

@@ -12,9 +12,9 @@
             @include('../layout/components/top-bar-tenagaahli')
 
             <div class="px-6 py-4">
-                <h2 class="text-xl font-semibold mb-4">Form KEPEGAWAIAN (KP)</h2>
+                <h2 class="text-xl font-semibold mb-4">Form SURAT TEKNOLOGI INFORMASI (TI)</h2>
 
-                <form action="{{ route('storesuratkp') }}" method="POST" class="max-w-md">
+                <form action="{{ route('storesuratti') }}" method="POST" class="max-w-md">
                     @csrf <!-- Untuk Laravel, gunakan csrf token -->
 
                     <div class="mb-4">
@@ -89,29 +89,29 @@
                         <label for="fasilitatif" class="block text-sm font-medium text-gray-700">FASILITATIF:</label>
                         <input list="fasilitatifOptions" id="fasilitatifInput" name="fasilitatif" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         <datalist id="fasilitatifOptions">
-                            <option value="KP.00.00">DIPA/ POK </option>
-                            <option value="KP.00.01">Rencana Anggaran Belanja (RAB) </option>
-                            <option value="KP.00.02">Penggajian </option>
-                            <option value="KP.00.03">Pengeluaran Anggaran</option>
+                            <option value="TI.00.00">DIPA/ POK </option>
+                            <option value="TI.00.01">Rencana Anggaran Belanja (RAB) </option>
+                            <option value="TI.00.02">Penggajian </option>
+                            <option value="TI.00.03">Pengeluaran Anggaran</option>
 
-                            <option value="KP.01.00">Perbendaharaan  </option>
-                            <option value="KP.01.01">KP4 (Kartu Pengawasan Pembayaran Penghasilan Pegawai) </option>
-                            <option value="KP.01.02">Kartu Pengawasan Kredit</option>
-                            <option value="KP.01.03">Pajak </option>
-                            <option value="KP.01.04">Penerimaan Non Pajak </option>
-                            <option value="KP.01.05">Pengembalian Belanja </option>
-                            <option value="KP.01.06">Berita Acara Pemeriksaan Kas  </option>
-                            <option value="KP.01.07">Tuntutan Ganti Rugi</option>
-                            <option value="KP.01.08">Pinjaman/Bantuan Luar Negeri</option>
-                            <option value="KP.01.09">Verifikasi Anggaran</option>
-                            <option value="KP.01.10">PembuKPan Anggaran </option>
+                            <option value="TI.01.00">Perbendaharaan  </option>
+                            <option value="TI.01.01">TI4 (Kartu Pengawasan Pembayaran Penghasilan Pegawai) </option>
+                            <option value="TI.01.02">Kartu Pengawasan Kredit</option>
+                            <option value="TI.01.03">Pajak </option>
+                            <option value="TI.01.04">Penerimaan Non Pajak </option>
+                            <option value="TI.01.05">Pengembalian Belanja </option>
+                            <option value="TI.01.06">Berita Acara Pemeriksaan Kas  </option>
+                            <option value="TI.01.07">Tuntutan Ganti Rugi</option>
+                            <option value="TI.01.08">Pinjaman/Bantuan Luar Negeri</option>
+                            <option value="TI.01.09">Verifikasi Anggaran</option>
+                            <option value="TI.01.10">PembuTIan Anggaran </option>
 
-                            <option value="KP.02">Perhitungan Anggaran</option>
+                            <option value="TI.02">Perhitungan Anggaran</option>
 
-                            <option value="KP.03.00">Keterangan Penghasilan</option>
-                            <option value="KP.03.01">SKPP (Surat Keterangan Pemberhentian Pembayaran)</option>
-                            <option value="KP.03.02">Permohonan Pinjaman</option>
-                            <option value="KP.03.03">Iuran Keanggotaan Organisasi</option>
+                            <option value="TI.03.00">Keterangan Penghasilan</option>
+                            <option value="TI.03.01">STIP (Surat Keterangan Pemberhentian Pembayaran)</option>
+                            <option value="TI.03.02">Permohonan Pinjaman</option>
+                            <option value="TI.03.03">Iuran Keanggotaan Organisasi</option>
                             
 
                         </datalist>

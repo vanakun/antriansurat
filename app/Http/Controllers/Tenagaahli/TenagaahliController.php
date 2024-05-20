@@ -8,13 +8,16 @@ use App\Models\SuratHukum;
 use App\Models\SuratKepegawaian;
 use App\Models\SuratKetatausahaanDanKerumahtangaan;
 use App\Models\SuratKeuangan;
+use App\Models\SuratLog;
 use App\Models\SuratOrganisasiDanTataLaksana;
 use App\Models\SuratPenangananPelanggaranSengketaPemilu;
+use App\Models\SuratPengawasan;
 use App\Models\SuratPengawasanPemilu;
 use App\Models\SuratPenyelesaianSengketa;
 use App\Models\SuratPerencanaan;
 use App\Models\SuratPerlengkapan;
 use App\Models\SuratPersuratanDanKearsipan;
+use App\Models\SuratTeknologiInformasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,8 +55,12 @@ public function index()
     $suratrt = SuratKetatausahaanDanKerumahtangaan::where('user_id', $userId)->paginate(5);
     
     $surathk = SuratHukum::where('user_id', $userId)->paginate(5);
+
+    $suratpw = SuratPengawasan::where('user_id', $userId)->paginate(5);
+
+    $suratti = SuratTeknologiInformasi::where('user_id', $userId)->paginate(5);
     //dd($suratPengawasanPemilus);
-    return view('pages.user.index', compact('surathk','suratPengawasanPemilus','suratpp','suratps','suratpr','suratot','suratka','suratku','suratpl',"surathm",'suratkp','suratrt'));
+    return view('pages.user.index', compact('suratti','suratpw','surathk','suratPengawasanPemilus','suratpp','suratps','suratpr','suratot','suratka','suratku','suratpl',"surathm",'suratkp','suratrt'));
 }
 
 
@@ -118,6 +125,17 @@ public function index()
     {
         return view ('pages/user/surat/creatert');
     }
+
+    public function createsuratpw()
+    {
+        return view ('pages/user/surat/createpw');
+    }
+
+    public function createsuratti()
+    {
+        return view ('pages/user/surat/createti');
+    }
+
     public function tolakSurat(Request $request, $id)
     {
         // Ambil data surat berdasarkan ID
@@ -132,7 +150,7 @@ public function index()
     }
     
     public function storesuratpm(Request $request)
-    {
+{
     // Validasi data input
     $validatedData = $request->validate([
         'tanggal' => 'required|date',
@@ -149,16 +167,31 @@ public function index()
 
     // Ambil ID pengguna yang sedang masuk
     $userId = auth()->id();
-
-   
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratPengawasanPemilu::create($validatedData);
+    $surat = SuratPengawasanPemilu::create($validatedData);
+
+    // Log the creation of the surat
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPengawasanPemilu::class,
+    ]);
+
+    // Juga bisa log ke file
+    \Log::info('Surat PM created', [
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPengawasanPemilu::class,
+        'timestamp' => now(),
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
     }
+
+   
 
     public function storesuratpp(Request $request)
     {
@@ -182,46 +215,58 @@ public function index()
     $validatedData['j_surat'] = 'Penanganan Pelangaran dan Sengketa Pemilu (PP)';
 
     // Create the record
-    SuratPenangananPelanggaranSengketaPemilu::create($validatedData);
+    $surat = SuratPenangananPelanggaranSengketaPemilu::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPenangananPelanggaranSengketaPemilu::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
-}
+    }
 
-public function showsuratpmuser($id)
-{
-    $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
-    // Tampilkan halaman edit surat
-    return view('pages/user/surat/show-surat/showpm', compact('suratPengawasanPemilus'));
-}
+    public function showsuratpmuser($id)
+    {
+        $suratPengawasanPemilus = SuratPengawasanPemilu::findOrFail($id);
+        // Tampilkan halaman edit surat
+        return view('pages/user/surat/show-surat/showpm', compact('suratPengawasanPemilus'));
+    }
 
-public function storesuratps(Request $request)
-{
-// Validasi data input
-$validatedData = $request->validate([
-    'tanggal' => 'required|date',
-    'nama' => 'required|string',
-    'perihal' => 'required|string',
-    'tujuan' => 'required|string',
-    'jenis_surat' => 'required|string|in:Surat Masuk,Surat Keluar',
-    'keterangan' => 'required|string',
-    'kota' => 'required|string',
-    'substantif' => 'required|string',
-]);
+    public function storesuratps(Request $request)
+    {
+    // Validasi data input
+    $validatedData = $request->validate([
+        'tanggal' => 'required|date',
+        'nama' => 'required|string',
+        'perihal' => 'required|string',
+        'tujuan' => 'required|string',
+        'jenis_surat' => 'required|string|in:Surat Masuk,Surat Keluar',
+        'keterangan' => 'required|string',
+        'kota' => 'required|string',
+        'substantif' => 'required|string',
+    ]);
 
-$validatedData['j_surat'] = 'PENYELESAIAN SENGKETA (PS)';
+    $validatedData['j_surat'] = 'PENYELESAIAN SENGKETA (PS)';
 
-// Ambil ID pengguna yang sedang masuk
-$userId = auth()->id();
+    // Ambil ID pengguna yang sedang masuk
+    $userId = auth()->id();
 
-$validatedData['user_id'] = $userId;
+    $validatedData['user_id'] = $userId;
 
-// Create the record
-SuratPenyelesaianSengketa::create($validatedData);
+    // Create the record
 
-// Redirect to success page or do any other operation upon successful submission
-return redirect()->route('tenagaahliDashboard');
-}    
+    $surat = SuratPenyelesaianSengketa::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPenyelesaianSengketa::class,
+    ]);
+    // Redirect to success page or do any other operation upon successful submission
+    return redirect()->route('tenagaahliDashboard');
+    }    
     public function storesuratpr(Request $request)
     {
     // Validasi data input
@@ -245,7 +290,15 @@ return redirect()->route('tenagaahliDashboard');
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratPerencanaan::create($validatedData);
+
+
+    $surat = SuratPerencanaan::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPerencanaan::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -274,7 +327,16 @@ return redirect()->route('tenagaahliDashboard');
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratOrganisasiDanTataLaksana::create($validatedData);
+
+    $surat = SuratOrganisasiDanTataLaksana::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratOrganisasiDanTataLaksana::class,
+    ]);
+
+    
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -303,7 +365,14 @@ return redirect()->route('tenagaahliDashboard');
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratPersuratanDanKearsipan::create($validatedData);
+
+    $surat = SuratPersuratanDanKearsipan::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPersuratanDanKearsipan::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -332,7 +401,14 @@ return redirect()->route('tenagaahliDashboard');
 
     // Create the record
     
-    SuratKeuangan::create($validatedData);
+
+    $surat = SuratKeuangan::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratKeuangan::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -361,7 +437,14 @@ return redirect()->route('tenagaahliDashboard');
 
     // Create the record
     
-    SuratPerlengkapan::create($validatedData);
+
+    $surat = SuratPerlengkapan::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPerlengkapan::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -386,28 +469,17 @@ return redirect()->route('tenagaahliDashboard');
     // Ambil ID pengguna yang sedang masuk
     $userId = auth()->id();
 
-    // Ambil nomor surat terakhir dari database
-    $lastSuratNumber = SuratHubunganMasyarakat::max('no_surat');
-
-    // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
-    if (!$lastSuratNumber) {
-        $lastSuratNumber = '001';
-    } else {
-        // Ambil angka dari nomor surat terakhir dan tambahkan 1
-        $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
-        // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
-        $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
-    }
-
-    // Generate nomor surat baru
-    $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
-
-    // Assign nomor surat dan ID pengguna to validated data
-    $validatedData['no_surat'] = $no_surat;
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratHubunganMasyarakat::create($validatedData);
+
+    $surat = SuratHubunganMasyarakat::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratHubunganMasyarakat::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -433,27 +505,19 @@ return redirect()->route('tenagaahliDashboard');
     $userId = auth()->id();
 
     // Ambil nomor surat terakhir dari database
-    $lastSuratNumber = SuratKepegawaian::max('no_surat');
-
-    // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
-    if (!$lastSuratNumber) {
-        $lastSuratNumber = '001';
-    } else {
-        // Ambil angka dari nomor surat terakhir dan tambahkan 1
-        $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
-        // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
-        $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
-    }
-
-    // Generate nomor surat baru
-    $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
-
-    // Assign nomor surat dan ID pengguna to validated data
-    $validatedData['no_surat'] = $no_surat;
+    
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratKepegawaian::create($validatedData);
+   
+
+    $surat = SuratKepegawaian::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratKepegawaian::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -478,28 +542,19 @@ return redirect()->route('tenagaahliDashboard');
     // Ambil ID pengguna yang sedang masuk
     $userId = auth()->id();
 
-    // Ambil nomor surat terakhir dari database
-    $lastSuratNumber = SuratKetatausahaanDanKerumahtangaan::max('no_surat');
-
-    // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
-    if (!$lastSuratNumber) {
-        $lastSuratNumber = '001';
-    } else {
-        // Ambil angka dari nomor surat terakhir dan tambahkan 1
-        $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
-        // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
-        $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
-    }
-
-    // Generate nomor surat baru
-    $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
-
-    // Assign nomor surat dan ID pengguna to validated data
-    $validatedData['no_surat'] = $no_surat;
+   
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratKetatausahaanDanKerumahtangaan::create($validatedData);
+   
+
+    $surat = SuratKetatausahaanDanKerumahtangaan::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratKetatausahaanDanKerumahtangaan::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
@@ -529,10 +584,92 @@ return redirect()->route('tenagaahliDashboard');
     $validatedData['user_id'] = $userId;
 
     // Create the record
-    SuratHukum::create($validatedData);
+   
+
+    $surat = SuratHukum::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratHukum::class,
+    ]);
 
     // Redirect to success page or do any other operation upon successful submission
     return redirect()->route('tenagaahliDashboard');
     }
 
+    public function storesuratpw(Request $request)
+    {
+    // Validasi data input
+    $validatedData = $request->validate([
+        'tanggal' => 'required|date',
+        'nama' => 'required|string',
+        'perihal' => 'required|string',
+        'tujuan' => 'required|string',
+        'jenis_surat' => 'required|string|in:Surat Masuk,Surat Keluar',
+        'keterangan' => 'required|string',
+        'kota' => 'required|string',
+        'fasilitatif' => 'required|string',
+    ]);
+
+    $validatedData['j_surat'] = 'PENGAWASAN(PW)';
+
+    // Ambil ID pengguna yang sedang masuk
+    $userId = auth()->id();
+
+    // Ambil nomor surat terakhir dari database
+   
+    $validatedData['user_id'] = $userId;
+
+    // Create the record
+    $surat = SuratPengawasan::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratPengawasan::class,
+    ]);
+
+
+    // Redirect to success page or do any other operation upon successful submission
+    return redirect()->route('tenagaahliDashboard');
+    }
+
+    public function storesuratti(Request $request)
+    {
+    // Validasi data input
+    $validatedData = $request->validate([
+        'tanggal' => 'required|date',
+        'nama' => 'required|string',
+        'perihal' => 'required|string',
+        'tujuan' => 'required|string',
+        'jenis_surat' => 'required|string|in:Surat Masuk,Surat Keluar',
+        'keterangan' => 'required|string',
+        'kota' => 'required|string',
+        'fasilitatif' => 'required|string',
+    ]);
+
+    $validatedData['j_surat'] = 'TEKNOLOGI INFORMASI(TI)';
+
+    // Ambil ID pengguna yang sedang masuk
+    $userId = auth()->id();
+
+    // Ambil nomor surat terakhir dari database
+   
+    $validatedData['user_id'] = $userId;
+
+    // Create the record
+   
+
+    $surat = SuratTeknologiInformasi::create($validatedData);
+
+    SuratLog::create([
+        'user_id' => $userId,
+        'surat_id' => $surat->id,
+        'surat_type' => SuratTeknologiInformasi::class,
+    ]);
+
+    // Redirect to success page or do any other operation upon successful submission
+    return redirect()->route('tenagaahliDashboard');
+    }
 }

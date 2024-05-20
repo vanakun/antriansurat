@@ -6,11 +6,12 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Tenagaahli\TenagaahliController;
-use App\Http\Controllers\CetakController;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\ColorSchemeController;
+use App\Http\Controllers\Admin\CetakController;
 
 use App\Http\Controllers\Perusahaan\JurnalController;
 use App\Http\Controllers\Perusahaan\JurnalUmumController;
@@ -54,6 +55,9 @@ Route::middleware('auth')->group(function() {
             Route::post('/updatesuratpm/{id}', [AdminController::class, 'updatepm'])->name('updatesuratpm');
             Route::get('/edit-suratpmdone/{id}', [AdminController::class, 'editsuratpmdone'])->name('editsuratpmdone');
             Route::post('/updatesuratpmdone/{id}', [AdminController::class, 'updatepmdone'])->name('updatepmdone');
+            Route::get('/cetakpm', [CetakController::class, 'cetakpm'])->name('cetakpm');
+            Route::post('/tolak-surat/{id}', [AdminController::class, 'tolakSurat'])->name('tolakSurat');
+
 
             Route::get('/suratpp', [AdminController::class, 'indexAntrianpp'])->name('indexAntrianpp');
             Route::get('/edit-suratpp/{id}', [AdminController::class, 'editsuratpp'])->name('editsuratpp');
@@ -104,10 +108,34 @@ Route::middleware('auth')->group(function() {
             Route::post('/updatesurathkdone/{id}', [AdminController::class, 'updatehkdone'])->name('updatehkdone');
 
             Route::get('/surathm', [AdminController::class, 'indexAntrianhm'])->name('indexAntrianhm');
+            Route::get('/edit-surathm/{id}', [AdminController::class, 'editsurathm'])->name('editsurathm');
+            Route::post('/updatesurathm/{id}', [AdminController::class, 'updatesurathm'])->name('updatesurathm');
+            Route::get('/edit-surathmdone/{id}', [AdminController::class, 'editsurathmdone'])->name('editsurathmdone');
+            Route::post('/updatesurathmdone/{id}', [AdminController::class, 'updatehmdone'])->name('updatehmdone');
+
             Route::get('/suratkp', [AdminController::class, 'indexAntriankp'])->name('indexAntriankp');
+            Route::get('/edit-suratkp/{id}', [AdminController::class, 'editsuratkp'])->name('editsuratkp');
+            Route::post('/updatesuratkp/{id}', [AdminController::class, 'updatesuratkp'])->name('updatesuratkp');
+            Route::get('/edit-suratkpdone/{id}', [AdminController::class, 'editsuratkpdone'])->name('editsuratkpdone');
+            Route::post('/updatesuratkpdone/{id}', [AdminController::class, 'updatekpdone'])->name('updatekpdone');
+
             Route::get('/suratrt', [AdminController::class, 'indexAntrianrt'])->name('indexAntrianrt');
+            Route::get('/edit-suratrt/{id}', [AdminController::class, 'editsuratrt'])->name('editsuratrt');
+            Route::post('/updatesuratrt/{id}', [AdminController::class, 'updatesuratrt'])->name('updatesuratrt');
+            Route::get('/edit-suratrtdone/{id}', [AdminController::class, 'editsuratrtdone'])->name('editsuratrtdone');
+            Route::post('/updatesurartpdone/{id}', [AdminController::class, 'updatertdone'])->name('updatertdone');
+
             Route::get('/suratpw', [AdminController::class, 'indexAntrianpw'])->name('indexAntrianpw');
+            Route::get('/edit-suratpw/{id}', [AdminController::class, 'editsuratpw'])->name('editsuratpw');
+            Route::post('/updatesuratpw/{id}', [AdminController::class, 'updatesuratpw'])->name('updatesuratpw');
+            Route::get('/edit-suratpwdone/{id}', [AdminController::class, 'editsuratpwdone'])->name('editsuratpwdone');
+            Route::post('/updatesuratpwdone/{id}', [AdminController::class, 'updatepwdone'])->name('updatepwdone');
+    
             Route::get('/suratti', [AdminController::class, 'indexAntrianti'])->name('indexAntrianti');
+            Route::get('/edit-suratti/{id}', [AdminController::class, 'editsuratti'])->name('editsuratti');
+            Route::post('/updatesuratti/{id}', [AdminController::class, 'updatesuratti'])->name('updatesuratti');
+            Route::get('/edit-surattidone/{id}', [AdminController::class, 'editsurattidone'])->name('editsurattidone');
+            Route::post('/updatesurattidone/{id}', [AdminController::class, 'updatetidone'])->name('updatetidone');
         });
         // ... tambahkan rute admin lainnya di sini
     });
@@ -120,8 +148,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/show-suratpm/{id}', [TenagaahliController::class, 'showsuratpmuser'])->name('showsuratpmuser');
         Route::get('/create-surat-pm', [TenagaahliController::class, 'createsuratpm'])->name('createsuratpm');
         Route::post('/store-surat-pm', [TenagaahliController::class, 'storesuratpm'])->name('storesuratpm');
-        Route::post('/tolak-surat/{id}', [TenagaahliController::class, 'tolakSurat'])->name('tolakSurat');
-
+       
         Route::get('/create-surat-pp', [TenagaahliController::class, 'createsuratpp'])->name('createsuratpp');
         Route::post('/store-surat-pp', [TenagaahliController::class, 'storesuratpp'])->name('storesuratpp');
 
@@ -155,6 +182,12 @@ Route::middleware('auth')->group(function() {
         Route::get('/create-surat-rt', [TenagaahliController::class, 'createsuratrt'])->name('createsuratrt');
         Route::post('/store-surat-rt', [TenagaahliController::class, 'storesuratrt'])->name('storesuratrt');
 
+        Route::get('/create-surat-pw', [TenagaahliController::class, 'createsuratpw'])->name('createsuratpw');
+        Route::post('/store-surat-pw', [TenagaahliController::class, 'storesuratpw'])->name('storesuratpw');
+
+        Route::get('/create-surat-ti', [TenagaahliController::class, 'createsuratti'])->name('createsuratti');
+        Route::post('/store-surat-ti', [TenagaahliController::class, 'storesuratti'])->name('storesuratti');
+
         Route::get('/show/{id}/share-link', [TenagaahliController::class, 'shareLink'])->name('shareLink');
         Route::get('/show/{id}', [TenagaahliController::class, 'show'])->name('showProject');
         Route::get('/show/step/{id}', [TenagaahliController::class, 'showStep'])->name('stepProject');
@@ -162,8 +195,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/add-expert/{step}', [StepController::class, 'addToStep'])->name('AddToStep');
         Route::post('/store-expert/{step}', [StepController::class, 'storeExpert'])->name('StoreExpert');
         Route::get('/show/step/add/{step}', [StepController::class, 'addToStep'])->name('isKetua');
-        Route::get('/show/step/generate-pdf/{id}', [CetakController::class, 'generatePDF'])->name('pdf');
-        Route::get('/show/step/cetak-pdf/{project_id}', [CetakController::class, 'cetakPDF'])->name('cetakPDF');
+      
         Route::get('/setting/{user}', [ProfileController::class, 'index'])->name('setting');
         Route::get('/setting/account/{user}', [ProfileController::class, 'accountSet'])->name('accountSet');
         Route::put('/setting/update-acc/{id}', [ProfileController::class, 'updateAccount'])->name('update-account');

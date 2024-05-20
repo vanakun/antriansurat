@@ -3,15 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SuratHubunganMasyarakat;
 use App\Models\SuratHukum;
+use App\Models\SuratKepegawaian;
+use App\Models\SuratKetatausahaanDanKerumahtangaan;
 use App\Models\SuratKeuangan;
+use App\Models\SuratLog;
 use App\Models\SuratOrganisasiDanTataLaksana;
 use App\Models\SuratPenangananPelanggaranSengketaPemilu;
+use App\Models\SuratPengawasan;
 use App\Models\SuratPengawasanPemilu;
 use App\Models\SuratPenyelesaianSengketa;
 use App\Models\SuratPerencanaan;
 use App\Models\SuratPerlengkapan;
 use App\Models\SuratPersuratanDanKearsipan;
+use App\Models\SuratTeknologiInformasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -147,7 +153,141 @@ class AdminController extends Controller
  
      //dd($noSuratTerakhirPl);
 
-    return view('pages/perusahaan/dashboard', compact('totalSuratHK','totalSuratPL','totalSuratKU','totalSuratKA','totalSuratOT','totalSuratPS','totalSuratPR','totalSuratPP','totalSuratPM','statusespm', 'totalspm', 'noSuratTerakhirPM', 'statusespp', 'totalspp', 'noSuratTerakhirPP','statusesps', 'totalsps', 'noSuratTerakhirPs','statusespr', 'totalspr', 'noSuratTerakhirPr','statusesot', 'totalsot', 'noSuratTerakhirOt','statuseska', 'totalska', 'noSuratTerakhirKa','statusesku', 'totalsku', 'noSuratTerakhirKu','statusespl', 'totalspl', 'noSuratTerakhirPl','statuseshk', 'totalshk', 'noSuratTerakhirHk'));
+     $suratCountsHm = SuratHubunganMasyarakat::select(DB::raw('count(*) as total, status'))
+     ->groupBy('status')
+     ->get();
+ 
+     $statuseshm = $suratCountsHm->pluck('status');
+     $totalshm = $suratCountsHm->pluck('total');
+ 
+     $totalSuratHM = SuratHubunganMasyarakat::where('status', 'done')->count();
+ 
+     $lastSuratHm = SuratHubunganMasyarakat::orderBy('no_surat', 'desc')->first();
+     $noSuratTerakhirHm = $lastSuratHm ? $lastSuratHm->no_surat : 'Belum ada surat';
+ 
+     //dd($noSuratTerakhirPl);
+
+     $suratCountsKp = SuratKepegawaian::select(DB::raw('count(*) as total, status'))
+     ->groupBy('status')
+     ->get();
+ 
+     $statuseskp = $suratCountsKp->pluck('status');
+     $totalskp = $suratCountsKp->pluck('total');
+ 
+     $totalSuratKP = SuratKepegawaian::where('status', 'done')->count();
+ 
+     $lastSuratKp = SuratKepegawaian::orderBy('no_surat', 'desc')->first();
+     $noSuratTerakhirKp = $lastSuratKp ? $lastSuratKp->no_surat : 'Belum ada surat';
+ 
+     //dd($noSuratTerakhirPl);
+
+     $suratCountsRt = SuratKetatausahaanDanKerumahtangaan::select(DB::raw('count(*) as total, status'))
+     ->groupBy('status')
+     ->get();
+ 
+     $statusesrt = $suratCountsRt->pluck('status');
+     $totalsrt = $suratCountsRt->pluck('total');
+ 
+     $totalSuratRT = SuratKetatausahaanDanKerumahtangaan::where('status', 'done')->count();
+ 
+     $lastSuratRt = SuratKetatausahaanDanKerumahtangaan::orderBy('no_surat', 'desc')->first();
+     $noSuratTerakhirRt = $lastSuratRt ? $lastSuratRt->no_surat : 'Belum ada surat';
+ 
+     //dd($noSuratTerakhirPl);
+
+     $suratCountsPw = SuratPengawasan::select(DB::raw('count(*) as total, status'))
+     ->groupBy('status')
+     ->get();
+ 
+     $statusespw = $suratCountsPw->pluck('status');
+     $totalspw = $suratCountsPw->pluck('total');
+ 
+     $totalSuratPW = SuratPengawasan::where('status', 'done')->count();
+ 
+     $lastSuratPw = SuratPengawasan::orderBy('no_surat', 'desc')->first();
+     $noSuratTerakhirPw = $lastSuratPw ? $lastSuratPw->no_surat : 'Belum ada surat';
+ 
+     //dd($noSuratTerakhirPl);
+
+     $suratCountsTi = SuratPengawasan::select(DB::raw('count(*) as total, status'))
+     ->groupBy('status')
+     ->get();
+ 
+     $statusesti = $suratCountsTi->pluck('status');
+     $totalsti = $suratCountsTi->pluck('total');
+ 
+     $totalSuratTI = SuratPengawasan::where('status', 'done')->count();
+ 
+     $lastSuratTi = SuratPengawasan::orderBy('no_surat', 'desc')->first();
+     $noSuratTerakhirTi = $lastSuratTi ? $lastSuratTi->no_surat : 'Belum ada surat';
+ 
+     //dd($noSuratTerakhirPl);
+     // Mengambil data log dengan relasi user dan surat, dan mempaginate dengan lima item per halaman
+     $logs = SuratLog::with(['user', 'surat'])->latest()->paginate(5);
+     $totalSuratSelesai = $totalSuratTI + $totalSuratPW + $totalSuratRT + $totalSuratKP + $totalSuratHM + $totalSuratHK + $totalSuratPL + $totalSuratKU + $totalSuratKA + $totalSuratOT + $totalSuratPS + $totalSuratPR + $totalSuratPP + $totalSuratPM;
+
+//dd($totalSuratPM);
+     return view('pages/perusahaan/dashboard', [
+        'totalSuratSelesai' => $totalSuratSelesai,
+        'logs' => $logs,
+        'totalSuratTI' => $totalSuratTI,
+        'totalSuratPW' => $totalSuratPW,
+        'totalSuratRT' => $totalSuratRT,
+        'totalSuratKP' => $totalSuratKP,
+        'totalSuratHM' => $totalSuratHM,
+        'totalSuratHK' => $totalSuratHK,
+        'totalSuratPL' => $totalSuratPL,
+        'totalSuratKU' => $totalSuratKU,
+        'totalSuratKA' => $totalSuratKA,
+        'totalSuratOT' => $totalSuratOT,
+        'totalSuratPS' => $totalSuratPS,
+        'totalSuratPR' => $totalSuratPR,
+        'totalSuratPP' => $totalSuratPP,
+        'totalSuratPM' => $totalSuratPM,
+        'statusespm' => $statusespm,
+        'totalspm' => $totalspm,
+        'noSuratTerakhirPM' => $noSuratTerakhirPM,
+        'statusespp' => $statusespp,
+        'totalspp' => $totalspp,
+        'noSuratTerakhirPP' => $noSuratTerakhirPP,
+        'statusesps' => $statusesps,
+        'totalsps' => $totalsps,
+        'noSuratTerakhirPs' => $noSuratTerakhirPs,
+        'statusespr' => $statusespr,
+        'totalspr' => $totalspr,
+        'noSuratTerakhirPr' => $noSuratTerakhirPr,
+        'statusesot' => $statusesot,
+        'totalsot' => $totalsot,
+        'noSuratTerakhirOt' => $noSuratTerakhirOt,
+        'statuseska' => $statuseska,
+        'totalska' => $totalska,
+        'noSuratTerakhirKa' => $noSuratTerakhirKa,
+        'statusesku' => $statusesku,
+        'totalsku' => $totalsku,
+        'noSuratTerakhirKu' => $noSuratTerakhirKu,
+        'statusespl' => $statusespl,
+        'totalspl' => $totalspl,
+        'noSuratTerakhirPl' => $noSuratTerakhirPl,
+        'statuseshk' => $statuseshk,
+        'totalshk' => $totalshk,
+        'noSuratTerakhirHk' => $noSuratTerakhirHk,
+        'statuseshm' => $statuseshm,
+        'totalshm' => $totalshm,
+        'noSuratTerakhirHm' => $noSuratTerakhirHm,
+        'statuseskp' => $statuseskp,
+        'totalskp' => $totalskp,
+        'noSuratTerakhirKp' => $noSuratTerakhirKp,
+        'statusesrt' => $statusesrt,
+        'totalsrt' => $totalsrt,
+        'noSuratTerakhirRt' => $noSuratTerakhirRt,
+        'statusespw' => $statusespw,
+        'totalspw' => $totalspw,
+        'noSuratTerakhirPw' => $noSuratTerakhirPw,
+        'statusesti' => $statusesti,
+        'totalsti' => $totalsti,
+        'noSuratTerakhirTi' => $noSuratTerakhirTi,
+    ]);
+    
 }
 
 
@@ -1442,4 +1582,719 @@ class AdminController extends Controller
             // Redirect ke halaman yang sesuai setelah pembaruan
             return redirect()->route('indexAntrianhk')->with('success', 'Surat berhasil diperbarui.');
             }
+
+            public function indexAntrianhm()
+            {
+            $surathm = SuratHubunganMasyarakat::where('status', 'waiting')
+                                                            ->paginate(5);
+            $surathmdone = SuratHubunganMasyarakat::where('status', 'done')
+                                                            ->paginate(5);
+            $surathmqueue = SuratHubunganMasyarakat::where('status', 'queue')
+                                                            ->paginate(5);
+            return view('pages/admin/hm/showhm', compact('surathm','surathmdone','surathmqueue'));
+            }
+    
+            public function editsurathm($id)
+            {
+            $surathm = SuratHubunganMasyarakat::findOrFail($id);
+            // Tampilkan halaman edit surat
+            return view('pages/admin/hm/edithm', compact('surathm'));
+            }
+    
+            public function editsurathmdone($id)
+            {
+            $surathm = SuratHubunganMasyarakat::findOrFail($id);
+            // Tampilkan halaman edit surat
+            return view('pages/admin/hm/edithmdone', compact('surathm'));
+            }
+
+            public function updatesurathm(Request $request, $id){
+                // Validasi data yang diterima dari formulir
+                $validatedData = $request->validate([
+                    'status' => 'required',
+                    'surat' => 'required',
+                    'tanggal' => 'required|date',
+                    'nama' => 'required',
+                    'perihal' => 'required',
+                    'tujuan' => 'required',
+                    'jenis_surat' => 'required',
+                    'keterangan' => 'required',
+                    'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                    'fasilitatif' => 'required', // Validasi untuk substantif
+                    'kota' => 'required', // Validasi untuk kota
+                ]);
+            
+                // Ambil nomor surat terakhir dari database
+                $lastSuratNumber = SuratHubunganMasyarakat::max('no_surat');
+            
+                // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
+                if (!$lastSuratNumber) {
+                    $lastSuratNumber = '001';
+                } else {
+                    // Ambil angka dari nomor surat terakhir dan tambahkan 1
+                    $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
+                    // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
+                    $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
+                }
+            
+                // Generate nomor surat baru
+                $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
+            
+                // Cari surat pengawasan pemilu berdasarkan ID
+                $surathm = SuratHubunganMasyarakat::findOrFail($id);
+            
+                // Perbarui data surat dengan data yang diterima dari formulir
+                $surathm->update([
+                    'status' => 'waiting', // Set the status to 'waiting' initially
+                    'surat' => $request->surat,
+                    'tanggal' => $request->tanggal,
+                    'nama' => $request->nama,
+                    'perihal' => $request->perihal,
+                    'tujuan' => $request->tujuan,
+                    'jenis_surat' => $request->jenis_surat,
+                    'keterangan' => $request->keterangan,
+                    'no_surat' => $no_surat, // Gunakan nomor surat baru
+                ]);
+                if ($request->hasFile('file_surat')) {
+                    $file = $request->file('file_surat');
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+            
+                    // Simpan nama file surat dalam database
+                    $surathm->file_surat = $fileName;
+                    $surathm->status = 'done'; // Ubah status menjadi 'done'
+                    $surathm->save();
+                }
+                //dd($suratot);
+            
+                // Save the updated model
+                $surathm->save();
+            
+                // Redirect ke halaman yang sesuai setelah pembaruan
+                return redirect()->route('indexAntrianhm')->with('success', 'Surat berhasil diperbarui.');
+                }
+
+            public function updatehmdone(Request $request, $id)
+                {
+                // Validasi data yang diterima dari formulir
+                $validatedData = $request->validate([
+                    'status' => 'required',
+                    'surat' => 'required',
+                    'tanggal' => 'required|date',
+                    'nama' => 'required',
+                    'perihal' => 'required',
+                    'tujuan' => 'required',
+                    'jenis_surat' => 'required',
+                    'keterangan' => 'required',
+                    'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                    'fasilitatif' => 'required', // Validasi untuk substantif
+                    'kota' => 'required', // Validasi untuk kota
+                    'nomor_surat' => 'required',
+                ]);
+            
+            
+                // Cari surat pengawasan pemilu berdasarkan ID
+                $surathm = SuratHubunganMasyarakat::findOrFail($id);
+            
+                // Perbarui data surat dengan data yang diterima dari formulir
+                $surathm->update([
+                    'status' => $request->status,
+                    'surat' => $request->surat,
+                    'tanggal' => $request->tanggal,
+                    'nama' => $request->nama,
+                    'perihal' => $request->perihal,
+                    'tujuan' => $request->tujuan,
+                    'jenis_surat' => $request->jenis_surat,
+                    'keterangan' => $request->keterangan,
+                    'nomor_surat' => $request->nomor_surat, // Gunakan nomor surat baru
+                ]);
+            
+                // Jika ada file surat yang diunggah, simpan file tersebut
+                if ($request->hasFile('file_surat')) {
+                    $file = $request->file('file_surat');
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+            
+                    // Simpan nama file surat dalam database
+                    $surathm->file_surat = $fileName;
+                    $surathm->status = 'done'; // Ubah status menjadi 'done'
+                    $surathm->save();
+                }
+                $surathm->save();
+                //dd($suratps);
+                // Redirect ke halaman yang sesuai setelah pembaruan
+                return redirect()->route('indexAntrianhm')->with('success', 'Surat berhasil diperbarui.');
+                }
+
+                public function indexAntriankp()
+                {
+                $suratkp = SuratKepegawaian::where('status', 'waiting')
+                                                                ->paginate(5);
+                $suratkpdone = SuratKepegawaian::where('status', 'done')
+                                                                ->paginate(5);
+                $suratkpqueue = SuratKepegawaian::where('status', 'queue')
+                                                                ->paginate(5);
+                return view('pages/admin/kp/showkp', compact('suratkp','suratkpdone','suratkpqueue'));
+                }
+        
+                public function editsuratkp($id)
+                {
+                $suratkp = SuratKepegawaian::findOrFail($id);
+                // Tampilkan halaman edit surat
+                return view('pages/admin/kp/editkp', compact('suratkp'));
+                }
+        
+                public function editsuratkpdone($id)
+                {
+                $suratkp = SuratKepegawaian::findOrFail($id);
+                // Tampilkan halaman edit surat
+                return view('pages/admin/kp/editkpdone', compact('suratkp'));
+                }
+                public function updatesuratkp(Request $request, $id){
+                    // Validasi data yang diterima dari formulir
+                    $validatedData = $request->validate([
+                        'status' => 'required',
+                        'surat' => 'required',
+                        'tanggal' => 'required|date',
+                        'nama' => 'required',
+                        'perihal' => 'required',
+                        'tujuan' => 'required',
+                        'jenis_surat' => 'required',
+                        'keterangan' => 'required',
+                        'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                        'fasilitatif' => 'required', // Validasi untuk substantif
+                        'kota' => 'required', // Validasi untuk kota
+                    ]);
+                
+                    // Ambil nomor surat terakhir dari database
+                    $lastSuratNumber = SuratKepegawaian::max('no_surat');
+                
+                    // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
+                    if (!$lastSuratNumber) {
+                        $lastSuratNumber = '001';
+                    } else {
+                        // Ambil angka dari nomor surat terakhir dan tambahkan 1
+                        $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
+                        // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
+                        $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
+                    }
+                
+                    // Generate nomor surat baru
+                    $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
+                
+                    // Cari surat pengawasan pemilu berdasarkan ID
+                    $suratkp = SuratKepegawaian::findOrFail($id);
+                
+                    // Perbarui data surat dengan data yang diterima dari formulir
+                    $suratkp->update([
+                        'status' => 'waiting', // Set the status to 'waiting' initially
+                        'surat' => $request->surat,
+                        'tanggal' => $request->tanggal,
+                        'nama' => $request->nama,
+                        'perihal' => $request->perihal,
+                        'tujuan' => $request->tujuan,
+                        'jenis_surat' => $request->jenis_surat,
+                        'keterangan' => $request->keterangan,
+                        'no_surat' => $no_surat, // Gunakan nomor surat baru
+                    ]);
+                    if ($request->hasFile('file_surat')) {
+                        $file = $request->file('file_surat');
+                        $fileName = time() . '_' . $file->getClientOriginalName();
+                        $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                
+                        // Simpan nama file surat dalam database
+                        $suratkp->file_surat = $fileName;
+                        $suratkp->status = 'done'; // Ubah status menjadi 'done'
+                        $suratkp->save();
+                    }
+                    //dd($suratot);
+                
+                    // Save the updated model
+                    $suratkp->save();
+                
+                    // Redirect ke halaman yang sesuai setelah pembaruan
+                    return redirect()->route('indexAntriankp')->with('success', 'Surat berhasil diperbarui.');
+                    }
+
+                    public function updatekpdone(Request $request, $id)
+                    {
+                    // Validasi data yang diterima dari formulir
+                    $validatedData = $request->validate([
+                        'status' => 'required',
+                        'surat' => 'required',
+                        'tanggal' => 'required|date',
+                        'nama' => 'required',
+                        'perihal' => 'required',
+                        'tujuan' => 'required',
+                        'jenis_surat' => 'required',
+                        'keterangan' => 'required',
+                        'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                        'fasilitatif' => 'required', // Validasi untuk substantif
+                        'kota' => 'required', // Validasi untuk kota
+                        'nomor_surat' => 'required',
+                    ]);
+                
+                
+                    // Cari surat pengawasan pemilu berdasarkan ID
+                    $suratkp = SuratKepegawaian::findOrFail($id);
+                
+                    // Perbarui data surat dengan data yang diterima dari formulir
+                    $suratkp->update([
+                        'status' => $request->status,
+                        'surat' => $request->surat,
+                        'tanggal' => $request->tanggal,
+                        'nama' => $request->nama,
+                        'perihal' => $request->perihal,
+                        'tujuan' => $request->tujuan,
+                        'jenis_surat' => $request->jenis_surat,
+                        'keterangan' => $request->keterangan,
+                        'nomor_surat' => $request->nomor_surat, // Gunakan nomor surat baru
+                    ]);
+                
+                    // Jika ada file surat yang diunggah, simpan file tersebut
+                    if ($request->hasFile('file_surat')) {
+                        $file = $request->file('file_surat');
+                        $fileName = time() . '_' . $file->getClientOriginalName();
+                        $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                
+                        // Simpan nama file surat dalam database
+                        $suratkp->file_surat = $fileName;
+                        $suratkp->status = 'done'; // Ubah status menjadi 'done'
+                        $suratkp->save();
+                    }
+                    $suratkp->save();
+                    //dd($suratps);
+                    // Redirect ke halaman yang sesuai setelah pembaruan
+                    return redirect()->route('indexAntriankp')->with('success', 'Surat berhasil diperbarui.');
+                    }
+
+                    public function indexAntrianrt()
+                    {
+                    $suratrt = SuratKetatausahaanDanKerumahtangaan::where('status', 'waiting')
+                                                                    ->paginate(5);
+                    $suratrtdone = SuratKetatausahaanDanKerumahtangaan::where('status', 'done')
+                                                                    ->paginate(5);
+                    $suratrtqueue = SuratKetatausahaanDanKerumahtangaan::where('status', 'queue')
+                                                                    ->paginate(5);
+                    return view('pages/admin/rt/showrt', compact('suratrt','suratrtdone','suratrtqueue'));
+                    }
+            
+                    public function editsuratrt($id)
+                    {
+                    $suratrt = SuratKetatausahaanDanKerumahtangaan::findOrFail($id);
+                    // Tampilkan halaman edit surat
+                    return view('pages/admin/rt/editrt', compact('suratrt'));
+                    }
+            
+                    public function editsuratrtdone($id)
+                    {
+                    $suratrt = SuratKetatausahaanDanKerumahtangaan::findOrFail($id);
+                    // Tampilkan halaman edit surat
+                    return view('pages/admin/rt/editrtdone', compact('suratrt'));
+                    }
+
+                    public function updatesuratrt(Request $request, $id){
+                        // Validasi data yang diterima dari formulir
+                        $validatedData = $request->validate([
+                            'status' => 'required',
+                            'surat' => 'required',
+                            'tanggal' => 'required|date',
+                            'nama' => 'required',
+                            'perihal' => 'required',
+                            'tujuan' => 'required',
+                            'jenis_surat' => 'required',
+                            'keterangan' => 'required',
+                            'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                            'fasilitatif' => 'required', // Validasi untuk substantif
+                            'kota' => 'required', // Validasi untuk kota
+                        ]);
+                    
+                        // Ambil nomor surat terakhir dari database
+                        $lastSuratNumber = SuratKetatausahaanDanKerumahtangaan::max('no_surat');
+                    
+                        // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
+                        if (!$lastSuratNumber) {
+                            $lastSuratNumber = '001';
+                        } else {
+                            // Ambil angka dari nomor surat terakhir dan tambahkan 1
+                            $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
+                            // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
+                            $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
+                        }
+                    
+                        // Generate nomor surat baru
+                        $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
+                    
+                        // Cari surat pengawasan pemilu berdasarkan ID
+                        $suratrt = SuratKetatausahaanDanKerumahtangaan::findOrFail($id);
+                    
+                        // Perbarui data surat dengan data yang diterima dari formulir
+                        $suratrt->update([
+                            'status' => 'waiting', // Set the status to 'waiting' initially
+                            'surat' => $request->surat,
+                            'tanggal' => $request->tanggal,
+                            'nama' => $request->nama,
+                            'perihal' => $request->perihal,
+                            'tujuan' => $request->tujuan,
+                            'jenis_surat' => $request->jenis_surat,
+                            'keterangan' => $request->keterangan,
+                            'no_surat' => $no_surat, // Gunakan nomor surat baru
+                        ]);
+                        if ($request->hasFile('file_surat')) {
+                            $file = $request->file('file_surat');
+                            $fileName = time() . '_' . $file->getClientOriginalName();
+                            $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                    
+                            // Simpan nama file surat dalam database
+                            $suratrt->file_surat = $fileName;
+                            $suratrt->status = 'done'; // Ubah status menjadi 'done'
+                            $suratrt->save();
+                        }
+                        //dd($suratot);
+                    
+                        // Save the updated model
+                        $suratrt->save();
+                    
+                        // Redirect ke halaman yang sesuai setelah pembaruan
+                        return redirect()->route('indexAntrianrt')->with('success', 'Surat berhasil diperbarui.');
+                        }
+
+                        public function updatertdone(Request $request, $id)
+                        {
+                        // Validasi data yang diterima dari formulir
+                        $validatedData = $request->validate([
+                            'status' => 'required',
+                            'surat' => 'required',
+                            'tanggal' => 'required|date',
+                            'nama' => 'required',
+                            'perihal' => 'required',
+                            'tujuan' => 'required',
+                            'jenis_surat' => 'required',
+                            'keterangan' => 'required',
+                            'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                            'fasilitatif' => 'required', // Validasi untuk substantif
+                            'kota' => 'required', // Validasi untuk kota
+                            'nomor_surat' => 'required',
+                        ]);
+                    
+                    
+                        // Cari surat pengawasan pemilu berdasarkan ID
+                        $suratrt = SuratKetatausahaanDanKerumahtangaan::findOrFail($id);
+                    
+                        // Perbarui data surat dengan data yang diterima dari formulir
+                        $suratrt->update([
+                            'status' => $request->status,
+                            'surat' => $request->surat,
+                            'tanggal' => $request->tanggal,
+                            'nama' => $request->nama,
+                            'perihal' => $request->perihal,
+                            'tujuan' => $request->tujuan,
+                            'jenis_surat' => $request->jenis_surat,
+                            'keterangan' => $request->keterangan,
+                            'nomor_surat' => $request->nomor_surat, // Gunakan nomor surat baru
+                        ]);
+                    
+                        // Jika ada file surat yang diunggah, simpan file tersebut
+                        if ($request->hasFile('file_surat')) {
+                            $file = $request->file('file_surat');
+                            $fileName = time() . '_' . $file->getClientOriginalName();
+                            $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                    
+                            // Simpan nama file surat dalam database
+                            $suratrt->file_surat = $fileName;
+                            $suratrt->status = 'done'; // Ubah status menjadi 'done'
+                            $suratrt->save();
+                        }
+                        $suratrt->save();
+                        //dd($suratps);
+                        // Redirect ke halaman yang sesuai setelah pembaruan
+                        return redirect()->route('indexAntrianrt')->with('success', 'Surat berhasil diperbarui.');
+                        }
+
+                        public function indexAntrianpw()
+                        {
+                        $suratpw = SuratPengawasan::where('status', 'waiting')
+                                                                        ->paginate(5);
+                        $suratpwdone = SuratPengawasan::where('status', 'done')
+                                                                        ->paginate(5);
+                        $suratpwqueue = SuratPengawasan::where('status', 'queue')
+                                                                        ->paginate(5);
+                        return view('pages/admin/pw/showpw', compact('suratpw','suratpwdone','suratpwqueue'));
+                        }
+                
+                        public function editsuratpw($id)
+                        {
+                        $suratpw = SuratPengawasan::findOrFail($id);
+                        // Tampilkan halaman edit surat
+                        return view('pages/admin/pw/editpw', compact('suratpw'));
+                        }
+                
+                        public function editsuratpwdone($id)
+                        {
+                        $suratpw = SuratPengawasan::findOrFail($id);
+                        // Tampilkan halaman edit surat
+                        return view('pages/admin/pw/editpwdone', compact('suratpw'));
+                        }
+
+                        public function updatesuratpw(Request $request, $id){
+                            // Validasi data yang diterima dari formulir
+                            $validatedData = $request->validate([
+                                'status' => 'required',
+                                'surat' => 'required',
+                                'tanggal' => 'required|date',
+                                'nama' => 'required',
+                                'perihal' => 'required',
+                                'tujuan' => 'required',
+                                'jenis_surat' => 'required',
+                                'keterangan' => 'required',
+                                'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                                'fasilitatif' => 'required', // Validasi untuk substantif
+                                'kota' => 'required', // Validasi untuk kota
+                            ]);
+                        
+                            // Ambil nomor surat terakhir dari database
+                            $lastSuratNumber = SuratPengawasan::max('no_surat');
+                        
+                            // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
+                            if (!$lastSuratNumber) {
+                                $lastSuratNumber = '001';
+                            } else {
+                                // Ambil angka dari nomor surat terakhir dan tambahkan 1
+                                $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
+                                // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
+                                $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
+                            }
+                        
+                            // Generate nomor surat baru
+                            $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
+                        
+                            // Cari surat pengawasan pemilu berdasarkan ID
+                            $suratpw = SuratPengawasan::findOrFail($id);
+                        
+                            // Perbarui data surat dengan data yang diterima dari formulir
+                            $suratpw->update([
+                                'status' => 'waiting', // Set the status to 'waiting' initially
+                                'surat' => $request->surat,
+                                'tanggal' => $request->tanggal,
+                                'nama' => $request->nama,
+                                'perihal' => $request->perihal,
+                                'tujuan' => $request->tujuan,
+                                'jenis_surat' => $request->jenis_surat,
+                                'keterangan' => $request->keterangan,
+                                'no_surat' => $no_surat, // Gunakan nomor surat baru
+                            ]);
+                            if ($request->hasFile('file_surat')) {
+                                $file = $request->file('file_surat');
+                                $fileName = time() . '_' . $file->getClientOriginalName();
+                                $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                        
+                                // Simpan nama file surat dalam database
+                                $suratpw->file_surat = $fileName;
+                                $suratpw->status = 'done'; // Ubah status menjadi 'done'
+                                $suratpw->save();
+                            }
+                            //dd($suratot);
+                        
+                            // Save the updated model
+                            $suratpw->save();
+                        
+                            // Redirect ke halaman yang sesuai setelah pembaruan
+                            return redirect()->route('indexAntrianpw')->with('success', 'Surat berhasil diperbarui.');
+                            }
+
+                            public function updatepwdone(Request $request, $id)
+                            {
+                            // Validasi data yang diterima dari formulir
+                            $validatedData = $request->validate([
+                                'status' => 'required',
+                                'surat' => 'required',
+                                'tanggal' => 'required|date',
+                                'nama' => 'required',
+                                'perihal' => 'required',
+                                'tujuan' => 'required',
+                                'jenis_surat' => 'required',
+                                'keterangan' => 'required',
+                                'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                                'fasilitatif' => 'required', // Validasi untuk substantif
+                                'kota' => 'required', // Validasi untuk kota
+                                'nomor_surat' => 'required',
+                            ]);
+                        
+                        
+                            // Cari surat pengawasan pemilu berdasarkan ID
+                            $suratpw = SuratPengawasan::findOrFail($id);
+                        
+                            // Perbarui data surat dengan data yang diterima dari formulir
+                            $suratpw->update([
+                                'status' => $request->status,
+                                'surat' => $request->surat,
+                                'tanggal' => $request->tanggal,
+                                'nama' => $request->nama,
+                                'perihal' => $request->perihal,
+                                'tujuan' => $request->tujuan,
+                                'jenis_surat' => $request->jenis_surat,
+                                'keterangan' => $request->keterangan,
+                                'nomor_surat' => $request->nomor_surat, // Gunakan nomor surat baru
+                            ]);
+                        
+                            // Jika ada file surat yang diunggah, simpan file tersebut
+                            if ($request->hasFile('file_surat')) {
+                                $file = $request->file('file_surat');
+                                $fileName = time() . '_' . $file->getClientOriginalName();
+                                $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                        
+                                // Simpan nama file surat dalam database
+                                $suratpw->file_surat = $fileName;
+                                $suratpw->status = 'done'; // Ubah status menjadi 'done'
+                                $suratpw->save();
+                            }
+                            $suratpw->save();
+                            //dd($suratps);
+                            // Redirect ke halaman yang sesuai setelah pembaruan
+                            return redirect()->route('indexAntrianpw')->with('success', 'Surat berhasil diperbarui.');
+                            }
+
+                            public function indexAntrianti()
+                            {
+                            $suratti = SuratTeknologiInformasi::where('status', 'waiting')
+                                                                            ->paginate(5);
+                            $surattidone = SuratTeknologiInformasi::where('status', 'done')
+                                                                            ->paginate(5);
+                            $surattiqueue = SuratTeknologiInformasi::where('status', 'queue')
+                                                                            ->paginate(5);
+                            return view('pages/admin/ti/showti', compact('suratti','surattidone','surattiqueue'));
+                            }
+                    
+                            public function editsuratti($id)
+                            {
+                            $suratti = SuratTeknologiInformasi::findOrFail($id);
+                            // Tampilkan halaman edit surat
+                            return view('pages/admin/ti/editti', compact('suratti'));
+                            }
+                    
+                            public function editsurattidone($id)
+                            {
+                            $suratti = SuratTeknologiInformasi::findOrFail($id);
+                            // Tampilkan halaman edit surat
+                            return view('pages/admin/ti/edittidone', compact('suratti'));
+                            }
+
+                            public function updatesuratti(Request $request, $id){
+                                // Validasi data yang diterima dari formulir
+                                $validatedData = $request->validate([
+                                    'status' => 'required',
+                                    'surat' => 'required',
+                                    'tanggal' => 'required|date',
+                                    'nama' => 'required',
+                                    'perihal' => 'required',
+                                    'tujuan' => 'required',
+                                    'jenis_surat' => 'required',
+                                    'keterangan' => 'required',
+                                    'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                                    'fasilitatif' => 'required', // Validasi untuk substantif
+                                    'kota' => 'required', // Validasi untuk kota
+                                ]);
+                            
+                                // Ambil nomor surat terakhir dari database
+                                $lastSuratNumber = SuratTeknologiInformasi::max('no_surat');
+                            
+                                // Jika tidak ada nomor surat sebelumnya, gunakan nomor surat awal "001"
+                                if (!$lastSuratNumber) {
+                                    $lastSuratNumber = '001';
+                                } else {
+                                    // Ambil angka dari nomor surat terakhir dan tambahkan 1
+                                    $lastSuratNumber = intval(substr($lastSuratNumber, 0, 3)) + 1;
+                                    // Format nomor surat dengan 3 digit dan tambahkan 0 di depan jika perlu
+                                    $lastSuratNumber = sprintf("%03d", $lastSuratNumber);
+                                }
+                            
+                                // Generate nomor surat baru
+                                $no_surat = $lastSuratNumber . '/' . $validatedData['fasilitatif'] . '/' . $validatedData['kota'] . '/' . date('m') . '/' . date('Y');
+                            
+                                // Cari surat pengawasan pemilu berdasarkan ID
+                                $suratti = SuratTeknologiInformasi::findOrFail($id);
+                            
+                                // Perbarui data surat dengan data yang diterima dari formulir
+                                $suratti->update([
+                                    'status' => 'waiting', // Set the status to 'waiting' initially
+                                    'surat' => $request->surat,
+                                    'tanggal' => $request->tanggal,
+                                    'nama' => $request->nama,
+                                    'perihal' => $request->perihal,
+                                    'tujuan' => $request->tujuan,
+                                    'jenis_surat' => $request->jenis_surat,
+                                    'keterangan' => $request->keterangan,
+                                    'no_surat' => $no_surat, // Gunakan nomor surat baru
+                                ]);
+                                if ($request->hasFile('file_surat')) {
+                                    $file = $request->file('file_surat');
+                                    $fileName = time() . '_' . $file->getClientOriginalName();
+                                    $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                            
+                                    // Simpan nama file surat dalam database
+                                    $suratti->file_surat = $fileName;
+                                    $suratti->status = 'done'; // Ubah status menjadi 'done'
+                                    $suratti->save();
+                                }
+                                //dd($suratot);
+                            
+                                // Save the updated model
+                                $suratti->save();
+                            
+                                // Redirect ke halaman yang sesuai setelah pembaruan
+                                return redirect()->route('indexAntrianti')->with('success', 'Surat berhasil diperbarui.');
+                                }
+
+                                public function updatetidone(Request $request, $id)
+                            {
+                            // Validasi data yang diterima dari formulir
+                            $validatedData = $request->validate([
+                                'status' => 'required',
+                                'surat' => 'required',
+                                'tanggal' => 'required|date',
+                                'nama' => 'required',
+                                'perihal' => 'required',
+                                'tujuan' => 'required',
+                                'jenis_surat' => 'required',
+                                'keterangan' => 'required',
+                                'file_surat' => 'nullable|file|mimes:pdf|max:2048', // Validasi untuk file surat (opsional)
+                                'fasilitatif' => 'required', // Validasi untuk substantif
+                                'kota' => 'required', // Validasi untuk kota
+                                'nomor_surat' => 'required',
+                            ]);
+                        
+                        
+                            // Cari surat pengawasan pemilu berdasarkan ID
+                            $suratti = SuratTeknologiInformasi::findOrFail($id);
+                        
+                            // Perbarui data surat dengan data yang diterima dari formulir
+                            $suratti->update([
+                                'status' => $request->status,
+                                'surat' => $request->surat,
+                                'tanggal' => $request->tanggal,
+                                'nama' => $request->nama,
+                                'perihal' => $request->perihal,
+                                'tujuan' => $request->tujuan,
+                                'jenis_surat' => $request->jenis_surat,
+                                'keterangan' => $request->keterangan,
+                                'nomor_surat' => $request->nomor_surat, // Gunakan nomor surat baru
+                            ]);
+                        
+                            // Jika ada file surat yang diunggah, simpan file tersebut
+                            if ($request->hasFile('file_surat')) {
+                                $file = $request->file('file_surat');
+                                $fileName = time() . '_' . $file->getClientOriginalName();
+                                $file->move(public_path('uploads'), $fileName); // Simpan file ke direktori yang diinginkan
+                        
+                                // Simpan nama file surat dalam database
+                                $suratti->file_surat = $fileName;
+                                $suratti->status = 'done'; // Ubah status menjadi 'done'
+                                $suratti->save();
+                            }
+                            $suratti->save();
+                            //dd($suratps);
+                            // Redirect ke halaman yang sesuai setelah pembaruan
+                            return redirect()->route('indexAntrianti')->with('success', 'Surat berhasil diperbarui.');
+                            }
+    
 }

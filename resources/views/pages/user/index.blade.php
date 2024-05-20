@@ -599,7 +599,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($suratps as $surat)
+            @foreach($suratti as $surat)
             <tr class="intro-x image-fit zoom-in">
                
                 <td><a href="#">{{ $surat->id }}</a></td>
@@ -617,7 +617,48 @@
         </tbody>
     </table>
     <div class="intro-y flex flex-col mt-4">
-        {!! $suratps->links('pagination') !!}
+        {!! $suratti->links('pagination') !!}
+    </div>
+</div>
+
+<h2 class="intro-y text-lg font-medium mt-10">PENGAWASAN (PW)</h2>
+    <br>
+<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+    <table class="table table-report -mt-2">
+        <thead>
+            <tr>
+                <th class="whitespace-nowrap">#</th>
+                <th class="whitespace-nowrap">Surat</th>
+                <th class="whitespace-nowrap">Tanggal</th>
+                <th class="whitespace-nowrap">Nama</th>
+                <th class="whitespace-nowrap">Perihal</th>
+                <th class="whitespace-nowrap">Tujuan</th>
+                <th class="whitespace-nowrap">Jenis Surat</th>
+                <th class="whitespace-nowrap">Keterangan</th>
+                <th class="whitespace-nowrap">Nomor Surat</th>
+                <th class="whitespace-nowrap">User</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($suratpw as $surat)
+            <tr class="intro-x image-fit zoom-in">
+               
+                <td><a href="#">{{ $surat->id }}</a></td>
+                <td><a href="#">{{ $surat->j_surat }}</a></td>
+                <td><a href="#">{{ $surat->tanggal }}</a></td>
+                <td><a href="#">{{ $surat->nama }}</a></td>
+                <td><a href="#">{{ $surat->perihal }}</a></td>
+                <td><a href="#">{{ $surat->tujuan }}</a></td>
+                <td><a href="#">{{ $surat->jenis_surat }}</a></td>
+                <td><a href="#">{{ $surat->keterangan }}</a></td>
+                <td><a href="#">{{ $surat->no_surat }}</a></td>
+                <td><a href="#">{{ $surat->user->name }}</a></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <div class="intro-y flex flex-col mt-4">
+        {!! $suratpw->links('pagination') !!}
     </div>
 </div>
 
