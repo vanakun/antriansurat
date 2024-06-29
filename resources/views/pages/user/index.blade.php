@@ -150,17 +150,17 @@
         <tbody>
             @foreach($suratpp as $surat)
             <tr class="intro-x image-fit zoom-in">
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->id }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->status }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->j_surat }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->tanggal }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->nama }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->perihal }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->tujuan }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->jenis_surat }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->keterangan }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->no_surat }}</a></td>
-                <td><a href="{{ route('showsuratpmuser', ['id' => $surat->id]) }}">{{ $surat->user->name }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->id }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->status }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->j_surat }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->tanggal }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->nama }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->perihal }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->tujuan }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->jenis_surat }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->keterangan }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->no_surat }}</a></td>
+                <td><a href="{{ route('showsuratppuser', ['id' => $surat->id]) }}">{{ $surat->user->name }}</a></td>
             </tr>
             @endforeach
         </tbody>
@@ -176,6 +176,7 @@
         <thead>
             <tr>
                 <th class="whitespace-nowrap">#</th>
+                <th class="whitespace-nowrap">Status</th>
                 <th class="whitespace-nowrap">Surat</th>
                 <th class="whitespace-nowrap">Tanggal</th>
                 <th class="whitespace-nowrap">Nama</th>
@@ -190,17 +191,17 @@
         <tbody>
             @foreach($suratps as $surat)
             <tr class="intro-x image-fit zoom-in">
-               
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->id }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->j_surat }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->tanggal }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->nama }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->perihal }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->tujuan }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->jenis_surat }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->keterangan }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->no_surat }}</a></td>
-                <td><a href="{{ route('editsuratpm', ['id' => $surat->id]) }}">{{ $surat->user->name }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->id }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->status }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->j_surat }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->tanggal }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->nama }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->perihal }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->tujuan }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->jenis_surat }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->keterangan }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->no_surat }}</a></td>
+                <td><a href="{{ route('showsuratpsuser', ['id' => $surat->id]) }}">{{ $surat->user->name }}</a></td>
             </tr>
             @endforeach
         </tbody>
@@ -216,6 +217,7 @@
         <thead>
             <tr>
                 <th class="whitespace-nowrap">#</th>
+                <th class="whitespace-nowrap">Status</th>
                 <th class="whitespace-nowrap">Surat</th>
                 <th class="whitespace-nowrap">Tanggal</th>
                 <th class="whitespace-nowrap">Nama</th>
@@ -231,16 +233,17 @@
             @foreach($suratpr as $surat)
             <tr class="intro-x image-fit zoom-in">
                
-                <td><a href="#">{{ $surat->id }}</a></td>
-                <td><a href="#">{{ $surat->j_surat }}</a></td>
-                <td><a href="#">{{ $surat->tanggal }}</a></td>
-                <td><a href="#">{{ $surat->nama }}</a></td>
-                <td><a href="#">{{ $surat->perihal }}</a></td>
-                <td><a href="#">{{ $surat->tujuan }}</a></td>
-                <td><a href="#">{{ $surat->jenis_surat }}</a></td>
-                <td><a href="#">{{ $surat->keterangan }}</a></td>
-                <td><a href="#">{{ $surat->no_surat }}</a></td>
-                <td><a href="#">{{ $surat->user->name }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->id }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->status}}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->j_surat }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->tanggal }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->nama }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->perihal }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->tujuan }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->jenis_surat }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->keterangan }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->no_surat }}</a></td>
+                <td><a href="{{ route('showsuratpruser', ['id' => $surat->id]) }}">{{ $surat->user->name }}</a></td>
             </tr>
             @endforeach
         </tbody>
@@ -257,6 +260,7 @@
             <tr>
                 <th class="whitespace-nowrap">#</th>
                 <th class="whitespace-nowrap">Surat</th>
+                <th class="whitespace-nowrap">Status</th>
                 <th class="whitespace-nowrap">Tanggal</th>
                 <th class="whitespace-nowrap">Nama</th>
                 <th class="whitespace-nowrap">Perihal</th>
@@ -272,6 +276,7 @@
             <tr class="intro-x image-fit zoom-in">
                
                 <td><a href="#">{{ $surat->id }}</a></td>
+                <td><a href="#">{{ $surat->status }}</a></td>
                 <td><a href="#">{{ $surat->j_surat }}</a></td>
                 <td><a href="#">{{ $surat->tanggal }}</a></td>
                 <td><a href="#">{{ $surat->nama }}</a></td>

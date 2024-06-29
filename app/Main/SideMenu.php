@@ -34,7 +34,7 @@ class SideMenu
             'Regis' => [
                                 'icon' => 'user',
                                 'title' => 'Regis',
-                                        
+                                        'route_name' => 'register.index',
                                         'params' => [
                                             'layout' => 'side-menu'
                                         ],

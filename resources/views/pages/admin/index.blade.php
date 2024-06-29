@@ -82,7 +82,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakpp') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak KLASIFIKASI PP">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -126,7 +126,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakps') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -170,7 +170,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakpr') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -214,7 +214,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakot') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -258,7 +258,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakka') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -302,7 +302,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakku') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -346,7 +346,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakpl') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -390,7 +390,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakhk') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -434,7 +434,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakhm') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -468,7 +468,7 @@
                             </div>
                             <div class="absolute bottom-0 text-white px-5 pb-6 z-10">
                                 <span class="bg-white/20 px-2 py-1 rounded">ANTRIAN SURAT KEPEGAWAIAN (KP)</span>
-                                <a href="" class="block font-medium text-xl mt-3"> </a>
+                                <a href="{{ route('cetakpr') }}" class="block font-medium text-xl mt-3"> </a>
                             </div>
                         </div>
                         <div class="p-5 text-slate-600 dark:text-slate-500"></div>
@@ -478,7 +478,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakkp') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -522,7 +522,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakrt') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -566,7 +566,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakpw') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>
@@ -610,7 +610,7 @@
                                 <div class="ml-1">View Details</div>
                             </a>
                             
-                            <a href="" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
+                            <a href="{{ route('cetakti') }}" class="intro-x w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white ml-2 tooltip" title="Cetak PDF">
                                 <i data-feather="share" class="w-3 h-3"></i>
                             </a>
                         </div>

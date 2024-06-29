@@ -58,7 +58,7 @@ class AuthController extends Controller
         $user->save();
 
         // Berhasil mendaftar, alihkan ke halaman masuk (login)
-        return redirect()->route('login.index')->with('success', 'Akun Anda telah berhasil dibuat. Silakan masuk.');
+        return redirect()->route('adminDashboard')->with('success', 'Akun Anda telah berhasil dibuat. Silakan masuk.');
     }
 
 

@@ -234,6 +234,27 @@ public function index()
         return view('pages/user/surat/show-surat/showpm', compact('suratPengawasanPemilus'));
     }
 
+    public function showsuratppuser($id)
+    {
+        $surat = SuratPenangananPelanggaranSengketaPemilu::findOrFail($id);
+        // Tampilkan halaman edit surat
+        return view('pages/user/surat/show-surat/showpp', compact('surat'));
+    }
+
+    public function showsuratpsuser($id)
+    {
+        $surat = SuratPenyelesaianSengketa::findOrFail($id);
+        // Tampilkan halaman edit surat
+        return view('pages/user/surat/show-surat/showps', compact('surat'));
+    }
+
+    public function showsuratpruser($id)
+    {
+        $surat = SuratPerencanaan::findOrFail($id);
+        // Tampilkan halaman edit surat
+        return view('pages/user/surat/show-surat/showpr', compact('surat'));
+    }
+
     public function storesuratps(Request $request)
     {
     // Validasi data input

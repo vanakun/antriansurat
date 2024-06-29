@@ -898,85 +898,107 @@
     </script>
     
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const ctx = document.getElementById('suratDoughnutChart').getContext('2d');
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('suratDoughnutChart').getContext('2d');
 
-        const suratData = {
-            labels: [
-                'PM',
-                'PP',
-                'PS',
-                'PR',
-                'OT',
-                'KA',
-                'KU',
-                'PL',
-                'HK'
-            ],
-            datasets: [{
-                data: [
-                    {{ $totalSuratPM }},
-                    {{ $totalSuratPP }},
-                    {{ $totalSuratPS }},
-                    {{ $totalSuratPR }},
-                    {{ $totalSuratOT }},
-                    {{ $totalSuratKA }},
-                    {{ $totalSuratKU }},
-                    {{ $totalSuratPL }},
-                    {{ $totalSuratHK }}
+            const suratData = {
+                labels: [
+                    'TI',
+                    'PW',
+                    'RT',
+                    'KP',
+                    'HM',
+                    'HK',
+                    'PL',
+                    'KU',
+                    'KA',
+                    'OT',
+                    'PS',
+                    'PR',
+                    'PP',
+                    'PM'
                 ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)'
-                ],
-                borderWidth: 2
-            }]
-        };
+                datasets: [{
+                    data: [
+                        {{ $totalSuratTI }},
+                        {{ $totalSuratPW }},
+                        {{ $totalSuratRT }},
+                        {{ $totalSuratKP }},
+                        {{ $totalSuratHM }},
+                        {{ $totalSuratHK }},
+                        {{ $totalSuratPL }},
+                        {{ $totalSuratKU }},
+                        {{ $totalSuratKA }},
+                        {{ $totalSuratOT }},
+                        {{ $totalSuratPS }},
+                        {{ $totalSuratPR }},
+                        {{ $totalSuratPP }},
+                        {{ $totalSuratPM }}
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            };
 
-        const doughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: suratData,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true, // Show the legend
-                    },
-                    title: {
-                        display: true, // Show the title
-                    }
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            const label = suratData.labels[tooltipItem.index];
-                            const value = suratData.datasets[0].data[tooltipItem.index];
-                            return  `${label} Yang Sudah Selesai: ${value} Surat`;
+            const doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: suratData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                        },
+                        title: {
+                            display: true,
+                            text: 'Surat Completion Status'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const label = suratData.labels[context.dataIndex];
+                                    const value = suratData.datasets[0].data[context.dataIndex];
+                                    return `${label} Yang Sudah Selesai: ${value} Surat`;
+                                }
+                            }
                         }
                     }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
+
 
 <script>
         function setClock() {
